@@ -4,131 +4,132 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
     <title>Calpalyn - Instruction File Generator</title>
-
     <!-- Bootstrap Core CSS -->
     <link href="{{ url_for('static', filename='bootstrap.min.css') }}" rel="stylesheet">
-
     <!-- Custom CSS -->
     <link href="{{ url_for('static', filename='sb-admin.css') }}" rel="stylesheet">
-
-
 </head>
 
 <body>
     <div id="vform">
-    <div id="wrapper">
-
-        <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand">Instruction File</a>
-            </div>
-            <!-- Top Menu Items -->
-            <ul class="nav navbar-right top-nav">
-            </ul>
-            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav side-nav">
-                    <li>
-                        <a><button class ="btn-default" v-on:click="page = 1"><i class="fa"></i> Page 1</button></a>
-                    </li>
-                    <li>
-                        <a><button class ="btn-default" v-on:click="page = 2"><i class="fa"></i> Page 2</button></a>
-                    </li>
-                    <li>
-                        <a><button type="submit" class="btn btn-success" value="Submit">Generate</button></a>
-                    </li>
-                                           
+        <div id="wrapper">
+            <!-- Navigation -->
+            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand">Instruction File Generator</a>
+                </div>
+                <!-- Top Menu Items -->
+                <ul class="nav navbar-right top-nav">
                 </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </nav>
-
-        <div id="page-wrapper">
-
-            <div class="container-fluid">
-
-                <!-- Page Heading -->
-                <div class="row">
+                <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    <ul class="nav navbar-nav side-nav">
+                        <li>
+                            <a>
+                                <button class="btn-default" v-on:click="page = 1"><i class="fa"></i> Start of Form </button>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <button class="btn-default" v-on:click="page = maxPage"><i class="fa"></i> Review Form</button>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
-                <!-- /.row -->
+                <!-- /.navbar-collapse -->
+            </nav>
+            <form method="POST">
+                <div id="page-wrapper">
+                    <div class="container-fluid">
+                        <!-- Page Heading -->
+                        <div class="row">
+                        </div>
+                        <!-- /.row -->
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <h3>Page [[ page ]] </h3>
+                                <div class="jumbotron">
 
-                <div class="row">
-                <div class="col-lg-6">
+                                    <!-- Pages for Calpalyn -->
+                                    <div v-if="page === 1 || page === maxPage">
+                                        <div class="input-group">
+                                            <label>Field One</label>
+                                            <input class="form-control" v-model="field1" name="field1" placeholder="Enter field">
+                                        </div>
+                                        <div class="input-group">
+                                            <label>Field Two</label>
+                                            <input class="form-control" v-model="field2" name="field2" placeholder="Enter field">
+                                        </div>
+                                    </div>
+                                    
+                                    <div v-if="page === 2 || page === maxPage">
+                                        <div class="input-group">
+                                            <label>Field Three</label>
+                                            <input class="form-control" v-model="field3" name="field3" placeholder="Enter field">
+                                        </div>
+                                        <div class="input-group">
+                                            <label>Field Four</label>
+                                            <input class="form-control" v-model="field4" name="field4" placeholder="Enter field">
+                                        </div>
+                                        <div class="input-group">
+                                            <label>Field Five</label>
+                                            <input class="form-control" v-model="field5" name="field5" placeholder="Enter field">
+                                        </div>
+                                    </div>
 
-                  <h3>Page [[ page ]] </h3>
+                                    <div v-if="page === 3 || page === maxPage">
+                                        <div class="input-group">
+                                            <label>Field Six</label>
+                                            <input class="form-control" v-model="field6" name="field6" placeholder="Enter field">
+                                        </div>
+                                        <div class="input-group">
+                                            <label>Field Seven</label>
+                                            <input class="form-control" v-model="field7" name="field7" placeholder="Enter field">
+                                        </div>
+                                        <div class="input-group">
+                                            <label>Field Eight</label>
+                                            <input class="form-control" v-model="field8" name="field8" placeholder="Enter field">
+                                        </div>
+                                    </div>
+                                    <!-- End Pages for Calpalyn -->
 
-                  <!-- Pages for Calpalyn -->
-                  <div v-if="page === 1">
-                    <div class="input-group">
-                      <label>Field One</label>
-                      <input class="form-control" v-model="field1" placeholder="Enter field">
+                                    <div class="container-footer" v-if="page !== maxPage">
+                                    <button type="button" v-on:click="previousPage" class="btn btn-default">Previous</button>
+                                    <button type="button" v-on:click="nextPage" class="btn btn-default">Next</button>
+                                    </div>
+                                    <div class="container-footer" v-else>
+                                        <button type="button" v-on:click="previousPage" class="btn btn-default">Previous</button>
+                                        <input type="submit" value="Generate" class="btn btn-success">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="input-group">
-                      <label>Field Two</label>
-                      <input class="form-control" v-model="field2" placeholder="Enter field">
-                    </div>
-                  </div>
-
-                  <div v-else-if="page === 2">
-                    <div class="input-group">
-                      <label>Field Three</label>
-                      <input class="form-control" v-model="field3" placeholder="Enter field">
-                    </div>
-                    <div class="input-group">
-                      <label>Field Four</label>
-                      <input class="form-control" v-model="field4" placeholder="Enter field">
-                    </div>
-                    <div class="input-group">
-                      <label>Field Five</label>
-                      <input class="form-control" v-model="field5" placeholder="Enter field">
-                    </div>
-                  </div>
-
-                  <div v-else>
-                  </div>
-                  <!-- End Pages for Calpalyn -->
-
+                    <!-- /.row -->
                 </div>
-                </div>
-                <!-- /.row -->
-            </div>
-            <!-- /.container-fluid -->
-
-          <div class="container-footer" v-if="page !== maxPage">
-              <button v-on:click="previousPage" class="btn btn-default" >Previous</button>
-              <button v-on:click="nextPage" class="btn btn-default">Next</button>
-          </div>
-          <div class="container-footer" v-else>
-              <button v-on:click="previousPage" class="btn btn-default" >Previous</button>
-          </div>
+                <!-- /.container-fluid -->
         </div>
         <!-- /#page-wrapper -->
-
+        </form>
     </div>
     <!-- /#wrapper -->
     </div>
     <!-- /#wrapper -->
-
     <!-- jQuery -->
     <script src="{{ url_for('static', filename='jquery.js') }}"></script>
-
     <!-- Bootstrap Core JavaScript -->
     <script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
-
     <!-- Vue -->
     <script src="{{ url_for('static', filename='vue.js') }}"></script>
     <script src="{{ url_for('static', filename='main.js') }}"></script>
-
 </body>
 
 </html>
