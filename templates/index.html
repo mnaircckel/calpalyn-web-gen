@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Calpalyn - Instruction File Generator</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{{ url_for('static', filename='bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{{ url_for('static', filename='sb-admin.css') }}" rel="stylesheet">
+
+
+</head>
+
+<body>
+		<div id="vform">
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand">Instruction File</a>
+            </div>
+            <!-- Top Menu Items -->
+            <ul class="nav navbar-right top-nav">
+            </ul>
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li>
+                        <a><button class ="btn-default" v-on:click="page = 1"><i class="fa"></i> Page 1</button></a>
+                    </li>
+                    <li>
+                        <a><button class ="btn-default" v-on:click="page = 2"><i class="fa"></i> Page 2</button></a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="row">
+                </div>
+                <!-- /.row -->
+
+                <div class="row">
+                <div class="col-lg-6">
+
+                	<h3>Page [[ page ]] </h3>
+
+                	<!-- Pages for Calpalyn -->
+									<div v-if="page === 1">
+										<div class="input-group">
+									  	<label>Field One</label>
+									  	<input class="form-control" v-model="field" placeholder="Enter field">
+									  </div>
+										<div class="input-group">
+									  	<label>Field Two</label>
+									  	<input class="form-control" v-model="field2" placeholder="Enter field">
+									  </div>
+									</div>
+
+									<div v-else-if="page === 2">
+										<div class="input-group">
+									  	<label>Field Three</label>
+									  	<input class="form-control" v-model="field3" placeholder="Enter field">
+									  </div>
+										<div class="input-group">
+									  	<label>Field Four</label>
+									  	<input class="form-control" v-model="field4" placeholder="Enter field">
+									  </div>
+										<div class="input-group">
+									  	<label>Field Five</label>
+									  	<input class="form-control" v-model="field5" placeholder="Enter field">
+									  </div>
+									</div>
+
+									<div v-else>
+									</div>
+									<!-- End Pages for Calpalyn -->
+
+                </div>
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+
+					<div class="container-footer">
+							<button v-on:click="previousPage" class="btn btn-default" >Previous</button>
+		        	<button v-on:click="nextPage" class="btn btn-default">Next</button>
+		      </div>
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="{{ url_for('static', filename='jquery.js') }}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
+
+    <!-- Vue -->
+   	<script src="{{ url_for('static', filename='vue.js') }}"></script>
+   	<script src="{{ url_for('static', filename='main.js') }}"></script>
+
+</body>
+
+</html>
