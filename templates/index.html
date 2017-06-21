@@ -44,6 +44,10 @@
                     <li>
                         <a><button class ="btn-default" v-on:click="page = 2"><i class="fa"></i> Page 2</button></a>
                     </li>
+                    <li>
+                        <a><button type="submit" class="btn btn-success" value="Submit">Generate</button></a>
+                    </li>
+                                           
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -67,7 +71,7 @@
                   <div v-if="page === 1">
                     <div class="input-group">
                       <label>Field One</label>
-                      <input class="form-control" v-model="field" placeholder="Enter field">
+                      <input class="form-control" v-model="field1" placeholder="Enter field">
                     </div>
                     <div class="input-group">
                       <label>Field Two</label>
@@ -100,9 +104,12 @@
             </div>
             <!-- /.container-fluid -->
 
-          <div class="container-footer">
+          <div class="container-footer" v-if="page !== maxPage">
               <button v-on:click="previousPage" class="btn btn-default" >Previous</button>
               <button v-on:click="nextPage" class="btn btn-default">Next</button>
+          </div>
+          <div class="container-footer" v-else>
+              <button v-on:click="previousPage" class="btn btn-default" >Previous</button>
           </div>
         </div>
         <!-- /#page-wrapper -->
