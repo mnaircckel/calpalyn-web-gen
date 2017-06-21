@@ -17,7 +17,7 @@
 </head>
 
 <body>
-		<div id="vform">
+    <div id="vform">
     <div id="wrapper">
 
         <!-- Navigation -->
@@ -61,38 +61,38 @@
                 <div class="row">
                 <div class="col-lg-6">
 
-                	<h3>Page [[ page ]] </h3>
+                  <h3>Page [[ page ]] </h3>
 
-                	<!-- Pages for Calpalyn -->
-									<div v-if="page === 1">
-										<div class="input-group">
-									  	<label>Field One</label>
-									  	<input class="form-control" v-model="field" placeholder="Enter field">
-									  </div>
-										<div class="input-group">
-									  	<label>Field Two</label>
-									  	<input class="form-control" v-model="field2" placeholder="Enter field">
-									  </div>
-									</div>
+                  <!-- Pages for Calpalyn -->
+                  <div v-if="page === 1">
+                    <div class="input-group">
+                      <label>Field One</label>
+                      <input class="form-control" v-model="field" placeholder="Enter field">
+                    </div>
+                    <div class="input-group">
+                      <label>Field Two</label>
+                      <input class="form-control" v-model="field2" placeholder="Enter field">
+                    </div>
+                  </div>
 
-									<div v-else-if="page === 2">
-										<div class="input-group">
-									  	<label>Field Three</label>
-									  	<input class="form-control" v-model="field3" placeholder="Enter field">
-									  </div>
-										<div class="input-group">
-									  	<label>Field Four</label>
-									  	<input class="form-control" v-model="field4" placeholder="Enter field">
-									  </div>
-										<div class="input-group">
-									  	<label>Field Five</label>
-									  	<input class="form-control" v-model="field5" placeholder="Enter field">
-									  </div>
-									</div>
+                  <div v-else-if="page === 2">
+                    <div class="input-group">
+                      <label>Field Three</label>
+                      <input class="form-control" v-model="field3" placeholder="Enter field">
+                    </div>
+                    <div class="input-group">
+                      <label>Field Four</label>
+                      <input class="form-control" v-model="field4" placeholder="Enter field">
+                    </div>
+                    <div class="input-group">
+                      <label>Field Five</label>
+                      <input class="form-control" v-model="field5" placeholder="Enter field">
+                    </div>
+                  </div>
 
-									<div v-else>
-									</div>
-									<!-- End Pages for Calpalyn -->
+                  <div v-else>
+                  </div>
+                  <!-- End Pages for Calpalyn -->
 
                 </div>
                 </div>
@@ -100,10 +100,10 @@
             </div>
             <!-- /.container-fluid -->
 
-					<div class="container-footer">
-							<button v-on:click="previousPage" class="btn btn-default" >Previous</button>
-		        	<button v-on:click="nextPage" class="btn btn-default">Next</button>
-		      </div>
+          <div class="container-footer">
+              <button v-on:click="previousPage" class="btn btn-default" >Previous</button>
+              <button v-on:click="nextPage" class="btn btn-default">Next</button>
+          </div>
         </div>
         <!-- /#page-wrapper -->
 
@@ -119,8 +119,8 @@
     <script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
 
     <!-- Vue -->
-   	<script src="{{ url_for('static', filename='vue.js') }}"></script>
-   	<script src="{{ url_for('static', filename='main.js') }}"></script>
+    <script src="{{ url_for('static', filename='vue.js') }}"></script>
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
 
 </body>
 
