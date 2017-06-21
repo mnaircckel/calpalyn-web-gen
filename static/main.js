@@ -4,7 +4,7 @@ var vform = new Vue({
     page: 1,
     maxPage: 4,
     field1: '',
-    field2: '',
+    field2: '1',
     field3: '',
     field4: '',
     field5: '',
