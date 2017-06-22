@@ -72,6 +72,11 @@
                                               <option value="2">New</option>
                                             </select>
                                         </div>
+                                        <label>Taxon</label>
+                                        <select v-model="taxon" class="form-control" multiple>
+                                            <option v-for="option in species">[[ option.name ]]</option>
+                                        </select>
+                                        <br>
                                     </div>
                                     
                                     <div v-if="page === 2 || page === maxPage">

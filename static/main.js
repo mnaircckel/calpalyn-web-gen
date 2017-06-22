@@ -10,7 +10,9 @@ var vform = new Vue({
     field5: '',
     field6: '',
     field7: '',
-    field8: ''
+    field8: '',
+    taxon: [],
+    species: [{name: "Abies"}, {name: "Fir"}]
   },
   methods: {
     previousPage: function () {
