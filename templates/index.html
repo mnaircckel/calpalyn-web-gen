@@ -39,14 +39,20 @@
                         </li>
                         <li>
                             <a>
-                                <button class="btn-default" v-on:click="page = maxPage"><i class="fa"></i> Review Form</button>
+                                <button class="btn-default" v-on:click="page = maxPage"><i class="fa"></i> Review Form </button>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <button class="btn-success" v-on:click="submitForm()"><i class="fa"></i> Generate</button>
                             </a>
                         </li>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
             </nav>
-            <form method="POST">
+            <form method="POST" id="calpalynForm">
+
                 <div id="page-wrapper">
                     <div class="container-fluid">
                         <!-- Page Heading -->
@@ -55,11 +61,16 @@
                         <!-- /.row -->
                         <div class="row">
                             <div class="col-lg-6">
-                                <h3>Page [[ page ]] </h3>
+                                <h3>
+                                Page
+                                <select v-model="page" class="form-control">
+                                    <option :value="pageNum" v-text="pageNum" v-for="pageNum in maxPage"></option>
+                                </select>
+                                </h3>
                                 <div class="jumbotron">
 
                                     <!-- Pages for Calpalyn -->
-                                    <div v-if="page === 1 || page === maxPage">
+                                    <div v-show="page === 1 || page === maxPage">
                                         <div class="input-group">
                                             <label>Field One</label>
                                             <input class="form-control" v-model="field1" maxlength="1" name="field1" placeholder="Enter field">
@@ -79,7 +90,7 @@
                                         <br>
                                     </div>
                                     
-                                    <div v-if="page === 2 || page === maxPage">
+                                    <div v-show="page === 2 || page === maxPage">
                                         <div class="input-group">
                                             <label>Field Three</label>
                                             <input class="form-control" v-model="field3" name="field3" placeholder="Enter field">
@@ -94,7 +105,7 @@
                                         </div>
                                     </div>
 
-                                    <div v-if="page === 3 || page === maxPage">
+                                    <div v-show="page === 3 || page === maxPage">
                                         <div class="input-group">
                                             <label>Field Six</label>
                                             <input class="form-control" v-model="field6" name="field6" placeholder="Enter field">
@@ -110,13 +121,15 @@
                                     </div>
                                     <!-- End Pages for Calpalyn -->
 
-                                    <div class="container-footer" v-if="page !== maxPage">
-                                    <button type="button" v-on:click="previousPage" class="btn btn-default">Previous</button>
-                                    <button type="button" v-on:click="nextPage" class="btn btn-default">Next</button>
+                                    <div class="container-footer" v-if="page !== maxPage && page != 1">
+                                        <button type="button" v-on:click="previousPage" class="btn btn-default">Previous</button>
+                                        <button type="button" v-on:click="nextPage" class="btn btn-default">Next</button>
+                                    </div>
+                                    <div class="container-footer" v-else-if="page !== 1">
+                                        <button type="button" v-on:click="previousPage" class="btn btn-default">Previous</button>
                                     </div>
                                     <div class="container-footer" v-else>
-                                        <button type="button" v-on:click="previousPage" class="btn btn-default">Previous</button>
-                                        <input type="submit" value="Generate" class="btn btn-success">
+                                        <button type="button" v-on:click="nextPage" class="btn btn-default">Next</button>
                                     </div>
                                 </div>
                             </div>

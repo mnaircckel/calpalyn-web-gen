@@ -15,6 +15,11 @@ var vform = new Vue({
     species: [{name: "Abies"}, {name: "Fir"}]
   },
   methods: {
+    submitForm: function() {
+      if (confirm("Do you wish to generate the instruction file?") == true) {
+          document.getElementById("calpalynForm").submit();
+      }
+    },
     previousPage: function () {
       this.page = Math.max(this.page-1, 1)
     },
