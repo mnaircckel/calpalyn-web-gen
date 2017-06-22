@@ -228,8 +228,10 @@ ul.alert-dropdown {
     color: #df8a13;
 }
 
-/* Custom Colored Panels */
-.container-footer {
-    padding-top: 50px;
-    height: 50px;
+.main-center{
+    max-width: 700px;
+}
+
+.form-control{
+    margin-bottom: 10px;
 }
