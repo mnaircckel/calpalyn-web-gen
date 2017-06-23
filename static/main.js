@@ -49,6 +49,7 @@ var vform = new Vue({
             }
             vform[field] = data
           }
+          vform.page = 1
         }
       }
       catch (e) {
