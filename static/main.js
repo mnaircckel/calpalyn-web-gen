@@ -4,7 +4,7 @@ var vform = new Vue({
     page: 1,
     maxPage: 4,
     field1: '',
-    field2: '1',
+    field2: 'New',
     field3: '',
     field4: '',
     field5: '',
@@ -12,7 +12,9 @@ var vform = new Vue({
     field7: '',
     field8: '',
     taxon: [],
-    species: [{name: "Abies"}, {name: "Fir"}]
+    species: [{name: "Abies"}, {name: "Fir"}],
+    formsData: {},
+    loadedForm: {}
   },
   methods: {
     submitForm: function() {
@@ -21,10 +23,37 @@ var vform = new Vue({
       }
     },
     previousPage: function () {
-      this.page = Math.max(this.page-1, 1)
+      vform.page = Math.max(this.page-1, 1)
     },
     nextPage: function () {
-      this.page = Math.min(this.page+1, this.maxPage)
+      vform.page = Math.min(this.page+1, this.maxPage)
+    },
+    loadFormsPage: function () {
+      vform.page = undefined
+      axios.get('/get_forms')
+        .then(function (response) {
+          vform.formsData = response.data
+        })
+        .catch(function (error) {
+          vform.formsData = {}
+        })
+    },
+    loadForm: function () {
+      try {
+        fields = vform.loadedForm
+        if (confirm("Do you really wish to load the form?") == true) {
+          for (field in fields){
+            var data = fields[field]
+            if(typeof(vform[field]) === "string"){
+              data = data.toString()
+            }
+            vform[field] = data
+          }
+        }
+      }
+      catch (e) {
+         alert("Unable to load form!")
+      }
     }
   },
   delimiters: ["[[","]]"]

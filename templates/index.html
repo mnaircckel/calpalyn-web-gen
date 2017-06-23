@@ -44,6 +44,11 @@
                         </li>
                         <li>
                             <a>
+                                <button class="btn-default" v-on:click="loadFormsPage()"><i class="fa"></i> Load Form</button>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
                                 <button class="btn-success" v-on:click="submitForm()"><i class="fa"></i> Generate</button>
                             </a>
                         </li>
@@ -63,25 +68,34 @@
                             <div class="col-lg-6">
 
                                 <!-- Page Select -->
-                                <h3>
-                                    <b>Page</b>
+                                <h3 v-show="page <= maxPage && page >= 1">
+                                    <p>Page</p>
                                     <select v-model="page" class="form-control">
                                         <option :value="pageNum" v-text="pageNum" v-for="pageNum in maxPage"></option>
                                     </select>
                                 </h3>
 
+                                <!-- Get Forms Page -->
+                                <div v-show="page === undefined">
+                                    <h3>Load Form</h3>
+                                    <select v-model="loadedForm" class="form-control">
+                                        <option v-for="option in formsData" :value="option">[[ option.field1.toString() ]]</option>
+                                    </select>
+                                    <button type="button" v-on:click="loadForm()" class="btn-success"><i class="fa"></i> Load </button>
+                                </div>
+
                                 <!-- Pages for Calpalyn -->
                                 <div v-show="page === 1 || page === maxPage">
-                                    <label>Field One</label>
-                                    <input class="form-control" v-model="field1" maxlength="1" name="field1" placeholder="Enter field">
+                                    <label>Name</label>
+                                    <input class="form-control" v-model="field1" name="field1" placeholder="Enter name">
                                     <label>File Type</label>
                                     <select class="form-control" v-model="field2" name="field2">
                                       <option value="" disabled>Please select one</option>
-                                      <option value="1" selected>Old</option>
-                                      <option value="2">New</option>
+                                      <option value="Old" selected>Old</option>
+                                      <option value="New">New</option>
                                     </select>
                                     <label>Taxon</label>
-                                    <select v-model="taxon" class="form-control" multiple>
+                                    <select v-model="taxon" name="taxon" class="form-control" multiple>
                                         <option v-for="option in species">[[ option.name ]]</option>
                                     </select>
                                 </div>
@@ -107,14 +121,14 @@
 
                                 <!-- Forward / Back -->
                                 <br>
-                                <div class="container-footer" v-if="page !== maxPage && page != 1">
+                                <div class="container-footer" v-if="page < maxPage && page > 1">
                                     <button type="button" v-on:click="previousPage" class="btn btn-primary">Previous</button>
                                     <button type="button" v-on:click="nextPage" class="btn btn-primary">Next</button>
                                 </div>
-                                <div class="container-footer" v-else-if="page !== 1">
+                                <div class="container-footer" v-else-if="page == maxPage">
                                     <button type="button" v-on:click="previousPage" class="btn btn-primary">Previous</button>
                                 </div>
-                                <div class="container-footer" v-else>
+                                <div class="container-footer" v-else-if="page == 1">
                                     <button type="button" v-on:click="nextPage" class="btn btn-primary">Next</button>
                                 </div>
 
@@ -135,6 +149,8 @@
     <script src="{{ url_for('static', filename='jquery.js') }}"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
+    <!--Axios -->
+    <script src="{{ url_for('static', filename='axios.min.js') }}"></script>
     <!-- Vue -->
     <script src="{{ url_for('static', filename='vue.js') }}"></script>
     <script src="{{ url_for('static', filename='main.js') }}"></script>
