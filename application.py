@@ -7,21 +7,20 @@ app.config.update(
 )
 
 @app.route('/', methods=['GET', 'POST'])
-def handle_page():
+def forms():
     if request.method == 'POST':
-      with open('forms', 'a') as f:
-        f.write(json.dumps(dict(request.form))+'\n')
+      with open('forms.json', 'a') as f:
+        f.write(json.dumps(request.get_json()) + '\n')
     return render_template('index.html')
 
 @app.route('/get_forms', methods=['GET'])
-def send_form():
+def send_forms():
     data = {}
-    with open('forms', 'r') as f:
-      form_id = 0
+    with open('forms.json', 'r') as f:
+      forms = []
       for line in f:
-        data[form_id] = json.loads(line)
-        form_id += 1
-    return json.dumps(data)
+        forms.append(json.loads(line))
+    return json.dumps(forms)
 
 if __name__ == "__main__":
   app.run()
