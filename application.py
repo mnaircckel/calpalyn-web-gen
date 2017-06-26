@@ -22,5 +22,9 @@ def send_forms():
         forms.append(json.loads(line))
     return json.dumps(forms)
 
+@app.route('/generate_form', methods=['POST'])
+def generate_form():
+    pass
+
 if __name__ == "__main__":
   app.run()
