@@ -4,156 +4,105 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Calpalyn - Instruction File Generator</title>
-    <!-- Bootstrap Core CSS -->
-    <link href="{{ url_for('static', filename='bootstrap.min.css') }}" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="{{ url_for('static', filename='sb-admin.css') }}" rel="stylesheet">
+    <title>Calpalyn Instruction File Generator</title>
+    <!-- Bulma CSS, Keen UI, Custom CSS -->
+    <link href="{{ url_for('static', filename='bulma.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='keen-ui.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='base.css') }}" rel="stylesheet">
+
 </head>
 
 <body>
-    <div id="vform">
-        <div id="wrapper">
-            <!-- Navigation -->
-            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand">Instruction File Generator</a>
-                </div>
-                <!-- Top Menu Items -->
-                <ul class="nav navbar-right top-nav">
-                </ul>
-                <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-                <div class="collapse navbar-collapse navbar-ex1-collapse">
-                    <ul class="nav navbar-nav side-nav">
-                        <li>
-                            <a>
-                                <button class="btn-default" v-on:click="page = 1"><i class="fa"></i> Start of Form </button>
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                <button class="btn-default" v-on:click="page = maxPage"><i class="fa"></i> Review Form </button>
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                <button class="btn-default" v-on:click="loadFormsPage()"><i class="fa"></i> Saved Forms</button>
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                <button class="btn-success" v-on:click="submitForm()"><i class="fa"></i> Generate</button>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.navbar-collapse -->
-            </nav>
-            <form method="POST" id="calpalynForm">
+    <div id="vform" class="vform">
+        <div class="columns">
+            <div class="column is-2 hero is-light box">
+                <aside class="menu">
+                    <a class="nav-item is-tab is-active">Calpalyn</a>
+                    <a class=" nav-item is-tab" v-on:click="loadFormsPage()">Saved Graphs</a>
+                    <a class=" nav-item is-tab" v-on:click="page = 1">Current Graph</a>
+                    <br>
+                    <a class="button is-primary nav-item is-tab" v-on:click="submitForm()">Save and Generate</a>
+                </aside>
+            </div>
+            <div class="column">
+                <section class="hero is-fullheight is-light box is-bold">
+                    <div class="hero-body">
+                        <div class="container">
+                            <div class="columns is-vcentered">
+                                <div class="column is-4 is-offset-4">
 
-                <div id="page-wrapper">
-                    <div class="main-center">
-                        <!-- Page Heading -->
-                        <div class="row">
-                        </div>
-                        <!-- /.row -->
-                        <div class="row">
-                            <div class="col-lg-6">
+                                    <!-- Page Select -->
+                                    <h1 class="title" v-show="page <= maxPage && page >= minPage">
+                                        Section
+                                        <select v-model="page" class="form-control">
+                                            <option :value="pageNum" v-text="pageNum" v-for="pageNum in maxPage"></option>
+                                        </select>
+                                    </h1>
 
-                                <!-- Page Select -->
-                                <h3 v-show="page <= maxPage && page >= 1">
-                                    <p>Page</p>
-                                    <select v-model="page" class="form-control">
-                                        <option :value="pageNum" v-text="pageNum" v-for="pageNum in maxPage"></option>
-                                    </select>
-                                </h3>
+                                    <h1 class="title" v-show="page === undefined">
+                                        Saved Graphs
+                                    </h1>
 
-                                <!-- Get Forms Page -->
-                                <div v-show="page === undefined">
-                                    <h3>Saved Forms</h3>
-                                    <select v-model="loadedForm" class="form-control">
-                                        <option v-for="option in formsData" :value="option">[[ option.field1.toString() ]]</option>
-                                    </select>
-                                    <br>
-                                    <button type="button" v-on:click="loadForm()" class="btn-success"><i class="fa"></i> Load </button>
-                                </div>
+                                    <div class="box">
 
-                                <!-- Pages for Calpalyn -->
-                                <div v-show="page === 1 || page === maxPage">
-                                    <label>Name</label>
-                                    <input class="form-control" v-model="field1" placeholder="Enter name">
-                                    <label>File Type</label>
-                                    <select class="form-control" v-model="field2">
-                                      <option value="" disabled>Please select one</option>
-                                      <option value="Old" selected>Old</option>
-                                      <option value="New">New</option>
-                                    </select>
-                                    <label>Taxon</label>
-                                    <select v-model="taxon" class="form-control" multiple>
-                                        <option v-for="option in species">[[ option.name ]]</option>
-                                    </select>
-                                </div>
-                                
-                                <div v-show="page === 2 || page === maxPage">
-                                    <label>Field Three</label>
-                                    <input class="form-control" v-model="field3" placeholder="Enter field">
-                                    <label>Field Four</label>
-                                    <input class="form-control" v-model="field4" placeholder="Enter field">
-                                    <label>Field Five</label>
-                                    <input class="form-control" v-model="field5" placeholder="Enter field">
-                                </div>
+                                        <!-- Saved Forms Page -->
+                                        <div v-show="page === undefined">
+                                            <label class="label">Graphs</label>
+                                            <select v-model="loadedForm" class="select ui-select">
+                                                <option v-for="option in formsData" :value="option" class="ui-select-option">[[ option.field1.toString() ]]</option>
+                                            </select>
+                                            <br>
+                                            <button type="button" v-on:click="loadForm()" class="button is-primary"> Load </button>
+                                        </div>
 
-                                <div v-show="page === 3 || page === maxPage">
-                                    <label>Field Six</label>
-                                    <input class="form-control" v-model="field6" placeholder="Enter field">
-                                    <label>Field Seven</label>
-                                    <input class="form-control" v-model="field7" placeholder="Enter field">
-                                    <label>Field Eight</label>
-                                    <input class="form-control" v-model="field8" placeholder="Enter field">
-                                </div>
-                                <!-- End Pages for Calpalyn -->
+                                        <!-- Pages for Calpalyn -->
+                                        <div v-show="page === 1 || page === maxPage">
+                                            <ui-textbox label="Name" v-model="field1" placeholder="Enter name"></ui-textbox>
+                                            <ui-select label="File Type" v-model="field2" placeholder="Please select one" :options="['Old','New']"></ui-select>
+                                            <ui-select multiple label="Taxon" v-model="taxon" :options="['Abies','Fir']" has-search></ui-select>
 
-                                <!-- Forward / Back -->
-                                <br>
-                                <div class="container-footer" v-if="page < maxPage && page > 1">
-                                    <button type="button" v-on:click="previousPage" class="btn btn-primary">Previous</button>
-                                    <button type="button" v-on:click="nextPage" class="btn btn-primary">Next</button>
-                                </div>
-                                <div class="container-footer" v-else-if="page == maxPage">
-                                    <button type="button" v-on:click="previousPage" class="btn btn-primary">Previous</button>
-                                </div>
-                                <div class="container-footer" v-else-if="page == 1">
-                                    <button type="button" v-on:click="nextPage" class="btn btn-primary">Next</button>
-                                </div>
+                                        </div>
+                                        
+                                        <div v-show="page === 2 || page === maxPage">
+                                            <ui-textbox label="Field Three" v-model="field3" placeholder="Enter field"></ui-textbox>
+                                            <ui-textbox label="Field Four" v-model="field4" placeholder="Enter field"></ui-textbox>
+                                            <ui-textbox label="Field Five" v-model="field5" placeholder="Enter field"></ui-textbox>
+                                        </div>
 
+                                        <div v-show="page === 3 || page === maxPage">
+                                            <ui-textbox label="Field Six" v-model="field6" placeholder="Enter field"></ui-textbox>
+                                            <ui-textbox label="Field Seven" v-model="field7" placeholder="Enter field"></ui-textbox>
+                                            <ui-textbox label="Field Eight" v-model="field8" placeholder="Enter field"></ui-textbox>
+                                        </div>
+                                        <!-- End Pages for Calpalyn -->
+
+                                        <!-- Forward / Back -->
+                                        <br>
+                                        <div v-if="page < maxPage && page > 1">
+                                            <button type="button" v-on:click="previousPage" class="button">Previous</button>
+                                            <button type="button" v-on:click="nextPage" class="button">Next</button>
+                                        </div>
+                                        <div v-else-if="page == maxPage">
+                                            <button type="button" v-on:click="previousPage" class="button">Previous</button>
+                                        </div>
+                                        <div v-else-if="page == 1">
+                                            <button type="button" v-on:click="nextPage" class="button">Next</button>
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <!-- /.row -->
-                </div>
-                <!-- /.container-fluid -->
+                </section>
+            </div>
         </div>
-        <!-- /#page-wrapper -->
-        </form>
     </div>
-    <!-- /#wrapper -->
-    </div>
-    <!-- /#wrapper -->
-    <!-- jQuery -->
-    <script src="{{ url_for('static', filename='jquery.js') }}"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
     <!--Axios -->
     <script src="{{ url_for('static', filename='axios.min.js') }}"></script>
-    <!-- Vue -->
+    <!-- Vue and Keen UI -->
     <script src="{{ url_for('static', filename='vue.js') }}"></script>
+    <script src="{{ url_for('static', filename='keen-ui.min.js') }}"></script>
     <script src="{{ url_for('static', filename='main.js') }}"></script>
 </body>
 

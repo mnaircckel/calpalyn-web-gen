@@ -3,6 +3,7 @@ var vform = new Vue({
   data: {
     page: 1,
     maxPage: 4,
+    minPage: 1,
     field1: '',
     field2: 'New',
     field3: '',
@@ -12,8 +13,7 @@ var vform = new Vue({
     field7: '',
     field8: '',
     taxon: [],
-    species: [{name: "Abies"}, {name: "Fir"}],
-    formsData: {},
+    formsData: [],
     loadedForm: {}
   },
   methods: {
@@ -32,11 +32,11 @@ var vform = new Vue({
             taxon: this.taxon
           }
         )
-        vform.page = 1
+        vform.page = vform.minPage
       }
     },
     previousPage: function () {
-      vform.page = Math.max(vform.page-1, 1)
+      vform.page = Math.max(vform.page-1, vform.minPage)
     },
     nextPage: function () {
       vform.page = Math.min(vform.page+1, vform.maxPage)
@@ -57,7 +57,7 @@ var vform = new Vue({
           for (field in vform.loadedForm){
             vform[field] = vform.loadedForm[field]
           }
-          vform.page = 1
+          vform.page = vform.minPage
         }
       }
       catch (e) {
