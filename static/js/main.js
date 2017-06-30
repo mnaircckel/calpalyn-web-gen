@@ -41,6 +41,11 @@ var vform = new Vue({
     nextPage: function () {
       vform.page = Math.min(vform.page+1, vform.maxPage)
     },
+    loadHomePage: function () {
+      if (confirm("Are you sure you want to reload this page?") == true) {
+        location.reload();
+      }
+    },
     loadFormsPage: function () {
       vform.page = undefined
       axios.get('/get_forms')
