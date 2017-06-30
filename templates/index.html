@@ -7,7 +7,7 @@
     <title>Calpalyn Instruction File Generator</title>
     <!-- Bulma CSS, Keen UI, Font Awesome, and Custom CSS -->
     <link href="{{ url_for('static', filename='css/bulma.min.css') }}" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/keen-ui.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/keen-ui.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/base.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/font-awesome.min.css') }}" rel="stylesheet">
 
@@ -61,9 +61,12 @@
 
                                 <!-- Pages for Calpalyn -->
                                 <div v-show="page === 1 || page === maxPage">
-                                    <ui-textbox label="Name" v-model="field1" placeholder="Enter name"></ui-textbox>
+                                    <ui-textbox label="Name" v-model="field1" placeholder="Enter a name"></ui-textbox>
+                                    <ui-alert :dismissible="false">Name is used for saving purposes only</ui-alert>
                                     <ui-select label="File Type" v-model="field2" placeholder="Please select one" :options="['Old','New']"></ui-select>
+                                    <ui-alert :dismissible="false">File type should not be changed unless you know what you are doing</ui-alert>
                                     <ui-select multiple label="Taxon" v-model="taxon" :options="['Abies','Fir']" has-search></ui-select>
+                                    <ui-alert :dismissible="false">Please select all the taxon you wish to graph</ui-alert>
 
                                 </div>
                                 
