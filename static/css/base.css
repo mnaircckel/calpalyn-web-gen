@@ -2,11 +2,13 @@ body, .hero-body {
 	background: #cfd8dc;
 }
 
-@media screen and (min-width: 769px) {
-    .stuck {
-        position: fixed;
-        height: 100%;
-    }
+.hero-body {
+	margin-top: 25px;
+}
+
+.nav {
+  position: fixed;
+  width: 100%;
 }
 
 [v-cloak] {

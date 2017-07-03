@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <div id="vform" class="vform">
+    <div id="vform">
         <nav class="nav is-light">
             <a class="nav-item is-tab" style="color:#263238;" v-on:click="loadHomePage()">
                 <img src="{{ url_for('static', filename='img/home.png') }}"></img> Home
@@ -47,7 +47,7 @@
                                 Saved Graphs
                             </h1>
 
-                            <div class="box">
+                            <div class="box vform">
 
                                 <!-- Saved Forms Page -->
                                 <div v-show="page === undefined">
