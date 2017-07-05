@@ -1,3 +1,13 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 102%;
+}
+
 body, .hero-body {
 	background: #cfd8dc;
 }
@@ -13,4 +23,13 @@ body, .hero-body {
 
 [v-cloak] {
   display: none;
+}
+
+.title {
+	color: rgba(33, 150, 243, 1);
+  font-size: 24px;
+  line-height: 24px;
+  margin: 0 0 24px;
+  text-align: justify;
+  text-justify: inter-word;
 }

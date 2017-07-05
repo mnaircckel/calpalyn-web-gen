@@ -15,12 +15,15 @@ var vform = new Vue({
       8: 'Section Review'
     },
     // Calpalyn Inputs
-    line25: 'Untitled Graph',
+    line25: '',
     line24: '',
     line22Box3: '0',
     line22Box2: '0',
     line22Box1: '0',
     line22Box4: 'Standard',
+    line1Box1: 'New',
+    line1Box2: '-1',
+    line13: 'Yes',
     // End Calpalyn Inputs
     formsData: [],
     loadedForm: {}
@@ -35,7 +38,10 @@ var vform = new Vue({
             line22Box3: this.line22Box3,
             line22Box2: this.line22Box2,
             line22Box1: this.line22Box1,
-            line22Box4: this.line22Box4
+            line22Box4: this.line22Box4,
+            line1Box1: this.line1Box1,
+            line1Box2: this.line1Box2,
+            line13: this.line13
           }
         )
         vform.page = vform.minPage
@@ -43,9 +49,11 @@ var vform = new Vue({
     },
     previousPage: function () {
       vform.page = Math.max(vform.page-1, vform.minPage)
+      window.scrollTo(0, 0);
     },
     nextPage: function () {
       vform.page = Math.min(vform.page+1, vform.maxPage)
+      window.scrollTo(0, 0);
     },
     loadHomePage: function () {
       if (confirm("Are you sure you want to reload this page?") == true) {

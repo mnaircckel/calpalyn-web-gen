@@ -36,8 +36,8 @@
                         <div class="column is-4 is-offset-4">
 
                             <!-- Page Select -->
-                            <h1 class="title" v-show="page <= maxPage && page >= minPage">
-                                Section
+                            <h1 v-show="page <= maxPage && page >= minPage">
+                                Navigate Sections:
                                 <select v-model="page" class="form-control">
                                     <option :value="pageNum" v-text="pageTitles[pageNum]" v-for="pageNum in maxPage"></option>
                                 </select>
@@ -48,6 +48,9 @@
                             </h1>
 
                             <div class="box vform">
+
+                                <!-- Heading -->
+                                <h1 v-if="page != undefined"class="title"><strong>[[ pageTitles[page] ]]</strong></h1>
 
                                 <!-- Saved Forms Page -->
                                 <div v-show="page === undefined">
@@ -61,7 +64,7 @@
 
                                 <!-- Pages for Calpalyn -->
                                 <div v-show="page === 1 || page === maxPage">
-                                    <ui-textbox label="Graph Title" v-model="line25"></ui-textbox>
+                                    <ui-textbox label="Graph Title" v-model="line25" placeholder="Enter a title"></ui-textbox>
                                     <ui-alert :dismissible="false">Enter the main title to appear above your graph.</ui-alert>
 
                                     <ui-textbox label="Vertical Label" v-model="line24" placeholder="Enter a label"></ui-textbox>
@@ -79,27 +82,34 @@
                                 </div>
 
                                 <div v-show="page === 2 || page === maxPage">
-                                  Page 2
+                                  <ui-alert :dismissible="false">
+                                    You should leave the default options unless you have a specific reason for making changes.
+                                  </ui-alert>
+                                  <br />
+
+                                  <ui-select label="Data File Type" v-model="line1Box1" :options="['New', 'Old']"></ui-select>
+                                  <ui-alert :dismissible="false">Old format data files were used in an earlier version.</ui-alert>
+
+                                  <ui-textbox label="Factor" v-model="line1Box2"></ui-textbox>
+                                  <ui-alert :dismissible="false">This allows you to multiply the primary y-axis (usually depths) by a factor. Use -1.0 so the graph plots right-side up if you are using depths or ages as positive numbers. Enter 1 to leave numbers alone.</ui-alert>
+
+                                  <ui-select label="Text Labels" v-model="line13" :options="['Yes', 'No']"></ui-select>
+                                  <ui-alert :dismissible="false">Use the labels from the taxa file to label the graph. Select no to use numbers from data file as labels.</ui-alert>
                                 </div>
 
                                 <div v-show="page === 3 || page === maxPage">
-                                  Page 3
                                 </div>
 
                                 <div v-show="page === 4 || page === maxPage">
-                                  Page 4
                                 </div>
 
                                 <div v-show="page === 5 || page === maxPage">
-                                  Page 5
                                 </div>
 
                                 <div v-show="page === 6 || page === maxPage">
-                                  Page 6
                                 </div>
 
                                 <div v-show="page === 7 || page === maxPage">
-                                  Page 7
                                 </div>
 
                                 <!-- End Pages for Calpalyn -->
