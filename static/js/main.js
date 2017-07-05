@@ -20,11 +20,14 @@ var vform = new Vue({
     line22Box3: '0',
     line22Box2: '0',
     line22Box1: '0',
-    line22Box4: 'Standard',
+    line21Box4: 'Standard',
+    line21Box1: 'Yes',
     line1Box1: 'New',
     line1Box2: '-1',
     line13: 'Yes',
     line3Box1: '',
+    line21Box3: 'Option 1',
+    line22Box4: '0',
     // End Calpalyn Inputs
     formsData: [],
     loadedForm: {}

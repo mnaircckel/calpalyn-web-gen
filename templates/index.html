@@ -77,8 +77,11 @@
                                     <ui-textbox label="Graph Height" v-model="line22Box1"></ui-textbox>
                                     <ui-alert :dismissible="false">Zero will automatically scale the graph to fit the page. A positive number sets the graph width/height in inches.</ui-alert>
 
-                                    <ui-select label="Font Size" v-model="line22Box4" :options="['Standard', 'Enlarged']"></ui-select>
+                                    <ui-select label="Font Size" v-model="line21Box4" :options="['Standard', 'Enlarged']"></ui-select>
                                     <ui-alert :dismissible="false">Standard fonts are more likely to fit the page. Enlarged fonts are 12 point.</ui-alert>
+
+                                    <ui-select label="Data Lines" v-model="line21Box1" :options="['Yes', 'No']"></ui-select>
+                                    <ui-alert :dismissible="false">Generates horizontal dotted lines at data levels. They can be used to show the sampling interval.</ui-alert>
                                 </div>
 
                                 <div v-show="page === 2 || page === maxPage">
@@ -99,7 +102,10 @@
 
                                 <div v-show="page === 3 || page === maxPage">
                                   <ui-alert :dismissible="false">
-                                    These sums can be used to normalize data. For example, they allow you to graph as a percent of total pollen or as a percent of non-aquatic pollen. Without subtotals you can only graph raw data.
+                                    These sums can be used to normalize data. For example, they allow you to graph as a percent of total pollen or as a percent of non-aquatic pollen.
+                                    <br />
+                                    <br />
+                                    Without subtotals you can only graph raw data.
                                   </ui-alert>
                                   <br />
 
@@ -111,6 +117,28 @@
                                 </div>
 
                                 <div v-show="page === 5 || page === maxPage">
+                                  <ui-select name="line21Box3"
+                                        vertical="true"
+                                        :options="['Option 1', 'Option 2', 'Option 3']"
+                                        v-model="line21Box3"
+                                    >Chronology Column</ui-select>
+                                    <ui-alert :dismissible="false">Create a chronology column to show your age model.
+                                      <br />
+                                      <ul>
+                                        <li><strong>Option 1:</strong> Do not draw chronology column</li>
+                                        <li><strong>Option 2:</strong> Draw chronology column and merge it with any stratigraphy graphics at left of diagram</li>
+                                        <li><strong>Option 3:</strong> Draw scaled chronology column with tick marks at fixed time intervals along the left side of the column</li>
+                                      </ul>
+                                    </ui-alert>
+
+                                    <div v-show="line21Box3 !== 'Option 1'">
+                                      <ui-textbox label="Chronology Label" v-model="line26A" placeholder="Enter a label"></ui-textbox>
+                                      <ui-alert :dismissible="false">Enter a label to go below the chronology column (e.g. Cal years BP).</ui-alert>
+
+                                      <ui-textbox label="Chronology Numbering" v-model="line22Box4"></ui-textbox>
+                                      <ui-alert :dismissible="false">Enter 0 for a rounded interval approximately equal to one- fiftieth of your oldest date. Number labels are placed once every five tick marks. Enter a positive number to choose your own interval (spacing of ticks) in years.</ui-alert>
+                                    </div>
+
                                 </div>
 
                                 <div v-show="page === 6 || page === maxPage">
