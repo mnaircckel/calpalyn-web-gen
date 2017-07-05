@@ -24,7 +24,7 @@
             </a>
             <a class="nav-item is-tab" style="color:#37474f;" v-on:click="page = 1">
                 <i class="fa fa-edit fa-fw"></i> Current Graph
-            </a>    
+            </a>
             <a class="nav-item is-tab" style="color:#2e7d32;" v-on:click="submitForm()">
                 <i class="fa fa-download fa-fw"></i> Generate
             </a>
@@ -69,7 +69,7 @@
                                     <ui-alert :dismissible="false">Please select all the taxon you wish to graph</ui-alert>
 
                                 </div>
-                                
+
                                 <div v-show="page === 2 || page === maxPage">
                                     <ui-textbox label="Field Three" v-model="field3" placeholder="Enter field"></ui-textbox>
                                     <ui-textbox label="Field Four" v-model="field4" placeholder="Enter field"></ui-textbox>

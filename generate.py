@@ -26,7 +26,7 @@ def write_lines(data):
                     dataF = data.next().get()[:1]
                     dataG = data.next().get()[:1]
                     dataH = data.next().get()[:1]
-                    dataI = data.next().get()[:1] 
+                    dataI = data.next().get()[:1]
                     f.write(dataA + ' '*(1-len(dataA)) + ' ' + dataB + ' '*(1-len(dataB))  + ' ' + dataC + ' '*(1-len(dataC))  + ' ' + dataD + ' '*(1-len(dataD))  + ' ' + dataE + ' '*(1-len(dataE))  + ' ' + dataF + ' '*(1-len(dataF))  + ' ' + dataG + ' '*(1-len(dataG))  + ' ' + dataH + ' '*(1-len(dataH))  + ' ' + dataI)
                     f.write(" "*81+"//Line "+str(line))
                     f.write('\n')
@@ -40,7 +40,7 @@ def write_lines(data):
                     f.write(data.next().get()[:1])
                     f.write(" "*81+"//Line "+str(line))
                     f.write('\n')
-                    
+
             elif line == "15":
                     f.write('1')
                     f.write(" "*81+"//Line "+str(line))
@@ -60,14 +60,14 @@ def write_lines(data):
                     f.write(data.next().get()[:1])
                     f.write(" "*81+"//Line "+str(line))
                     f.write('\n')
-                    
+
             elif line in ["17", "18", "19"]:
                     dataA = data.next().get()[:1]
                     f.write(dataA + ' '*(1-len(dataA)) + ' ' + data.next().get()[:5])
                     f.write(" "*81+"//Line "+str(line))
                     f.write('\n')
 
-            
+
             # Line 20 handles lines 20 and 20A
             elif line == "20":
                 for i in range(entries_number/12):
@@ -87,21 +87,21 @@ def write_lines(data):
                     data1D = data.next().get()[:7]
                     data1E = data.next().get()[:2]
                     data1F = data.next().get()[:1]
-                    
-                    # Line 20                                                  
+
+                    # Line 20
                     if (i+1) != (entries_number/12):
-                        
+
                         f.write('0' + ' ' + dataB + ' '*(5-len(dataB)) + ' ' + dataC + ' '*(1-len(dataC))  + ' ' + dataD + ' '*(25-len(dataD)) + ' ' + dataF + ' '*(1-len(dataF))  + '      ' + dataI + ' '*(6-len(dataI)) + ' ' + dataJ )
                     else:
                         f.write('1' + ' ' + dataB + ' '*(5-len(dataB)) + ' ' + dataC + ' '*(1-len(dataC))  + ' ' + dataD + ' '*(25-len(dataD)) + ' ' + dataF + ' '*(1-len(dataF))  + '      ' + dataI + ' '*(6-len(dataI)) + ' ' + dataJ )
-                    f.write(" "*81+"//Line "+str(20))                            
+                    f.write(" "*81+"//Line "+str(20))
                     f.write('\n')
 
                     # Line 20A
                     f.write(data1A + ' '*(1-len(data1A)) + ' ' + data1B + ' '*(1-len(data1B)) + ' ' + data1C + ' '*(1-len(data1C)) + ' ' + data1D + ' '*(7-len(data1D)) + ' ' + data1E + ' '*(2-len(data1E)) + ' ' + data1F)
                     f.write(" "*81+"//Line 20A")
                     f.write('\n')
-                    
+
 
             elif line == "21":
                     dataA = data.next().get()[:1]
@@ -125,7 +125,7 @@ def write_lines(data):
             elif line == "23":
                     f.write(data.next().get()[:2])
                     f.write(" "*81+"//Line "+str(line))
-                    f.write('\n')                   
+                    f.write('\n')
 
             elif line == "24":
                     f.write(data.next().get()[:40])
@@ -138,7 +138,7 @@ def write_lines(data):
                     f.write('\n')
 
             elif line == "26":
-                for i in range(entries_number/5):           
+                for i in range(entries_number/5):
                     dataB = data.next().get()[:7]
                     dataC = data.next().get()[:7]
                     dataD = data.next().get()[:7]
