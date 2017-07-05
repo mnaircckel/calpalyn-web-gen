@@ -98,6 +98,13 @@
                                 </div>
 
                                 <div v-show="page === 3 || page === maxPage">
+                                  <ui-alert :dismissible="false">
+                                    These sums can be used to normalize data. They allow you to graph as a percent of total pollen or as a percent of non-aquatic pollen. Without subtotals you can only graph raw data.
+                                  </ui-alert>
+                                  <br />
+
+                                  <ui-select label="Total" v-model="line3Box1" placeholder="Please select an option" :options="['Do not sum', 'Sum all positively numbered taxa', 'Sum all except excluded below']"></ui-select>
+                                  <ui-alert :dismissible="false">You can generate a total by summing taxa in a data file.</ui-alert>
                                 </div>
 
                                 <div v-show="page === 4 || page === maxPage">
