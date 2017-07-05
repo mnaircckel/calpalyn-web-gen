@@ -31,58 +31,55 @@ var vform = new Vue({
   methods: {
     submitForm: function() {
       if (confirm("Do you wish to generate the instruction file?") == true) {
-        axios.post('/',
-          {
-            line25: this.line25,
-            line24: this.line24,
-            line22Box3: this.line22Box3,
-            line22Box2: this.line22Box2,
-            line22Box1: this.line22Box1,
-            line22Box4: this.line22Box4,
-            line1Box1: this.line1Box1,
-            line1Box2: this.line1Box2,
-            line13: this.line13
-          }
-        )
+        axios.post('/', {
+          line25: this.line25,
+          line24: this.line24,
+          line22Box3: this.line22Box3,
+          line22Box2: this.line22Box2,
+          line22Box1: this.line22Box1,
+          line22Box4: this.line22Box4,
+          line1Box1: this.line1Box1,
+          line1Box2: this.line1Box2,
+          line13: this.line13
+        })
         vform.page = vform.minPage
       }
     },
-    previousPage: function () {
-      vform.page = Math.max(vform.page-1, vform.minPage)
+    previousPage: function() {
+      vform.page = Math.max(vform.page - 1, vform.minPage)
       window.scrollTo(0, 0);
     },
-    nextPage: function () {
-      vform.page = Math.min(vform.page+1, vform.maxPage)
+    nextPage: function() {
+      vform.page = Math.min(vform.page + 1, vform.maxPage)
       window.scrollTo(0, 0);
     },
-    loadHomePage: function () {
+    loadHomePage: function() {
       if (confirm("Are you sure you want to reload this page?") == true) {
         location.reload();
       }
     },
-    loadFormsPage: function () {
+    loadFormsPage: function() {
       vform.page = undefined
       axios.get('/get_forms')
-        .then(function (response) {
+        .then(function(response) {
           vform.formsData = response.data.reverse()
         })
-        .catch(function (error) {
+        .catch(function(error) {
           vform.formsData = {}
         })
     },
-    loadForm: function () {
+    loadForm: function() {
       try {
         if (confirm("Do you really wish to load the form?") == true) {
-          for (field in vform.loadedForm){
+          for (field in vform.loadedForm) {
             vform[field] = vform.loadedForm[field]
           }
           vform.page = vform.minPage
         }
-      }
-      catch (e) {
-         alert("Unable to load form!")
+      } catch (e) {
+        alert("Unable to load form!")
       }
     }
   },
-  delimiters: ["[[","]]"]
+  delimiters: ["[[", "]]"]
 })
