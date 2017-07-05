@@ -39,7 +39,7 @@
                             <h1 class="title" v-show="page <= maxPage && page >= minPage">
                                 Section
                                 <select v-model="page" class="form-control">
-                                    <option :value="pageNum" v-text="pageNum" v-for="pageNum in maxPage"></option>
+                                    <option :value="pageNum" v-text="pageTitles[pageNum]" v-for="pageNum in maxPage"></option>
                                 </select>
                             </h1>
 
@@ -53,7 +53,7 @@
                                 <div v-show="page === undefined">
                                     <label class="label">Graphs</label>
                                     <select v-model="loadedForm" class="select ui-select">
-                                        <option v-for="option in formsData" :value="option" class="ui-select-option">[[ option.field1.toString() ]]</option>
+                                        <option v-for="f in formsData" :value="f" class="ui-select-option">[[ f.line25.toString() ]]</option>
                                     </select>
                                     <br>
                                     <button type="button" v-on:click="loadForm()" class="button is-primary"> Load </button>
@@ -61,26 +61,47 @@
 
                                 <!-- Pages for Calpalyn -->
                                 <div v-show="page === 1 || page === maxPage">
-                                    <ui-textbox label="Name" v-model="field1" placeholder="Enter a name"></ui-textbox>
-                                    <ui-alert :dismissible="false">Name is used for saving purposes only</ui-alert>
-                                    <ui-select label="File Type" v-model="field2" placeholder="Please select one" :options="['Old','New']"></ui-select>
-                                    <ui-alert :dismissible="false">File type should not be changed unless you know what you are doing</ui-alert>
-                                    <ui-select multiple label="Taxon" v-model="taxon" :options="['Abies','Fir']" has-search></ui-select>
-                                    <ui-alert :dismissible="false">Please select all the taxon you wish to graph</ui-alert>
+                                    <ui-textbox label="Graph Title" v-model="line25"></ui-textbox>
+                                    <ui-alert :dismissible="false">Enter the main title to appear above your graph.</ui-alert>
 
+                                    <ui-textbox label="Vertical Label" v-model="line24" placeholder="Enter a label"></ui-textbox>
+                                    <ui-alert :dismissible="false">Enter a label for the vertical axis (e.g. depth cm).</ui-alert>
+
+                                    <ui-textbox label="Vertical Interval" v-model="line22Box3"></ui-textbox>
+                                    <ui-alert :dismissible="false">Control the number on vertical axis (usually depths). Zero will automatically select a rounded interval every inch or enter a number to choose your own interval.</ui-alert>
+
+                                    <ui-textbox label="Graph Width" v-model="line22Box2"></ui-textbox>
+                                    <ui-textbox label="Graph Height" v-model="line22Box1"></ui-textbox>
+                                    <ui-alert :dismissible="false">Zero will automatically scale the graph to fit the page. A positive number sets the graph width/height in inches.</ui-alert>
+
+                                    <ui-select label="Font Size" v-model="line22Box4" :options="['Standard', 'Enlarged']"></ui-select>
+                                    <ui-alert :dismissible="false">Standard fonts are more likely to fit the page. Enlarged fonts are 12 point.</ui-alert>
                                 </div>
 
                                 <div v-show="page === 2 || page === maxPage">
-                                    <ui-textbox label="Field Three" v-model="field3" placeholder="Enter field"></ui-textbox>
-                                    <ui-textbox label="Field Four" v-model="field4" placeholder="Enter field"></ui-textbox>
-                                    <ui-textbox label="Field Five" v-model="field5" placeholder="Enter field"></ui-textbox>
+                                  Page 2
                                 </div>
 
                                 <div v-show="page === 3 || page === maxPage">
-                                    <ui-textbox label="Field Six" v-model="field6" placeholder="Enter field"></ui-textbox>
-                                    <ui-textbox label="Field Seven" v-model="field7" placeholder="Enter field"></ui-textbox>
-                                    <ui-textbox label="Field Eight" v-model="field8" placeholder="Enter field"></ui-textbox>
+                                  Page 3
                                 </div>
+
+                                <div v-show="page === 4 || page === maxPage">
+                                  Page 4
+                                </div>
+
+                                <div v-show="page === 5 || page === maxPage">
+                                  Page 5
+                                </div>
+
+                                <div v-show="page === 6 || page === maxPage">
+                                  Page 6
+                                </div>
+
+                                <div v-show="page === 7 || page === maxPage">
+                                  Page 7
+                                </div>
+
                                 <!-- End Pages for Calpalyn -->
 
                                 <!-- Forward / Back -->

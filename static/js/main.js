@@ -2,17 +2,26 @@ var vform = new Vue({
   el: '#vform',
   data: {
     page: 1,
-    maxPage: 4,
+    maxPage: 8,
     minPage: 1,
-    field1: '',
-    field2: 'New',
-    field3: '',
-    field4: '',
-    field5: '',
-    field6: '',
-    field7: '',
-    field8: '',
-    taxon: [],
+    pageTitles: {
+      1: 'Graph Labels and Formatting',
+      2: 'Setup and File Type Selections',
+      3: 'Totals and Subtotals',
+      4: 'Taxa to Include in Graph',
+      5: 'Chronology Column ',
+      6: 'Stratigraphy Column',
+      7: 'Pollen Zonation',
+      8: 'Section Review'
+    },
+    // Calpalyn Inputs
+    line25: 'Untitled Graph',
+    line24: '',
+    line22Box3: '0',
+    line22Box2: '0',
+    line22Box1: '0',
+    line22Box4: 'Standard',
+    // End Calpalyn Inputs
     formsData: [],
     loadedForm: {}
   },
@@ -21,15 +30,12 @@ var vform = new Vue({
       if (confirm("Do you wish to generate the instruction file?") == true) {
         axios.post('/',
           {
-            field1: this.field1,
-            field2: this.field2,
-            field3: this.field3,
-            field4: this.field4,
-            field5: this.field5,
-            field6: this.field6,
-            field7: this.field7,
-            field8: this.field8,
-            taxon: this.taxon
+            line25: this.line25,
+            line24: this.line24,
+            line22Box3: this.line22Box3,
+            line22Box2: this.line22Box2,
+            line22Box1: this.line22Box1,
+            line22Box4: this.line22Box4
           }
         )
         vform.page = vform.minPage
