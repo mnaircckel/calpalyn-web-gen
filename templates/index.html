@@ -164,7 +164,7 @@
                                             <ui-textbox label="Substance Label" v-model="line26Box5"></ui-textbox>
                                             <ui-alert :dismissible="false">Enter a label for the substance dated. This is usually left blank. </ui-alert>
                                           </section>
-                                          <ui-button v-show="this.currDate.isNew" color="primary" @click="addDate()">Add to Dates</ui-button>
+                                          <ui-button v-show="this.currDate.isNew" color="primary" @click="addDate()" :disabled="line26Box3 === ''">Add to Dates</ui-button>
                                           <ui-button v-show="!this.currDate.isNew" color="primary" @click="removeDate()">Remove from Dates</ui-button>
                                       </div>
                                     </div>
