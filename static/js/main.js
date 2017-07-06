@@ -29,20 +29,14 @@ var vform = new Vue({
     line21Box3: 'Option 1',
     line26A: '',
     line22Box4: '0',
-    dates: [{
-      isNew: true,
-      line26Box3: 'New Date'
-    }],
+    dates: [],
     // End Calpalyn Inputs
     line26Box1: '',
     line26Box2: '',
     line26Box3: '',
     line26Box4: '',
     line26Box5: '',
-    currDate: {
-      isNew: true,
-      line26Box3: 'New Date'
-    },
+    currDate: undefined,
     formsData: [],
     loadedForm: {}
   },
@@ -98,31 +92,39 @@ var vform = new Vue({
         line26Box4: this.line26Box4,
         line26Box5: this.line26Box5
       })
-      this.currDate = {
+      this.currDate = undefined
+      this.clearDateInputs()
+    },
+    changeDates: function(changeTo) {
+      var index = this.dates.indexOf(changeTo)
+      this.currDate = this.dates[index]
+      this.line26Box1 = changeTo.line26Box1
+      this.line26Box2 = changeTo.line26Box2
+      this.line26Box3 = changeTo.line26Box3
+      this.line26Box4 = changeTo.line26Box4
+      this.line26Box5 = changeTo.line26Box5
+    },
+    removeDate: function(toRemove) {
+      var index = this.dates.indexOf(toRemove)
+      this.dates.splice(index, 1)
+      if (this.currDate == toRemove) {
+        this.currDate = undefined
+      }
+    },
+    updateDate: function(updateTo) {
+      var index = this.dates.indexOf(updateTo)
+      this.removeDate(updateTo)
+      vform.dates.push({
         line26Box1: this.line26Box1,
         line26Box2: this.line26Box2,
         line26Box3: this.line26Box3,
         line26Box4: this.line26Box4,
         line26Box5: this.line26Box5
-      }
+      })
+      this.currDate = undefined
+      this.clearDateInputs()
     },
-    changeDates: function() {
-      if (!this.currDate.isNew) {
-        this.line26Box1 = this.currDate.line26Box1 || ''
-        this.line26Box2 = this.currDate.line26Box2 || ''
-        this.line26Box3 = this.currDate.line26Box3 || ''
-        this.line26Box4 = this.currDate.line26Box4 || ''
-        this.line26Box5 = this.currDate.line26Box5 || ''
-      } else {
-        this.clearDates()
-      }
-    },
-    removeDate: function() {
-      var index = this.dates.indexOf(this.currDate)
-      this.dates.splice(index, 1)
-      this.currDate = this.dates[0]
-    },
-    clearDates: function() {
+    clearDateInputs: function() {
       this.line26Box1 = ''
       this.line26Box2 = ''
       this.line26Box3 = ''

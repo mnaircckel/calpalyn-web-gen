@@ -141,13 +141,25 @@
 
                                       <div class="box">
                                           <h1 class="title"><Center>Add & Edit Dates<Center></h1>
-                                          <center>
-                                            <label>Date: </label>
-                                            <select v-show="dates != []" v-model="currDate" class="form-control" @change="changeDates()">
-                                                <option :value="date" v-text="date.line26Box3" v-for="date in dates"></option>
-                                            </select>
-                                          </center>
-                                          <br />
+                                          <table class="table is-bordered">
+                                            <thead>
+                                              <tr>
+                                                <th>Date</th>
+                                                <th>Depth</th>
+                                                <th v-if="dates.length != 0">Actions</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              <tr v-for="date in dates">
+                                                <td v-text="date.line26Box3"></td>
+                                                <td v-text="date.line26Box1"></td>
+                                                <td>
+                                                  <ui-button @click="changeDates(date)">Select</ui-button>
+                                                  <ui-button @click="removeDate(date)">Delete</ui-button>
+                                                </td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
                                           <section class="section">
                                             <ui-textbox label="Date" v-model="line26Box3"></ui-textbox>
                                             <ui-alert :dismissible="false">Enter date is years BP. Years since 1950 should by negative.</ui-alert>
@@ -164,8 +176,8 @@
                                             <ui-textbox label="Substance Label" v-model="line26Box5"></ui-textbox>
                                             <ui-alert :dismissible="false">Enter a label for the substance dated. This is usually left blank. </ui-alert>
                                           </section>
-                                          <ui-button v-show="this.currDate.isNew" color="primary" @click="addDate()" :disabled="line26Box3 === ''">Add to Dates</ui-button>
-                                          <ui-button v-show="!this.currDate.isNew" color="primary" @click="removeDate()">Remove from Dates</ui-button>
+                                          <ui-button v-show="currDate === undefined" color="primary" @click="addDate()" :disabled="line26Box1 === '' || line26Box3 === ''">Add Date</ui-button>
+                                          <ui-button v-show="currDate !== undefined" color="primary" @click="updateDate(currDate)" :disabled="line26Box1 === '' || line26Box3 === ''">Apply Changes</ui-button>
                                       </div>
                                     </div>
 
