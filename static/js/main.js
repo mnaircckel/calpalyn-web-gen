@@ -31,12 +31,15 @@ var vform = new Vue({
     line22Box4: '0',
     dates: [],
     // End Calpalyn Inputs
+    // Dates
+    dateFields: ['line26Box1', 'line26Box2', 'line26Box3', 'line26Box4', 'line26Box5'],
     line26Box1: '',
     line26Box2: '',
     line26Box3: '',
     line26Box4: '',
     line26Box5: '',
     currDate: undefined,
+    //
     formsData: [],
     loadedForm: {}
   },
@@ -84,53 +87,52 @@ var vform = new Vue({
         alert("Unable to load form!")
       }
     },
-    addDate: function() {
-      vform.dates.push({
-        line26Box1: this.line26Box1,
-        line26Box2: this.line26Box2,
-        line26Box3: this.line26Box3,
-        line26Box4: this.line26Box4,
-        line26Box5: this.line26Box5
-      })
-      this.currDate = undefined
-      this.clearDateInputs()
+    // Functions for CRUD actions on tables of data
+    addRow: function(fields, arr, curr) {
+      // Create object to add
+      var obj = {}
+      fields.forEach(function(f) {
+        obj[f] = vform[f]
+      });
+      // Add the object to the given array
+      vform[arr].push(obj)
+      vform[curr] = undefined
+      this.clearRowInputs(fields)
     },
-    changeDates: function(changeTo) {
-      var index = this.dates.indexOf(changeTo)
-      this.currDate = this.dates[index]
-      this.line26Box1 = changeTo.line26Box1
-      this.line26Box2 = changeTo.line26Box2
-      this.line26Box3 = changeTo.line26Box3
-      this.line26Box4 = changeTo.line26Box4
-      this.line26Box5 = changeTo.line26Box5
-    },
-    removeDate: function(toRemove) {
-      var index = this.dates.indexOf(toRemove)
-      this.dates.splice(index, 1)
-      if (this.currDate == toRemove) {
-        this.currDate = undefined
+    removeRow: function(toRemove, arr, curr) {
+      // Find the index of the object being remove
+      var index = vform[arr].indexOf(toRemove)
+      // Remove the object from the array
+      vform[arr].splice(index, 1)
+      // If the removed object is the current object
+      // Set to undefined
+      if (vform[curr] == toRemove) {
+        vform[curr] = undefined
       }
     },
-    updateDate: function(updateTo) {
-      var index = this.dates.indexOf(updateTo)
-      this.removeDate(updateTo)
-      vform.dates.push({
-        line26Box1: this.line26Box1,
-        line26Box2: this.line26Box2,
-        line26Box3: this.line26Box3,
-        line26Box4: this.line26Box4,
-        line26Box5: this.line26Box5
-      })
-      this.currDate = undefined
-      this.clearDateInputs()
+    changeRow: function(changeTo, fields, curr) {
+      // Update the current object
+      vform[curr] = changeTo
+      // Update the inputs of the form
+      fields.forEach(function(f) {
+        vform[f] = changeTo[f]
+      });
     },
-    clearDateInputs: function() {
-      this.line26Box1 = ''
-      this.line26Box2 = ''
-      this.line26Box3 = ''
-      this.line26Box4 = ''
-      this.line26Box5 = ''
+    updateRow: function(updateTo, fields, arr, curr) {
+      // Remove old object and add the new one
+      this.removeRow(updateTo, arr, curr)
+      this.addRow(fields, arr, curr)
+      vform[curr] = undefined
+      this.clearRowInputs(fields)
+    },
+    clearRowInputs: function(fields) {
+      // Clear each input field
+      fields.forEach(function(f) {
+        vform[f] = ''
+      });
+
     }
+    // End table actions
   },
   delimiters: ["[[", "]]"]
 })
