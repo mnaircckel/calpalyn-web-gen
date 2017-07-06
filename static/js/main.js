@@ -27,8 +27,22 @@ var vform = new Vue({
     line13: 'Yes',
     line3Box1: '',
     line21Box3: 'Option 1',
+    line26A: '',
     line22Box4: '0',
+    dates: [{
+      isNew: true,
+      line26Box3: 'New Date'
+    }],
     // End Calpalyn Inputs
+    line26Box1: '',
+    line26Box2: '',
+    line26Box3: '',
+    line26Box4: '',
+    line26Box5: '',
+    currDate: {
+      isNew: true,
+      line26Box3: 'New Date'
+    },
     formsData: [],
     loadedForm: {}
   },
@@ -36,15 +50,7 @@ var vform = new Vue({
     submitForm: function() {
       if (confirm("Do you wish to generate the instruction file?") == true) {
         axios.post('/', {
-          line25: this.line25,
-          line24: this.line24,
-          line22Box3: this.line22Box3,
-          line22Box2: this.line22Box2,
-          line22Box1: this.line22Box1,
-          line22Box4: this.line22Box4,
-          line1Box1: this.line1Box1,
-          line1Box2: this.line1Box2,
-          line13: this.line13
+          line25: this.line25
         })
         vform.page = vform.minPage
       }
@@ -83,6 +89,45 @@ var vform = new Vue({
       } catch (e) {
         alert("Unable to load form!")
       }
+    },
+    addDate: function() {
+      vform.dates.push({
+        line26Box1: this.line26Box1,
+        line26Box2: this.line26Box2,
+        line26Box3: this.line26Box3,
+        line26Box4: this.line26Box4,
+        line26Box5: this.line26Box5
+      })
+      this.currDate = {
+        line26Box1: this.line26Box1,
+        line26Box2: this.line26Box2,
+        line26Box3: this.line26Box3,
+        line26Box4: this.line26Box4,
+        line26Box5: this.line26Box5
+      }
+    },
+    changeDates: function() {
+      if (!this.currDate.isNew) {
+        this.line26Box1 = this.currDate.line26Box1 || ''
+        this.line26Box2 = this.currDate.line26Box2 || ''
+        this.line26Box3 = this.currDate.line26Box3 || ''
+        this.line26Box4 = this.currDate.line26Box4 || ''
+        this.line26Box5 = this.currDate.line26Box5 || ''
+      } else {
+        this.clearDates()
+      }
+    },
+    removeDate: function() {
+      var index = this.dates.indexOf(this.currDate)
+      this.dates.splice(index, 1)
+      this.currDate = this.dates[0]
+    },
+    clearDates: function() {
+      this.line26Box1 = ''
+      this.line26Box2 = ''
+      this.line26Box3 = ''
+      this.line26Box4 = ''
+      this.line26Box5 = ''
     }
   },
   delimiters: ["[[", "]]"]

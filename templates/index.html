@@ -137,6 +137,36 @@
 
                                       <ui-textbox label="Chronology Numbering" v-model="line22Box4"></ui-textbox>
                                       <ui-alert :dismissible="false">Enter 0 for a rounded interval approximately equal to one- fiftieth of your oldest date. Number labels are placed once every five tick marks. Enter a positive number to choose your own interval (spacing of ticks) in years.</ui-alert>
+
+
+                                      <div class="box">
+                                          <h1 class="title"><Center>Add & Edit Dates<Center></h1>
+                                          <center>
+                                            <label>Date: </label>
+                                            <select v-show="dates != []" v-model="currDate" class="form-control" @change="changeDates()">
+                                                <option :value="date" v-text="date.line26Box3" v-for="date in dates"></option>
+                                            </select>
+                                          </center>
+                                          <br />
+                                          <section class="section">
+                                            <ui-textbox label="Date" v-model="line26Box3"></ui-textbox>
+                                            <ui-alert :dismissible="false">Enter date is years BP. Years since 1950 should by negative.</ui-alert>
+
+                                            <ui-textbox label="Midpoint Depth" v-model="line26Box1"></ui-textbox>
+                                            <ui-alert :dismissible="false">Enter the midpoint depth of the dated sample.</ui-alert>
+
+                                            <ui-textbox label="Vertical Thickness" v-model="line26Box2"></ui-textbox>
+                                            <ui-alert :dismissible="false">Enter the vertical thickness of the area sampled for date. This can be left blank.</ui-alert>
+
+                                            <ui-textbox label="Years Uncertainty" v-model="line26Box4"></ui-textbox>
+                                            <ui-alert :dismissible="false">Enter an error for date (integer). This can be left blank if you do not want to display errors on the column.</ui-alert>
+
+                                            <ui-textbox label="Substance Label" v-model="line26Box5"></ui-textbox>
+                                            <ui-alert :dismissible="false">Enter a label for the substance dated. This is usually left blank. </ui-alert>
+                                          </section>
+                                          <ui-button v-show="this.currDate.isNew" color="primary" @click="addDate()">Add to Dates</ui-button>
+                                          <ui-button v-show="!this.currDate.isNew" color="primary" @click="removeDate()">Remove from Dates</ui-button>
+                                      </div>
                                     </div>
 
                                 </div>
