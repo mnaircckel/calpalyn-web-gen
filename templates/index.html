@@ -86,11 +86,11 @@
 
                                 <div v-show="page === 2 || page === maxPage">
                                   <ul>
-                                    <label class="hero">Data File</label>
+                                    <label class="ui-fileupload-label-text">Data File</label>
                                     <li><ui-fileupload raised @change="uploadDataFile" label="Choose a data file" color="primary" name="dataFile"></ui-fileupload></li>
                                     <br />
 
-                                    <label class="hero">Taxa File</label>
+                                    <label class="ui-fileupload-label-text">Taxa File</label>
                                     <li><ui-fileupload raised @change="uploadTaxaFile" label="Choose a taxa file" color="primary" name="taxaFile"></ui-fileupload></li>
                                     <br />
                                   </ul>
@@ -127,7 +127,7 @@
                                 </div>
 
                                 <div v-show="page === 5 || page === maxPage">
-                                  <ui-select name="line21Box3"
+                                  <ui-select
                                         vertical="true"
                                         :options="['Option 1', 'Option 2', 'Option 3']"
                                         v-model="line21Box3"
@@ -190,10 +190,62 @@
                                           <ui-button v-show="currDate !== undefined" color="primary" @click="updateRow(currDate, dateFields, 'dates', 'currDate')" :disabled="line26Box1 === '' || line26Box3 === ''">Apply Changes</ui-button>
                                       </div>
                                     </div>
-
                                 </div>
 
                                 <div v-show="page === 6 || page === maxPage">
+                                  <ui-select
+                                        vertical="true"
+                                        :options="['Option 1', 'Option 2', 'Option 3']"
+                                        v-model="line21Box2"
+                                    >Stratigraphy Column</ui-select>
+                                    <ui-alert :dismissible="false">Create a column to show the stratigraphic zones in your core.
+                                      <br />
+                                      <ul>
+                                        <li><strong>Option 1:</strong> Do not draw stratigraphy column</li>
+                                        <li><strong>Option 2:</strong> Draw stratigraphy column and merge it with any chronology graphics at left of diagram</li>
+                                        <li><strong>Option 3:</strong> Draw stratigraphy column, omit stratigraphy labels, and draw boxes with labels identifying each fill pattern below the diagram</li>
+                                      </ul>
+                                    </ui-alert>
+
+                                    <div v-show="line21Box2 !== 'Option 1'">
+                                      <div class="box">
+                                          <h1 class="title"><Center>Add & Edit Zones<Center></h1>
+                                          <table class="table is-bordered">
+                                            <thead>
+                                              <tr>
+                                                <th>Position</th>
+                                                <th>Label</th>
+                                                <th v-if="zones.length != 0">Actions</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              <tr v-for="zone in zones">
+                                                <td v-text="zone.line27Box1"></td>
+                                                <td v-text="zone.line27Box4"></td>
+                                                <td>
+                                                  <ui-button @click="changeRow(zone, zoneFields, 'currZone')">Select</ui-button>
+                                                  <ui-button @click="removeRow(zone, 'zones', 'currZone')">Delete</ui-button>
+                                                </td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                          <section class="section">
+                                            <ui-textbox label="Upper Bound Position" v-model="line27Box1"></ui-textbox>
+                                            <ui-alert :dismissible="false">Enter a number for the upper position of this stratigraphic zone. Use same units as the first column of your data file (usually depths).</ui-alert>
+
+                                            <ui-select label="Boundary Type" v-model="line27Box2" placeholder="Please select an option" :options="['Invisible boundary (no line)', 'Single dashed line', 'Single solid line', 'Single jagged line (nonconformity)', 'Double jagged line (discontinuous core)']"></ui-select>
+                                            <ui-alert :dismissible="false">Choose the boundary line style.</ui-alert>
+
+                                            <ui-textbox label="Shading" v-model="line27Box3"></ui-textbox>
+                                            <ui-alert :dismissible="false">Numbers 0 through 10 indicate shades of grey; 0 is white, 10 is black. Numbers greater than 10 represent patterns.</ui-alert>
+
+                                            <ui-textbox label="Stratigraphy Label" v-model="line27Box4" placeholder="Enter a label"></ui-textbox>
+                                            <ui-alert :dismissible="false">Enter a text label for the stratigraphic zone.</ui-alert>
+                                          </section>
+                                          <ui-button v-show="currZone === undefined" color="primary" @click="addRow(zoneFields, 'zones', 'currZone')" :disabled="line27Box1 === '' || line27Box2 === ''">Add Zone</ui-button>
+                                          <ui-button v-show="currZone !== undefined" color="primary" @click="updateRow(currZone, zoneFields, 'zones', 'currZone')" :disabled="line27Box1 === '' || line27Box2 === ''">Apply Changes</ui-button>
+                                      </div>
+                                    </div>
                                 </div>
 
                                 <div v-show="page === 7 || page === maxPage">

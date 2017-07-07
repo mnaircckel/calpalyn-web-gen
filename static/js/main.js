@@ -30,6 +30,8 @@ var vform = new Vue({
     line26A: '',
     line22Box4: '0',
     dates: [],
+    line21Box2: 'Option 1',
+    zones: [],
     // End Calpalyn Inputs
     // Dates
     dateFields: ['line26Box1', 'line26Box2', 'line26Box3', 'line26Box4', 'line26Box5'],
@@ -39,6 +41,13 @@ var vform = new Vue({
     line26Box4: '',
     line26Box5: '',
     currDate: undefined,
+    // Zones
+    zoneFields: ['line27Box1', 'line27Box2', 'line27Box3', 'line27Box4'],
+    line27Box1: '',
+    line27Box2: '',
+    line27Box3: '',
+    line27Box4: '',
+    currZone: undefined,
     //
     taxaFile: false,
     dataFile: false,
