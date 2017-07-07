@@ -243,7 +243,7 @@
           <!-- Section 7 -->
           <div v-show="page === 7">
             <ui-select label="Draw Zonation Lines" v-model="line23Box1" :options="['Yes', 'No']"></ui-select>
-            <ui-alert :dismissible="false">Use zonation lines to highlight periods of interest within graph. For instance, You could lines to show cool and warm phases.</ui-alert>
+            <ui-alert :dismissible="false">Use zonation lines to highlight periods of interest within graph. For instance, you could use lines to show cool and warm phases.</ui-alert>
 
             <!-- Lines -->
             <div v-show="line23Box1 == 'Yes'">
@@ -253,7 +253,7 @@
                   <thead>
                     <tr>
                       <th>Position</th>
-                      <th>Label</th>
+                      <th>Type</th>
                       <th v-if="lines.length != 0">Actions</th>
                     </tr>
                   </thead>
