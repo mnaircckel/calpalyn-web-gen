@@ -2,8 +2,8 @@ var vform = new Vue({
   el: '#vform',
   data: {
     page: 1,
-    maxPage: 8,
     minPage: 1,
+    maxPage: 7,
     pageTitles: {
       1: 'Graph Labels and Formatting',
       2: 'Setup and File Selections',
@@ -11,8 +11,7 @@ var vform = new Vue({
       4: 'Taxa to Include in Graph',
       5: 'Chronology Column ',
       6: 'Stratigraphy Column',
-      7: 'Pollen Zonation Lines',
-      8: 'Section Review'
+      7: 'Pollen Zonation Lines'
     },
     // Calpalyn Inputs
     line25: '',
@@ -58,7 +57,7 @@ var vform = new Vue({
     line30Box1: '',
     line30Box2: '',
     currLine: undefined,
-    //
+    // Misc Data
     taxaFile: false,
     dataFile: false,
     formsData: [],

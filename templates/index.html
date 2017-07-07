@@ -25,9 +25,6 @@
             <a class="nav-item is-tab" style="color:#37474f;" v-on:click="page = 1">
                 <i class="fa fa-edit fa-fw"></i> Current Graph
             </a>
-            <a class="nav-item is-tab" style="color:#2e7d32;" v-on:click="submitForm()">
-                <i class="fa fa-download fa-fw"></i> Generate
-            </a>
         </nav>
         <section class="hero is-fullheight is-bold">
             <div class="hero-body">
@@ -37,11 +34,18 @@
 
                             <!-- Page Select -->
                             <h1 v-show="page <= maxPage && page >= minPage">
-                                Navigate Sections:
+                                <strong>Navigate Sections:</strong>
                                 <select v-model="page" class="form-control">
                                     <option :value="pageNum" v-text="pageTitles[pageNum]" v-for="pageNum in maxPage"></option>
                                 </select>
                             </h1>
+
+                            <div class="block">
+                              <br />
+                              <ui-button color="primary" raised v-on:click="submitForm()">
+                                  <i class="fa fa-download fa-fw"></i> Generate File
+                              </ui-button>
+                            </div>
 
                             <h1 class="title" v-show="page === undefined">
                                 Saved Graphs
@@ -63,7 +67,7 @@
                                 </div>
 
                                 <!-- Pages for Calpalyn -->
-                                <div v-show="page === 1 || page === maxPage">
+                                <div v-show="page === 1">
                                     <ui-textbox label="Graph Title" v-model="line25" placeholder="Enter a title"></ui-textbox>
                                     <ui-alert :dismissible="false">Enter the main title to appear above your graph.</ui-alert>
 
@@ -87,7 +91,7 @@
                                     <ui-alert :dismissible="false">Generates horizontal dotted lines at data levels. They can be used to show the sampling interval.</ui-alert>
                                 </div>
 
-                                <div v-show="page === 2 || page === maxPage">
+                                <div v-show="page === 2">
                                   <ul>
                                     <label class="ui-fileupload-label-text">Data File</label>
                                     <li><ui-fileupload raised @change="uploadDataFile" label="Choose a data file" color="primary" name="dataFile"></ui-fileupload></li>
@@ -110,7 +114,7 @@
                                   <ui-alert :dismissible="false">Use the labels from the taxa file to label the graph. Select no to use numbers from data file as labels.</ui-alert>
                                 </div>
 
-                                <div v-show="page === 3 || page === maxPage">
+                                <div v-show="page === 3">
                                   <ui-alert :dismissible="false">
                                     These sums can be used to normalize data. For example, they allow you to graph as a percent of total pollen or as a percent of non-aquatic pollen.
                                     <br />
@@ -123,10 +127,10 @@
                                   <ui-alert :dismissible="false">You can generate a total by summing taxa in a data file.</ui-alert>
                                 </div>
 
-                                <div v-show="page === 4 || page === maxPage">
+                                <div v-show="page === 4">
                                 </div>
 
-                                <div v-show="page === 5 || page === maxPage">
+                                <div v-show="page === 5">
                                   <ui-select
                                         vertical="true"
                                         :options="['Option 1', 'Option 2', 'Option 3']"
@@ -192,7 +196,7 @@
                                     </div>
                                 </div>
 
-                                <div v-show="page === 6 || page === maxPage">
+                                <div v-show="page === 6">
                                   <ui-select
                                         vertical="true"
                                         :options="['Option 1', 'Option 2', 'Option 3']"
@@ -248,7 +252,7 @@
                                     </div>
                                 </div>
 
-                                <div v-show="page === 7 || page === maxPage">
+                                <div v-show="page === 7">
                                     <ui-select label="Draw Zonation Lines" v-model="line23Box1" :options="['Yes', 'No']"></ui-select>
                                     <ui-alert :dismissible="false">Use zonation lines to highlight periods of interest within graph. For instance, You could lines to show cool and warm phases.</ui-alert>
 
@@ -292,14 +296,14 @@
                                 <!-- Forward / Back -->
                                 <br>
                                 <div v-if="page < maxPage && page > 1">
-                                    <button type="button" v-on:click="previousPage" class="button">Previous</button>
-                                    <button type="button" v-on:click="nextPage" class="button">Next</button>
+                                    <ui-button raised v-on:click="previousPage" class="button">Previous</ui-button>
+                                    <ui-button raised v-on:click="nextPage" class="button">Next</ui-button>
                                 </div>
                                 <div v-else-if="page == maxPage">
-                                    <button type="button" v-on:click="previousPage" class="button">Previous</button>
+                                    <ui-button raised v-on:click="previousPage" class="button">Previous</ui-button>
                                 </div>
                                 <div v-else-if="page == 1">
-                                    <button type="button" v-on:click="nextPage" class="button">Next</button>
+                                    <ui-button raised v-on:click="nextPage" class="button">Next</ui-button>
                                 </div>
 
                             </div>
