@@ -11,7 +11,7 @@ var vform = new Vue({
       4: 'Taxa to Include in Graph',
       5: 'Chronology Column ',
       6: 'Stratigraphy Column',
-      7: 'Pollen Zonation',
+      7: 'Pollen Zonation Lines',
       8: 'Section Review'
     },
     // Calpalyn Inputs
@@ -26,12 +26,17 @@ var vform = new Vue({
     line1Box2: '-1',
     line13: 'Yes',
     line3Box1: '',
+    // Date Control
     line21Box3: 'Option 1',
     line26A: '',
     line22Box4: '0',
     dates: [],
+    // Zone Control
     line21Box2: 'Option 1',
     zones: [],
+    // Line Control
+    line23Box1: 'No',
+    lines: [],
     // End Calpalyn Inputs
     // Dates
     dateFields: ['line26Box1', 'line26Box2', 'line26Box3', 'line26Box4', 'line26Box5'],
@@ -48,6 +53,11 @@ var vform = new Vue({
     line27Box3: '',
     line27Box4: '',
     currZone: undefined,
+    // Lines
+    lineFields: ['line30Box1', 'line30Box2'],
+    line30Box1: '',
+    line30Box2: '',
+    currLine: undefined,
     //
     taxaFile: false,
     dataFile: false,

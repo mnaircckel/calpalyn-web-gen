@@ -164,8 +164,8 @@
                                                 <td v-text="date.line26Box3"></td>
                                                 <td v-text="date.line26Box1"></td>
                                                 <td>
-                                                  <ui-button @click="changeRow(date, dateFields, 'currDate')">Select</ui-button>
-                                                  <ui-button @click="removeRow(date, 'dates', 'currDate')">Delete</ui-button>
+                                                  <ui-button color="secondary" raised @click="changeRow(date, dateFields, 'currDate')">Select</ui-button>
+                                                  <ui-button color="secondary" raised @click="removeRow(date, 'dates', 'currDate')">Delete</ui-button>
                                                 </td>
                                               </tr>
                                             </tbody>
@@ -223,8 +223,8 @@
                                                 <td v-text="zone.line27Box1"></td>
                                                 <td v-text="zone.line27Box4"></td>
                                                 <td>
-                                                  <ui-button @click="changeRow(zone, zoneFields, 'currZone')">Select</ui-button>
-                                                  <ui-button @click="removeRow(zone, 'zones', 'currZone')">Delete</ui-button>
+                                                  <ui-button color="secondary" raised @click="changeRow(zone, zoneFields, 'currZone')">Select</ui-button>
+                                                  <ui-button color="secondary" raised @click="removeRow(zone, 'zones', 'currZone')">Delete</ui-button>
                                                 </td>
                                               </tr>
                                             </tbody>
@@ -249,6 +249,42 @@
                                 </div>
 
                                 <div v-show="page === 7 || page === maxPage">
+                                    <ui-select label="Draw Zonation Lines" v-model="line23Box1" :options="['Yes', 'No']"></ui-select>
+                                    <ui-alert :dismissible="false">Use zonation lines to highlight periods of interest within graph. For instance, You could lines to show cool and warm phases.</ui-alert>
+
+                                    <div v-show="line23Box1 == 'Yes'">
+                                      <div class="box">
+                                          <h1 class="title"><Center>Add & Edit Lines<Center></h1>
+                                          <table class="table is-bordered">
+                                            <thead>
+                                              <tr>
+                                                <th>Position</th>
+                                                <th>Label</th>
+                                                <th v-if="lines.length != 0">Actions</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              <tr v-for="line in lines">
+                                                <td v-text="line.line30Box1"></td>
+                                                <td v-text="line.line30Box2"></td>
+                                                <td>
+                                                  <ui-button color="secondary" raised @click="changeRow(line, lineFields, 'currLine')">Select</ui-button>
+                                                  <ui-button color="secondary" raised @click="removeRow(line, 'lines', 'currLine')">Delete</ui-button>
+                                                </td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                          <section class="section">
+                                            <ui-textbox label="Line Position" v-model="line30Box1"></ui-textbox>
+                                            <ui-alert :dismissible="false"> Enter a number for the position of this zone line. Use same units as the first column of your data file (usually depths). Start at the top and work down.</ui-alert>
+
+                                            <ui-select label="Boundary Type" v-model="line30Box2" placeholder="Please select an option" :options="['Zone', 'Subzone']"></ui-select>
+                                            <ui-alert :dismissible="false">Choose a boundary type. Zones are solid lines. Subzones are dashed lines. </ui-alert>
+                                          </section>
+                                          <ui-button v-show="currLine === undefined" color="primary" @click="addRow(lineFields, 'lines', 'currLine')" :disabled="line30Box1 === '' || line30Box2 === ''">Add Line</ui-button>
+                                          <ui-button v-show="currLine !== undefined" color="primary" @click="updateRow(currLine, lineFields, 'lines', 'currLine')" :disabled="line30Box1 === '' || line30Box2 === ''">Apply Changes</ui-button>
+                                      </div>
+                                    </div>
                                 </div>
 
                                 <!-- End Pages for Calpalyn -->
