@@ -87,11 +87,11 @@
                                 <div v-show="page === 2 || page === maxPage">
                                   <ul>
                                     <label class="hero">Data File</label>
-                                    <li><ui-fileupload raised @change="onFileChange" label="Choose a data file" color="primary" name="dataFile"></ui-fileupload></li>
+                                    <li><ui-fileupload raised @change="uploadDataFile" label="Choose a data file" color="primary" name="dataFile"></ui-fileupload></li>
                                     <br />
 
                                     <label class="hero">Taxa File</label>
-                                    <li><ui-fileupload raised @change="onFileChange" label="Choose a taxa file" color="primary" name="taxaFile"></ui-fileupload></li>
+                                    <li><ui-fileupload raised @change="uploadTaxaFile" label="Choose a taxa file" color="primary" name="taxaFile"></ui-fileupload></li>
                                     <br />
                                   </ul>
 

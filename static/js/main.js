@@ -135,9 +135,15 @@ var vform = new Vue({
 
     },
     // End table actions
-    onFileChange(files) {
+    uploadDataFile(files) {
+      this.uploadFiles(files, 'data.csv')
+    },
+    uploadTaxaFile(files) {
+      this.uploadFiles(files, 'taxa.csv')
+    },
+    uploadFiles(files, name) {
       var formData = new FormData();
-      formData.append('file', files[0]);
+      formData.append('file', files[0], name);
       axios.post('/send_file', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'

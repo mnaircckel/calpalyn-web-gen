@@ -30,7 +30,7 @@ def generate_form():
 def save_file():
     if request.files:
         file = request.files['file']
-        # -- Save File file.save()
+        file.save(file.filename)
     return render_template('index.html')
 
 if __name__ == "__main__":
