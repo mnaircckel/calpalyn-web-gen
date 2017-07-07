@@ -32,7 +32,7 @@
 .ui-alert__body {
   -ms-flex-align: center;
       align-items: center;
-  color: rgba(0, 0, 0, 0.75);
+  color: rgba(0, 0, 0, 1);
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: row;
@@ -3211,7 +3211,7 @@ body[modality="keyboard"] .ui-switch__input:focus + .ui-switch__thumb .ui-switch
   transition: all 0.2s ease;
 }
 .ui-tabs__body {
-  background-color: white;
+  background: #cfd8dc;
   border-radius: 0;
   border: 0.0625rem solid #eeeeee;
   border-top: 0;

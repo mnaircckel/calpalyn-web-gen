@@ -6,8 +6,12 @@ html {
   font-size: 102%;
 }
 
-body, .hero-body {
-  background: #cfd8dc;
+.footer {
+  background-color: white;
+}
+
+.block {
+   margin-left: 20px;
 }
 
 .hero-body {

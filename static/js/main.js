@@ -1,3 +1,21 @@
+Vue.component('box-container', {
+  template: `
+  <section class="hero is-bold">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns is-vcentered">
+          <div class="column is-4 is-offset-4">
+            <div class="box message vform">
+            <slot></slot>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  `
+})
+
 var vform = new Vue({
   el: '#vform',
   data: {
@@ -86,7 +104,6 @@ var vform = new Vue({
       }
     },
     loadFormsPage: function() {
-      vform.page = undefined
       axios.get('/get_forms')
         .then(function(response) {
           vform.formsData = response.data.reverse()
@@ -171,3 +188,5 @@ var vform = new Vue({
   },
   delimiters: ["[[", "]]"]
 })
+
+window.onload = function () { vform.loadFormsPage() }

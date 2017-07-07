@@ -2,337 +2,344 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Calpalyn Instruction File Generator</title>
-    <!-- Bulma CSS, Keen UI, Font Awesome, and Custom CSS -->
-    <link href="{{ url_for('static', filename='css/bulma.min.css') }}" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/keen-ui.css') }}" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/base.css') }}" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/font-awesome.min.css') }}" rel="stylesheet">
-
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Calpalyn Instruction File Generator</title>
+  <!-- Bulma CSS, Keen UI, Font Awesome, and Custom CSS -->
+  <link href="{{ url_for('static', filename='css/bulma.min.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/keen-ui.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/base.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/font-awesome.min.css') }}" rel="stylesheet">
 </head>
 
 <body>
-    <div id="vform">
-        <nav class="nav is-light">
-            <a class="nav-item is-tab" style="color:#263238;" v-on:click="loadHomePage()">
-                <img src="{{ url_for('static', filename='img/home.png') }}"></img> Home
-            </a>
-            <a class="nav-item is-tab" style="color:#0277bd;" v-on:click="loadFormsPage()">
-                <i class="fa fa-file-text-o fa-fw"></i> Saved Graphs
-            </a>
-            <a class="nav-item is-tab" style="color:#37474f;" v-on:click="page = 1">
-                <i class="fa fa-edit fa-fw"></i> Current Graph
-            </a>
-        </nav>
-        <section class="hero is-fullheight is-bold">
-            <div class="hero-body">
-                <div v-cloak class="container">
-                    <div class="columns is-vcentered">
-                        <div class="column is-4 is-offset-4">
 
-                            <!-- Page Select -->
-                            <h1 v-show="page <= maxPage && page >= minPage">
-                                <strong>Navigate Sections:</strong>
-                                <select v-model="page" class="form-control">
-                                    <option :value="pageNum" v-text="pageTitles[pageNum]" v-for="pageNum in maxPage"></option>
-                                </select>
-                            </h1>
+  <!-- Start of vform, mounted by VueJs -->
+  <div id="vform">
+    <ui-tabs v-cloak fullwidth>
 
-                            <div class="block">
-                              <br />
-                              <ui-button color="primary" raised v-on:click="submitForm()">
-                                  <i class="fa fa-download fa-fw"></i> Generate File
-                              </ui-button>
-                            </div>
+      <!-- Landing Page -->
+      <ui-tab title="Home">
+        <box-container>
+          <center><strong>About Calpalyn</strong></center>
+          <br />
+          <p>Descriptive paragraphs include details that appeal to the five senses: sight, taste, touch, smell, and hearing. In a descriptive paragraph, the writer must convey information that appeals to all the senses in order to give the best possible
+            description to the reader. Descriptive paragraphs are commonly used in fiction and non-fiction writing to help immerse readers into the world of the author. Though there are no hard and fast rules for how exactly these paragraphs should be
+            structured, there are several suggestions that can help you write an effective and appealing descriptive paragraph.</p>
+        </box-container>
+      </ui-tab>
 
-                            <h1 class="title" v-show="page === undefined">
-                                Saved Graphs
-                            </h1>
+      <!-- Main Graph Page -->
+      <ui-tab title="Create Graph">
 
-                            <div class="box vform">
+        <!-- Inputs -->
+        <box-container>
+          <!-- Section Select -->
+          <div class="box">
+          <h1 v-show="page <= maxPage && page >= minPage">
+            <strong>Navigate Sections</strong>
+            <select v-model="page" class="form-control">
+                <option :value="pageNum" v-text="pageTitles[pageNum]" v-for="pageNum in maxPage"></option>
+            </select>
+          </h1>
+          <br />
+          <ui-button color="primary" raised v-on:click="submitForm()">
+            <i class="fa fa-download fa-fw"></i> Generate File
+          </ui-button>
+          <br />
+        </div>
 
-                                <!-- Heading -->
-                                <h1 v-if="page != undefined" class="title"><strong>[[ pageTitles[page] ]]</strong></h1>
+          <h1 class="title"><strong>[[ pageTitles[page] ]]</strong></h1>
+          <hr />
 
-                                <!-- Saved Forms Page -->
-                                <div v-show="page === undefined">
-                                    <label class="label">Graphs</label>
-                                    <select v-model="loadedForm" class="select ui-select">
-                                        <option v-for="f in formsData" :value="f" class="ui-select-option">[[ f.line25.toString() ]]</option>
-                                    </select>
-                                    <br>
-                                    <button type="button" v-on:click="loadForm()" class="button is-primary"> Load </button>
-                                </div>
+          <!-- Sections of Calpalyn -->
+          <!-- Section 1 -->
+          <div v-show="page === 1">
+            <ui-textbox label="Graph Title" v-model="line25" placeholder="Enter a title"></ui-textbox>
+            <ui-alert :dismissible="false">Enter the main title to appear above your graph.</ui-alert>
 
-                                <!-- Pages for Calpalyn -->
-                                <div v-show="page === 1">
-                                    <ui-textbox label="Graph Title" v-model="line25" placeholder="Enter a title"></ui-textbox>
-                                    <ui-alert :dismissible="false">Enter the main title to appear above your graph.</ui-alert>
+            <ui-textbox label="Vertical Label" v-model="line24" placeholder="Enter a label"></ui-textbox>
+            <ui-alert :dismissible="false">Enter a label for the vertical axis (e.g. depth cm).</ui-alert>
 
-                                    <ui-textbox label="Vertical Label" v-model="line24" placeholder="Enter a label"></ui-textbox>
-                                    <ui-alert :dismissible="false">Enter a label for the vertical axis (e.g. depth cm).</ui-alert>
+            <ui-textbox label="Vertical Interval" v-model="line22Box3"></ui-textbox>
+            <ui-alert :dismissible="false">Control the number on vertical axis (usually depths). Zero will automatically select a rounded interval every inch or enter a number to choose your own interval.</ui-alert>
 
-                                    <ui-textbox label="Vertical Interval" v-model="line22Box3"></ui-textbox>
-                                    <ui-alert :dismissible="false">Control the number on vertical axis (usually depths). Zero will automatically select a rounded interval every inch or enter a number to choose your own interval.</ui-alert>
+            <ui-textbox label="Vertical Factor" v-model="line1Box2"></ui-textbox>
+            <ui-alert :dismissible="false">This allows you to multiply the primary vertical axis (usually depths) by a factor. Use -1.0 so the graph plots right-side up if you are using depths or ages as positive numbers. Enter 1 to leave numbers alone.</ui-alert>
 
-                                    <ui-textbox label="Vertical Factor" v-model="line1Box2"></ui-textbox>
-                                    <ui-alert :dismissible="false">This allows you to multiply the primary vertical axis (usually depths) by a factor. Use -1.0 so the graph plots right-side up if you are using depths or ages as positive numbers. Enter 1 to leave numbers alone.</ui-alert>
+            <ui-textbox label="Graph Width" v-model="line22Box2"></ui-textbox>
+            <ui-textbox label="Graph Height" v-model="line22Box1"></ui-textbox>
+            <ui-alert :dismissible="false">Zero will automatically scale the graph to fit the page. A positive number sets the graph width/height in inches.</ui-alert>
 
-                                    <ui-textbox label="Graph Width" v-model="line22Box2"></ui-textbox>
-                                    <ui-textbox label="Graph Height" v-model="line22Box1"></ui-textbox>
-                                    <ui-alert :dismissible="false">Zero will automatically scale the graph to fit the page. A positive number sets the graph width/height in inches.</ui-alert>
+            <ui-select label="Font Size" v-model="line21Box4" :options="['Standard', 'Enlarged']"></ui-select>
+            <ui-alert :dismissible="false">Standard fonts are more likely to fit the page. Enlarged fonts are 12 point.</ui-alert>
 
-                                    <ui-select label="Font Size" v-model="line21Box4" :options="['Standard', 'Enlarged']"></ui-select>
-                                    <ui-alert :dismissible="false">Standard fonts are more likely to fit the page. Enlarged fonts are 12 point.</ui-alert>
+            <ui-select label="Data Lines" v-model="line21Box1" :options="['Yes', 'No']"></ui-select>
+            <ui-alert :dismissible="false">Generates horizontal dotted lines at data levels. They can be used to show the sampling interval.</ui-alert>
+          </div>
 
-                                    <ui-select label="Data Lines" v-model="line21Box1" :options="['Yes', 'No']"></ui-select>
-                                    <ui-alert :dismissible="false">Generates horizontal dotted lines at data levels. They can be used to show the sampling interval.</ui-alert>
-                                </div>
+          <!-- Section 2 -->
+          <div v-show="page === 2">
+            <ul>
+              <label class="ui-fileupload-label-text">Data File</label>
+              <li>
+                <ui-fileupload raised @change="uploadDataFile" label="Choose a data file" color="primary" name="dataFile"></ui-fileupload>
+              </li>
+              <br />
 
-                                <div v-show="page === 2">
-                                  <ul>
-                                    <label class="ui-fileupload-label-text">Data File</label>
-                                    <li><ui-fileupload raised @change="uploadDataFile" label="Choose a data file" color="primary" name="dataFile"></ui-fileupload></li>
-                                    <br />
+              <label class="ui-fileupload-label-text">Taxa File</label>
+              <li>
+                <ui-fileupload raised @change="uploadTaxaFile" label="Choose a taxa file" color="primary" name="taxaFile"></ui-fileupload>
+              </li>
+              <br />
+            </ul>
 
-                                    <label class="ui-fileupload-label-text">Taxa File</label>
-                                    <li><ui-fileupload raised @change="uploadTaxaFile" label="Choose a taxa file" color="primary" name="taxaFile"></ui-fileupload></li>
-                                    <br />
-                                  </ul>
+            <ui-alert :dismissible="false">
+              You should leave the default options below unless you have a specific reason for making changes.
+            </ui-alert>
+            <br />
 
-                                  <ui-alert :dismissible="false">
-                                    You should leave the default options below unless you have a specific reason for making changes.
-                                  </ui-alert>
-                                  <br />
+            <ui-select label="Data File Type" v-model="line1Box1" :options="['New', 'Old']"></ui-select>
+            <ui-alert :dismissible="false">Old format data files were used in an earlier version.</ui-alert>
 
-                                  <ui-select label="Data File Type" v-model="line1Box1" :options="['New', 'Old']"></ui-select>
-                                  <ui-alert :dismissible="false">Old format data files were used in an earlier version.</ui-alert>
+            <ui-select label="Text Labels" v-model="line13" :options="['Yes', 'No']"></ui-select>
+            <ui-alert :dismissible="false">Use the labels from the taxa file to label the graph. Select no to use numbers from data file as labels.</ui-alert>
+          </div>
 
-                                  <ui-select label="Text Labels" v-model="line13" :options="['Yes', 'No']"></ui-select>
-                                  <ui-alert :dismissible="false">Use the labels from the taxa file to label the graph. Select no to use numbers from data file as labels.</ui-alert>
-                                </div>
+          <!-- Section 3 -->
+          <div v-show="page === 3">
+            <ui-alert :dismissible="false">
+              These sums can be used to normalize data. For example, they allow you to graph as a percent of total pollen or as a percent of non-aquatic pollen.
+              <br />
+              <br /> Without subtotals you can only graph raw data.
+            </ui-alert>
+            <br />
 
-                                <div v-show="page === 3">
-                                  <ui-alert :dismissible="false">
-                                    These sums can be used to normalize data. For example, they allow you to graph as a percent of total pollen or as a percent of non-aquatic pollen.
-                                    <br />
-                                    <br />
-                                    Without subtotals you can only graph raw data.
-                                  </ui-alert>
-                                  <br />
+            <ui-select label="Total" v-model="line3Box1" placeholder="Please select an option" :options="['Do not sum', 'Sum all positively numbered taxa', 'Sum all except excluded below']"></ui-select>
+            <ui-alert :dismissible="false">You can generate a total by summing taxa in a data file.</ui-alert>
+          </div>
 
-                                  <ui-select label="Total" v-model="line3Box1" placeholder="Please select an option" :options="['Do not sum', 'Sum all positively numbered taxa', 'Sum all except excluded below']"></ui-select>
-                                  <ui-alert :dismissible="false">You can generate a total by summing taxa in a data file.</ui-alert>
-                                </div>
+          <!-- Section 4 -->
+          <div v-show="page === 4">
+          </div>
 
-                                <div v-show="page === 4">
-                                </div>
+          <!-- Section 5 -->
+          <div v-show="page === 5">
+            <ui-select vertical="true" :options="['Option 1', 'Option 2', 'Option 3']" v-model="line21Box3">Chronology Column</ui-select>
+            <ui-alert :dismissible="false">Create a chronology column to show your age model.
+              <br />
+              <ul>
+                <li><strong>Option 1:</strong> Do not draw chronology column</li>
+                <li><strong>Option 2:</strong> Draw chronology column and merge it with any stratigraphy graphics at left of diagram</li>
+                <li><strong>Option 3:</strong> Draw scaled chronology column with tick marks at fixed time intervals along the left side of the column</li>
+              </ul>
+            </ui-alert>
 
-                                <div v-show="page === 5">
-                                  <ui-select
-                                        vertical="true"
-                                        :options="['Option 1', 'Option 2', 'Option 3']"
-                                        v-model="line21Box3"
-                                    >Chronology Column</ui-select>
-                                    <ui-alert :dismissible="false">Create a chronology column to show your age model.
-                                      <br />
-                                      <ul>
-                                        <li><strong>Option 1:</strong> Do not draw chronology column</li>
-                                        <li><strong>Option 2:</strong> Draw chronology column and merge it with any stratigraphy graphics at left of diagram</li>
-                                        <li><strong>Option 3:</strong> Draw scaled chronology column with tick marks at fixed time intervals along the left side of the column</li>
-                                      </ul>
-                                    </ui-alert>
+            <div v-show="line21Box3 !== 'Option 1'">
+              <ui-textbox label="Chronology Label" v-model="line26A" placeholder="Enter a label"></ui-textbox>
+              <ui-alert :dismissible="false">Enter a label to go below the chronology column (e.g. Cal years BP).</ui-alert>
 
-                                    <div v-show="line21Box3 !== 'Option 1'">
-                                      <ui-textbox label="Chronology Label" v-model="line26A" placeholder="Enter a label"></ui-textbox>
-                                      <ui-alert :dismissible="false">Enter a label to go below the chronology column (e.g. Cal years BP).</ui-alert>
+              <ui-textbox label="Chronology Numbering" v-model="line22Box4"></ui-textbox>
+              <ui-alert :dismissible="false">Enter 0 for a rounded interval approximately equal to one- fiftieth of your oldest date. Number labels are placed once every five tick marks. Enter a positive number to choose your own interval (spacing of ticks) in years.</ui-alert>
 
-                                      <ui-textbox label="Chronology Numbering" v-model="line22Box4"></ui-textbox>
-                                      <ui-alert :dismissible="false">Enter 0 for a rounded interval approximately equal to one- fiftieth of your oldest date. Number labels are placed once every five tick marks. Enter a positive number to choose your own interval (spacing of ticks) in years.</ui-alert>
+              <!-- Dates -->
+              <div class="box">
+                <h1 class="title"><Center>Add & Edit Dates<Center></h1>
+                <table class="table is-bordered">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Depth</th>
+                      <th v-if="dates.length != 0">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="date in dates">
+                      <td v-text="date.line26Box3"></td>
+                      <td v-text="date.line26Box1"></td>
+                      <td>
+                        <ui-button color="secondary" raised @click="changeRow(date, dateFields, 'currDate')">Select</ui-button>
+                        <ui-button color="secondary" raised @click="removeRow(date, 'dates', 'currDate')">Delete</ui-button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <section class="section">
+                  <ui-textbox label="Date" v-model="line26Box3"></ui-textbox>
+                  <ui-alert :dismissible="false">Enter date in years BP. Years since 1950 should by negative.</ui-alert>
 
+                  <ui-textbox label="Midpoint Depth" v-model="line26Box1"></ui-textbox>
+                  <ui-alert :dismissible="false">Enter the midpoint depth of the dated sample.</ui-alert>
 
-                                      <div class="box">
-                                          <h1 class="title"><Center>Add & Edit Dates<Center></h1>
-                                          <table class="table is-bordered">
-                                            <thead>
-                                              <tr>
-                                                <th>Date</th>
-                                                <th>Depth</th>
-                                                <th v-if="dates.length != 0">Actions</th>
-                                              </tr>
-                                            </thead>
-                                            <tbody>
-                                              <tr v-for="date in dates">
-                                                <td v-text="date.line26Box3"></td>
-                                                <td v-text="date.line26Box1"></td>
-                                                <td>
-                                                  <ui-button color="secondary" raised @click="changeRow(date, dateFields, 'currDate')">Select</ui-button>
-                                                  <ui-button color="secondary" raised @click="removeRow(date, 'dates', 'currDate')">Delete</ui-button>
-                                                </td>
-                                              </tr>
-                                            </tbody>
-                                          </table>
-                                          <section class="section">
-                                            <ui-textbox label="Date" v-model="line26Box3"></ui-textbox>
-                                            <ui-alert :dismissible="false">Enter date in years BP. Years since 1950 should by negative.</ui-alert>
+                  <ui-textbox label="Vertical Thickness" v-model="line26Box2"></ui-textbox>
+                  <ui-alert :dismissible="false">Enter the vertical thickness of the area sampled for date. This can be left blank.</ui-alert>
 
-                                            <ui-textbox label="Midpoint Depth" v-model="line26Box1"></ui-textbox>
-                                            <ui-alert :dismissible="false">Enter the midpoint depth of the dated sample.</ui-alert>
+                  <ui-textbox label="Years Uncertainty" v-model="line26Box4"></ui-textbox>
+                  <ui-alert :dismissible="false">Enter an error for date (integer). This can be left blank if you do not want to display errors on the column.</ui-alert>
 
-                                            <ui-textbox label="Vertical Thickness" v-model="line26Box2"></ui-textbox>
-                                            <ui-alert :dismissible="false">Enter the vertical thickness of the area sampled for date. This can be left blank.</ui-alert>
-
-                                            <ui-textbox label="Years Uncertainty" v-model="line26Box4"></ui-textbox>
-                                            <ui-alert :dismissible="false">Enter an error for date (integer). This can be left blank if you do not want to display errors on the column.</ui-alert>
-
-                                            <ui-textbox label="Substance Label" v-model="line26Box5"></ui-textbox>
-                                            <ui-alert :dismissible="false">Enter a label for the substance dated. This is usually left blank. </ui-alert>
-                                          </section>
-                                          <ui-button v-show="currDate === undefined" color="primary" @click="addRow(dateFields, 'dates', 'currDate')" :disabled="line26Box1 === '' || line26Box3 === ''">Add Date</ui-button>
-                                          <ui-button v-show="currDate !== undefined" color="primary" @click="updateRow(currDate, dateFields, 'dates', 'currDate')" :disabled="line26Box1 === '' || line26Box3 === ''">Apply Changes</ui-button>
-                                      </div>
-                                    </div>
-                                </div>
-
-                                <div v-show="page === 6">
-                                  <ui-select
-                                        vertical="true"
-                                        :options="['Option 1', 'Option 2', 'Option 3']"
-                                        v-model="line21Box2"
-                                    >Stratigraphy Column</ui-select>
-                                    <ui-alert :dismissible="false">Create a column to show the stratigraphic zones in your core.
-                                      <br />
-                                      <ul>
-                                        <li><strong>Option 1:</strong> Do not draw stratigraphy column</li>
-                                        <li><strong>Option 2:</strong> Draw stratigraphy column and merge it with any chronology graphics at left of diagram</li>
-                                        <li><strong>Option 3:</strong> Draw stratigraphy column, omit stratigraphy labels, and draw boxes with labels identifying each fill pattern below the diagram</li>
-                                      </ul>
-                                    </ui-alert>
-
-                                    <div v-show="line21Box2 !== 'Option 1'">
-                                      <div class="box">
-                                          <h1 class="title"><Center>Add & Edit Zones<Center></h1>
-                                          <table class="table is-bordered">
-                                            <thead>
-                                              <tr>
-                                                <th>Position</th>
-                                                <th>Label</th>
-                                                <th v-if="zones.length != 0">Actions</th>
-                                              </tr>
-                                            </thead>
-                                            <tbody>
-                                              <tr v-for="zone in zones">
-                                                <td v-text="zone.line27Box1"></td>
-                                                <td v-text="zone.line27Box4"></td>
-                                                <td>
-                                                  <ui-button color="secondary" raised @click="changeRow(zone, zoneFields, 'currZone')">Select</ui-button>
-                                                  <ui-button color="secondary" raised @click="removeRow(zone, 'zones', 'currZone')">Delete</ui-button>
-                                                </td>
-                                              </tr>
-                                            </tbody>
-                                          </table>
-                                          <section class="section">
-                                            <ui-textbox label="Upper Bound Position" v-model="line27Box1"></ui-textbox>
-                                            <ui-alert :dismissible="false">Enter a number for the upper position of this stratigraphic zone. Use same units as the first column of your data file (usually depths).</ui-alert>
-
-                                            <ui-select label="Boundary Type" v-model="line27Box2" placeholder="Please select an option" :options="['Invisible boundary (no line)', 'Single dashed line', 'Single solid line', 'Single jagged line (nonconformity)', 'Double jagged line (discontinuous core)']"></ui-select>
-                                            <ui-alert :dismissible="false">Choose the boundary line style.</ui-alert>
-
-                                            <ui-textbox label="Shading" v-model="line27Box3"></ui-textbox>
-                                            <ui-alert :dismissible="false">Numbers 0 through 10 indicate shades of grey; 0 is white, 10 is black. Numbers greater than 10 represent patterns.</ui-alert>
-
-                                            <ui-textbox label="Stratigraphy Label" v-model="line27Box4" placeholder="Enter a label"></ui-textbox>
-                                            <ui-alert :dismissible="false">Enter a text label for the stratigraphic zone.</ui-alert>
-                                          </section>
-                                          <ui-button v-show="currZone === undefined" color="primary" @click="addRow(zoneFields, 'zones', 'currZone')" :disabled="line27Box1 === '' || line27Box2 === ''">Add Zone</ui-button>
-                                          <ui-button v-show="currZone !== undefined" color="primary" @click="updateRow(currZone, zoneFields, 'zones', 'currZone')" :disabled="line27Box1 === '' || line27Box2 === ''">Apply Changes</ui-button>
-                                      </div>
-                                    </div>
-                                </div>
-
-                                <div v-show="page === 7">
-                                    <ui-select label="Draw Zonation Lines" v-model="line23Box1" :options="['Yes', 'No']"></ui-select>
-                                    <ui-alert :dismissible="false">Use zonation lines to highlight periods of interest within graph. For instance, You could lines to show cool and warm phases.</ui-alert>
-
-                                    <div v-show="line23Box1 == 'Yes'">
-                                      <div class="box">
-                                          <h1 class="title"><Center>Add & Edit Lines<Center></h1>
-                                          <table class="table is-bordered">
-                                            <thead>
-                                              <tr>
-                                                <th>Position</th>
-                                                <th>Label</th>
-                                                <th v-if="lines.length != 0">Actions</th>
-                                              </tr>
-                                            </thead>
-                                            <tbody>
-                                              <tr v-for="line in lines">
-                                                <td v-text="line.line30Box1"></td>
-                                                <td v-text="line.line30Box2"></td>
-                                                <td>
-                                                  <ui-button color="secondary" raised @click="changeRow(line, lineFields, 'currLine')">Select</ui-button>
-                                                  <ui-button color="secondary" raised @click="removeRow(line, 'lines', 'currLine')">Delete</ui-button>
-                                                </td>
-                                              </tr>
-                                            </tbody>
-                                          </table>
-                                          <section class="section">
-                                            <ui-textbox label="Line Position" v-model="line30Box1"></ui-textbox>
-                                            <ui-alert :dismissible="false"> Enter a number for the position of this zone line. Use same units as the first column of your data file (usually depths). Start at the top and work down.</ui-alert>
-
-                                            <ui-select label="Boundary Type" v-model="line30Box2" placeholder="Please select an option" :options="['Zone', 'Subzone']"></ui-select>
-                                            <ui-alert :dismissible="false">Choose a boundary type. Zones are solid lines. Subzones are dashed lines. </ui-alert>
-                                          </section>
-                                          <ui-button v-show="currLine === undefined" color="primary" @click="addRow(lineFields, 'lines', 'currLine')" :disabled="line30Box1 === '' || line30Box2 === ''">Add Line</ui-button>
-                                          <ui-button v-show="currLine !== undefined" color="primary" @click="updateRow(currLine, lineFields, 'lines', 'currLine')" :disabled="line30Box1 === '' || line30Box2 === ''">Apply Changes</ui-button>
-                                      </div>
-                                    </div>
-                                </div>
-
-                                <!-- End Pages for Calpalyn -->
-
-                                <!-- Forward / Back -->
-                                <br>
-                                <div v-if="page < maxPage && page > 1">
-                                    <ui-button raised v-on:click="previousPage" class="button">Previous</ui-button>
-                                    <ui-button raised v-on:click="nextPage" class="button">Next</ui-button>
-                                </div>
-                                <div v-else-if="page == maxPage">
-                                    <ui-button raised v-on:click="previousPage" class="button">Previous</ui-button>
-                                </div>
-                                <div v-else-if="page == 1">
-                                    <ui-button raised v-on:click="nextPage" class="button">Next</ui-button>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <footer class="footer">
-          <div class="container">
-            <div class="content has-text-centered">
-              <p>
-                <strong>Calpalyn Instruction File Generator</strong> by Marcel Champagne</a>. Icons provided by <a href="https://icons8.com/">Icons8</a> and <a href="http://fontawesome.io/">Font Awesome</a>.
-              </p>
-              <p>
-                <a class="icon" href="https://github.com/mnaircckel/calpalyn-web-gen">
-                  <i class="fa fa-github"></i>
-                </a>
-              </p>
+                  <ui-textbox label="Substance Label" v-model="line26Box5"></ui-textbox>
+                  <ui-alert :dismissible="false">Enter a label for the substance dated. This is usually left blank. </ui-alert>
+                </section>
+                <ui-button v-show="currDate === undefined" color="primary" @click="addRow(dateFields, 'dates', 'currDate')" :disabled="line26Box1 === '' || line26Box3 === ''">Add Date</ui-button>
+                <ui-button v-show="currDate !== undefined" color="primary" @click="updateRow(currDate, dateFields, 'dates', 'currDate')" :disabled="line26Box1 === '' || line26Box3 === ''">Apply Changes</ui-button>
+              </div>
             </div>
           </div>
-        </footer>
-    </div>
-    <!--Axios -->
-    <script src="{{ url_for('static', filename='js/axios.min.js') }}"></script>
-    <!-- Vue and Keen UI -->
-    <script src="{{ url_for('static', filename='js/vue.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/keen-ui.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+          <!-- Section 6 -->
+          <div v-show="page === 6">
+            <ui-select vertical="true" :options="['Option 1', 'Option 2', 'Option 3']" v-model="line21Box2">Stratigraphy Column</ui-select>
+            <ui-alert :dismissible="false">Create a column to show the stratigraphic zones in your core.
+              <br />
+              <ul>
+                <li><strong>Option 1:</strong> Do not draw stratigraphy column</li>
+                <li><strong>Option 2:</strong> Draw stratigraphy column and merge it with any chronology graphics at left of diagram</li>
+                <li><strong>Option 3:</strong> Draw stratigraphy column, omit stratigraphy labels, and draw boxes with labels identifying each fill pattern below the diagram</li>
+              </ul>
+            </ui-alert>
+
+            <!-- Zones -->
+            <div v-show="line21Box2 !== 'Option 1'">
+              <div class="box">
+                <h1 class="title"><Center>Add & Edit Zones<Center></h1>
+                <table class="table is-bordered">
+                  <thead>
+                    <tr>
+                      <th>Position</th>
+                      <th>Label</th>
+                      <th v-if="zones.length != 0">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="zone in zones">
+                      <td v-text="zone.line27Box1"></td>
+                      <td v-text="zone.line27Box4"></td>
+                      <td>
+                        <ui-button color="secondary" raised @click="changeRow(zone, zoneFields, 'currZone')">Select</ui-button>
+                        <ui-button color="secondary" raised @click="removeRow(zone, 'zones', 'currZone')">Delete</ui-button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <section class="section">
+                  <ui-textbox label="Upper Bound Position" v-model="line27Box1"></ui-textbox>
+                  <ui-alert :dismissible="false">Enter a number for the upper position of this stratigraphic zone. Use same units as the first column of your data file (usually depths).</ui-alert>
+
+                  <ui-select label="Boundary Type" v-model="line27Box2" placeholder="Please select an option" :options="['Invisible boundary (no line)', 'Single dashed line', 'Single solid line', 'Single jagged line (nonconformity)', 'Double jagged line (discontinuous core)']"></ui-select>
+                  <ui-alert :dismissible="false">Choose the boundary line style.</ui-alert>
+
+                  <ui-textbox label="Shading" v-model="line27Box3"></ui-textbox>
+                  <ui-alert :dismissible="false">Numbers 0 through 10 indicate shades of grey; 0 is white, 10 is black. Numbers greater than 10 represent patterns.</ui-alert>
+
+                  <ui-textbox label="Stratigraphy Label" v-model="line27Box4" placeholder="Enter a label"></ui-textbox>
+                  <ui-alert :dismissible="false">Enter a text label for the stratigraphic zone.</ui-alert>
+                </section>
+                <ui-button v-show="currZone === undefined" color="primary" @click="addRow(zoneFields, 'zones', 'currZone')" :disabled="line27Box1 === '' || line27Box2 === ''">Add Zone</ui-button>
+                <ui-button v-show="currZone !== undefined" color="primary" @click="updateRow(currZone, zoneFields, 'zones', 'currZone')" :disabled="line27Box1 === '' || line27Box2 === ''">Apply Changes</ui-button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 7 -->
+          <div v-show="page === 7">
+            <ui-select label="Draw Zonation Lines" v-model="line23Box1" :options="['Yes', 'No']"></ui-select>
+            <ui-alert :dismissible="false">Use zonation lines to highlight periods of interest within graph. For instance, You could lines to show cool and warm phases.</ui-alert>
+
+            <!-- Lines -->
+            <div v-show="line23Box1 == 'Yes'">
+              <div class="box">
+                <h1 class="title"><Center>Add & Edit Lines<Center></h1>
+                <table class="table is-bordered">
+                  <thead>
+                    <tr>
+                      <th>Position</th>
+                      <th>Label</th>
+                      <th v-if="lines.length != 0">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="line in lines">
+                      <td v-text="line.line30Box1"></td>
+                      <td v-text="line.line30Box2"></td>
+                      <td>
+                        <ui-button color="secondary" raised @click="changeRow(line, lineFields, 'currLine')">Select</ui-button>
+                        <ui-button color="secondary" raised @click="removeRow(line, 'lines', 'currLine')">Delete</ui-button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <section class="section">
+                  <ui-textbox label="Line Position" v-model="line30Box1"></ui-textbox>
+                  <ui-alert :dismissible="false"> Enter a number for the position of this zone line. Use same units as the first column of your data file (usually depths). Start at the top and work down.</ui-alert>
+
+                  <ui-select label="Boundary Type" v-model="line30Box2" placeholder="Please select an option" :options="['Zone', 'Subzone']"></ui-select>
+                  <ui-alert :dismissible="false">Choose a boundary type. Zones are solid lines. Subzones are dashed lines. </ui-alert>
+                </section>
+                <ui-button v-show="currLine === undefined" color="primary" @click="addRow(lineFields, 'lines', 'currLine')" :disabled="line30Box1 === '' || line30Box2 === ''">Add Line</ui-button>
+                <ui-button v-show="currLine !== undefined" color="primary" @click="updateRow(currLine, lineFields, 'lines', 'currLine')" :disabled="line30Box1 === '' || line30Box2 === ''">Apply Changes</ui-button>
+              </div>
+            </div>
+          </div>
+          <!-- End Pages for Calpalyn -->
+
+          <!-- Forward / Back -->
+          <br>
+          <div v-if="page < maxPage && page > 1">
+            <ui-button raised v-on:click="previousPage" class="button">Previous</ui-button>
+            <ui-button raised v-on:click="nextPage" class="button">Next</ui-button>
+          </div>
+          <div v-else-if="page == maxPage">
+            <ui-button raised v-on:click="previousPage" class="button">Previous</ui-button>
+          </div>
+          <div v-else-if="page == 1">
+            <ui-button raised v-on:click="nextPage" class="button">Next</ui-button>
+          </div>
+          <!-- End Forward / Back -->
+
+        </box-container>
+      </ui-tab>
+      <!-- End of Graphing Page -->
+
+      <!-- Saved Graphs Page -->
+      <ui-tab title="Load Graphs">
+        <box-container>
+          <h1 class="title">
+            <strong>Saved Graphs</strong>
+          </h1>
+          <strong>Graphs</strong>
+          <select v-model="loadedForm" class="select">
+            <option v-for="f in formsData" :value="f" class="ui-select-option">[[ f.line25.toString() ]]</option>
+          </select>
+          <br />
+          <br />
+          <ui-button raised v-on:click="loadForm()" color="primary"> Load </ui-button>
+        </box-container>
+      </ui-tab>
+      <!-- End Saved Graphs Page -->
+    </ui-tabs>
+    <!-- End of Tabs -->
+    <footer class="footer">
+      <div class="container">
+        <div class="content has-text-centered">
+          <p>
+            <strong>Calpalyn Instruction File Generator</strong> by Marcel Champagne</a>. Icons provided by <a href="https://icons8.com/">Icons8</a> and <a href="http://fontawesome.io/">Font Awesome</a>.
+          </p>
+          <p>
+            <a class="icon" href="https://github.com/mnaircckel/calpalyn-web-gen">
+              <i class="fa fa-github"></i>
+            </a>
+          </p>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <!-- End of vform -->
+  <!--Axios -->
+  <script src="{{ url_for('static', filename='js/axios.min.js') }}"></script>
+  <!-- Vue and Keen UI -->
+  <script src="{{ url_for('static', filename='js/vue.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/keen-ui.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 
 </html>
