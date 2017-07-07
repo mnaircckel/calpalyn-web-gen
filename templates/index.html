@@ -73,6 +73,9 @@
                                     <ui-textbox label="Vertical Interval" v-model="line22Box3"></ui-textbox>
                                     <ui-alert :dismissible="false">Control the number on vertical axis (usually depths). Zero will automatically select a rounded interval every inch or enter a number to choose your own interval.</ui-alert>
 
+                                    <ui-textbox label="Vertical Factor" v-model="line1Box2"></ui-textbox>
+                                    <ui-alert :dismissible="false">This allows you to multiply the primary vertical axis (usually depths) by a factor. Use -1.0 so the graph plots right-side up if you are using depths or ages as positive numbers. Enter 1 to leave numbers alone.</ui-alert>
+
                                     <ui-textbox label="Graph Width" v-model="line22Box2"></ui-textbox>
                                     <ui-textbox label="Graph Height" v-model="line22Box1"></ui-textbox>
                                     <ui-alert :dismissible="false">Zero will automatically scale the graph to fit the page. A positive number sets the graph width/height in inches.</ui-alert>
@@ -102,9 +105,6 @@
 
                                   <ui-select label="Data File Type" v-model="line1Box1" :options="['New', 'Old']"></ui-select>
                                   <ui-alert :dismissible="false">Old format data files were used in an earlier version.</ui-alert>
-
-                                  <ui-textbox label="Factor" v-model="line1Box2"></ui-textbox>
-                                  <ui-alert :dismissible="false">This allows you to multiply the primary y-axis (usually depths) by a factor. Use -1.0 so the graph plots right-side up if you are using depths or ages as positive numbers. Enter 1 to leave numbers alone.</ui-alert>
 
                                   <ui-select label="Text Labels" v-model="line13" :options="['Yes', 'No']"></ui-select>
                                   <ui-alert :dismissible="false">Use the labels from the taxa file to label the graph. Select no to use numbers from data file as labels.</ui-alert>

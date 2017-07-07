@@ -6,7 +6,7 @@ var vform = new Vue({
     minPage: 1,
     pageTitles: {
       1: 'Graph Labels and Formatting',
-      2: 'Setup and File Type Selections',
+      2: 'Setup and File Selections',
       3: 'Totals and Subtotals',
       4: 'Taxa to Include in Graph',
       5: 'Chronology Column ',
