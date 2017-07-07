@@ -40,6 +40,8 @@ var vform = new Vue({
     line26Box5: '',
     currDate: undefined,
     //
+    taxaFile: false,
+    dataFile: false,
     formsData: [],
     loadedForm: {}
   },
@@ -131,8 +133,17 @@ var vform = new Vue({
         vform[f] = ''
       });
 
-    }
+    },
     // End table actions
+    onFileChange(files) {
+      var formData = new FormData();
+      formData.append('file', files[0]);
+      axios.post('/send_file', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+      })
+    }
   },
   delimiters: ["[[", "]]"]
 })

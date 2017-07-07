@@ -26,5 +26,12 @@ def send_forms():
 def generate_form():
     pass
 
+@app.route('/send_file', methods=['POST'])
+def save_file():
+    if request.files:
+        file = request.files['file']
+        # -- Save File file.save()
+    return render_template('index.html')
+
 if __name__ == "__main__":
   app.run()

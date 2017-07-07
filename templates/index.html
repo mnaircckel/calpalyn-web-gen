@@ -85,8 +85,18 @@
                                 </div>
 
                                 <div v-show="page === 2 || page === maxPage">
+                                  <ul>
+                                    <label class="hero">Data File</label>
+                                    <li><ui-fileupload raised @change="onFileChange" label="Choose a data file" color="primary" name="dataFile"></ui-fileupload></li>
+                                    <br />
+
+                                    <label class="hero">Taxa File</label>
+                                    <li><ui-fileupload raised @change="onFileChange" label="Choose a taxa file" color="primary" name="taxaFile"></ui-fileupload></li>
+                                    <br />
+                                  </ul>
+
                                   <ui-alert :dismissible="false">
-                                    You should leave the default options unless you have a specific reason for making changes.
+                                    You should leave the default options below unless you have a specific reason for making changes.
                                   </ui-alert>
                                   <br />
 
@@ -162,7 +172,7 @@
                                           </table>
                                           <section class="section">
                                             <ui-textbox label="Date" v-model="line26Box3"></ui-textbox>
-                                            <ui-alert :dismissible="false">Enter date is years BP. Years since 1950 should by negative.</ui-alert>
+                                            <ui-alert :dismissible="false">Enter date in years BP. Years since 1950 should by negative.</ui-alert>
 
                                             <ui-textbox label="Midpoint Depth" v-model="line26Box1"></ui-textbox>
                                             <ui-alert :dismissible="false">Enter the midpoint depth of the dated sample.</ui-alert>
