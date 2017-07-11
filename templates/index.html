@@ -83,7 +83,7 @@
             <ul>
               <label class="ui-fileupload-label-text">Data File</label>
               <li>
-                <ui-fileupload raised @change="uploadDataFile" label="Choose a data file" color="primary" name="dataFile"></ui-fileupload>
+                <ui-fileupload raised label="Choose a data file" color="primary" name="dataFile"></ui-fileupload>
               </li>
               <br />
 
@@ -117,6 +117,10 @@
 
             <ui-select label="Total" v-model="line3Box1" placeholder="Please select an option" :options="['Do not sum', 'Sum all positively numbered taxa', 'Sum all except excluded below']"></ui-select>
             <ui-alert :dismissible="false">You can generate a total by summing taxa in a data file.</ui-alert>
+
+            <select v-model="loadedForm" class="select">
+              <option v-for="taxon in taxa" :value="f" class="ui-select-option" v-text="taxon"></option>
+            </select>
           </div>
 
           <!-- Section 4 -->

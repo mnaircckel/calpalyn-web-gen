@@ -79,7 +79,8 @@ var vform = new Vue({
     taxaFile: false,
     dataFile: false,
     formsData: [],
-    loadedForm: {}
+    loadedForm: {},
+    taxa: []
   },
   methods: {
     submitForm: function() {
@@ -109,7 +110,7 @@ var vform = new Vue({
           vform.formsData = response.data.reverse()
         })
         .catch(function(error) {
-          vform.formsData = {}
+          vform.formsData = []
         })
     },
     loadForm: function() {
@@ -170,23 +171,24 @@ var vform = new Vue({
 
     },
     // End table actions
-    uploadDataFile(files) {
-      this.uploadFiles(files, 'data.csv')
-    },
     uploadTaxaFile(files) {
-      this.uploadFiles(files, 'taxa.csv')
-    },
-    uploadFiles(files, name) {
       var formData = new FormData();
-      formData.append('file', files[0], name);
-      axios.post('/send_file', formData, {
+      formData.append('file', files[0], 'active.taxa');
+      axios.post('/parse_taxa_file', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
-      })
+        }).then(function(response) {
+          vform.taxa = response.data
+        })
+        .catch(function(error) {
+          vform.taxa = []
+        })
     }
   },
   delimiters: ["[[", "]]"]
 })
 
-window.onload = function () { vform.loadFormsPage() }
+window.onload = function() {
+  vform.loadFormsPage()
+}

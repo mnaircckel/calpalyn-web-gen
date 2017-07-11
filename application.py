@@ -1,4 +1,5 @@
 import json
+import parse
 from flask import Flask, request, render_template
 app = Flask(__name__)
 app.config.update(
@@ -26,12 +27,15 @@ def send_forms():
 def generate_form():
     pass
 
-@app.route('/send_file', methods=['POST'])
-def save_file():
+@app.route('/parse_taxa_file', methods=['POST'])
+def parse_taxa_file():
     if request.files:
         file = request.files['file']
         file.save(file.filename)
-    return render_template('index.html')
+        labels = parse.taxa_file_labels(file.filename)
+        return json.dumps(labels)
+    else:
+        return json.dumps([])
 
 if __name__ == "__main__":
   app.run()
