@@ -214,6 +214,14 @@ var vform = new Vue({
           vform.taxaPos = []
           vform.taxaNeg = []
         })
+    },
+    filterEmpty(x) {
+      return x != ''
+    }
+  },
+  computed: {
+    normalizationSums() {
+      return this.sumNames.filter(this.filterEmpty).concat(this.taxaNeg)
     }
   },
   delimiters: ["[[", "]]"]

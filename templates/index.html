@@ -312,17 +312,30 @@
                 </tbody>
               </table>
               <section class="section">
-                <ui-select label="Taxon" v-model="line20Box1" placeholder="Please select an option" :options="[]"></ui-select>
+                <ui-select has-search label="Taxon" v-model="line20Box1" placeholder="Please select an option" :options="taxaPos"></ui-select>
                 <ui-alert :dismissible="false">Choose the taxon (i.e. a pollen type such as Pinus) you would like to plot.</ui-alert>
 
                 <ui-select label="Plot Type" v-model="line20ABox6" placeholder="Please select an option" :options="['Sawtooth', 'Bar']"></ui-select>
                 <ui-alert :dismissible="false">Choose how you would like to graph this taxon.</ui-alert>
 
-                <ui-select label="Normalization Sum" v-model="line20Box3" placeholder="Please select an option" :options="[]"></ui-select>
+                <ui-select has-search label="Normalization Sum" v-model="line20Box3" placeholder="Please select an option" :options="normalizationSums"></ui-select>
                 <ui-alert :dismissible="false">Choose sum to be used for normalizing this taxon. If you want to graph as raw data, leave blank.</ui-alert>
 
-                <ui-select label="Normalization Method" v-model="line20Box2" placeholder="Please select an option" :options="[]"></ui-select>
-                <ui-alert :dismissible="false">Choose how you would you like to normalize this taxon.</ui-alert>
+                <ui-select label="Normalization Method" v-model="line20Box2" placeholder="Please select an option" :options="['Option 1', 'Option 2', 'Option 3', 'Option 4', 'Option 5', 'Option 6', 'Option 7', 'Option 8', 'Option 9']"></ui-select>
+                <ui-alert :dismissible="false">Choose how you would you like to normalize this taxon.
+                  <br />
+                  <ul>
+                    <li><strong>Option 1: </strong>Leave as raw data</li>
+                    <li><strong>Option 2: </strong>Multiply taxon by 100 (allows expression of ratio data as percentages)</li>
+                    <li><strong>Option 3: </strong>Divide by sum</li>
+                    <li><strong>Option 4: </strong>Divide by sum plus taxon being graphed</li>
+                    <li><strong>Option 5: </strong>Divide sum minus taxon being graphed</li>
+                    <li><strong>Option 6: </strong>Calculate percentage of sum</li>
+                    <li><strong>Option 7: </strong>Calculate percentage of sum plus taxon being graphed</li>
+                    <li><strong>Option 8: </strong>Calculate percentage of sum minus taxon being graphed</li>
+                    <li><strong>Option 9: </strong>Multiply by sum</li>
+                  </ul>
+                </ui-alert>
 
                 <ui-select label="Taxon Group" v-model="line20ABox2" placeholder="Please select an option" :options="['No Group', 'Trees', 'Shrubs', 'Herbs', 'Ferns', 'Aquatics', 'Herbs and Shrubs']"></ui-select>
                 <ui-alert :dismissible="false">Make a selection if you want your graph to indicate taxon groups with labeled brackets at the top.</ui-alert>
