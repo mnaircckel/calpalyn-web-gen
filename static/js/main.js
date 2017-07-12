@@ -90,6 +90,17 @@ var vform = new Vue({
     currSumNum: '1',
     // Plots
     plotFields: [],
+    line20Box1: '',
+    line20ABox6: '',
+    line20Box3: '',
+    line20Box2: '',
+    line20ABox2: 'No Group',
+    line20Box5: '',
+    line20Box4: 'No',
+    line20Box6: '',
+    line20ABox3: 'Black',
+    line20ABox4: '45',
+    line20ABox5: '5',
     currPlot: undefined,
     // Misc Data
     taxaFile: false,
