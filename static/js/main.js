@@ -62,6 +62,8 @@ var vform = new Vue({
     line3Box6: [],
     line3Box7: [],
     line3Box8: [],
+    // Plot Control
+    plots: [],
     // End Calpalyn Inputs
     // Dates
     dateFields: ['line26Box1', 'line26Box2', 'line26Box3', 'line26Box4', 'line26Box5'],
@@ -86,6 +88,9 @@ var vform = new Vue({
     // Sums
     sumNames: ['', '', '', '', '', '', ''],
     currSumNum: '1',
+    // Plots
+    plotFields: [],
+    currPlot: undefined,
     // Misc Data
     taxaFile: false,
     dataFile: false,
