@@ -54,6 +54,14 @@ var vform = new Vue({
     // Line Control
     line23Box1: 'No',
     lines: [],
+    // Sum Control
+    line3Box2: [],
+    line3Box3: [],
+    line3Box4: [],
+    line3Box5: [],
+    line3Box6: [],
+    line3Box7: [],
+    line3Box8: [],
     // End Calpalyn Inputs
     // Dates
     dateFields: ['line26Box1', 'line26Box2', 'line26Box3', 'line26Box4', 'line26Box5'],
@@ -75,12 +83,16 @@ var vform = new Vue({
     line30Box1: '',
     line30Box2: '',
     currLine: undefined,
+    // Sums
+    sumNames: ['', '', '', '', '', '', ''],
+    currSumNum: '1',
     // Misc Data
     taxaFile: false,
     dataFile: false,
     formsData: [],
     loadedForm: {},
-    taxa: []
+    taxaPos: [],
+    taxaNeg: []
   },
   methods: {
     submitForm: function() {
@@ -179,10 +191,12 @@ var vform = new Vue({
             'Content-Type': 'multipart/form-data'
           }
         }).then(function(response) {
-          vform.taxa = response.data
+          vform.taxaPos = response.data.positive
+          vform.taxaNeg = response.data.negative
         })
         .catch(function(error) {
-          vform.taxa = []
+          vform.taxaPos = []
+          vform.taxaNeg = []
         })
     }
   },

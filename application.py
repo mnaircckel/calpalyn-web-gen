@@ -32,10 +32,10 @@ def parse_taxa_file():
     if request.files:
         file = request.files['file']
         file.save(file.filename)
-        labels = parse.taxa_file_labels(file.filename)
-        return json.dumps(labels)
+        pos, neg = parse.taxa_file_labels(file.filename)
+        return json.dumps({'positive': pos, 'negative': neg})
     else:
-        return json.dumps([])
+        return json.dumps({})
 
 if __name__ == "__main__":
   app.run()

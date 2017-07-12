@@ -36,18 +36,18 @@
         <box-container>
           <!-- Section Select -->
           <div class="box">
-          <h1 v-show="page <= maxPage && page >= minPage">
+            <h1 v-show="page <= maxPage && page >= minPage">
             <strong>Navigate Sections</strong>
             <select v-model="page" class="form-control">
                 <option :value="pageNum" v-text="pageTitles[pageNum]" v-for="pageNum in maxPage"></option>
             </select>
           </h1>
-          <br />
-          <ui-button color="primary" raised v-on:click="submitForm()">
-            <i class="fa fa-download fa-fw"></i> Generate File
-          </ui-button>
-          <br />
-        </div>
+            <br />
+            <ui-button color="primary" raised v-on:click="submitForm()">
+              <i class="fa fa-download fa-fw"></i> Generate File
+            </ui-button>
+            <br />
+          </div>
 
           <h1 class="title"><strong>[[ pageTitles[page] ]]</strong></h1>
           <hr />
@@ -111,16 +111,129 @@
             <ui-alert :dismissible="false">
               These sums can be used to normalize data. For example, they allow you to graph as a percent of total pollen or as a percent of non-aquatic pollen.
               <br />
-              <br /> Without subtotals you can only graph raw data.
+              <br /> Without subtotals you can only graph raw data. You may add up to seven sums.
             </ui-alert>
-            <br />
 
-            <ui-select label="Total" v-model="line3Box1" placeholder="Please select an option" :options="['Do not sum', 'Sum all positively numbered taxa', 'Sum all except excluded below']"></ui-select>
-            <ui-alert :dismissible="false">You can generate a total by summing taxa in a data file.</ui-alert>
+            <h1 class="title"><Center>Add & Edit Sums<Center></h1>
+            <table class="table is-bordered">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Sum</th>
+                  <th>Edit</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td v-text="1"></td>
+                  <td v-if="line3Box2.length === 0"><i>No Sum</i></td>
+                  <td v-else v-text="sumNames[0]"></td>
+                  <td><ui-button color="secondary" raised @click="currSumNum = '1'">Select</ui-button></td>
+                </tr>
+                <tr>
+                  <td v-text="2"></td>
+                  <td v-if="line3Box3.length === 0"><i>No Sum</i></td>
+                  <td v-else v-text="sumNames[1]"></td>
+                  <td><ui-button color="secondary" raised @click="currSumNum = '2'">Select</ui-button></td>
+                </tr>
+                <tr>
+                  <td v-text="3"></td>
+                  <td v-if="line3Box4.length === 0"><i>No Sum</i></td>
+                  <td v-else v-text="sumNames[2]"></td>
+                  <td><ui-button color="secondary" raised @click="currSumNum = '3'">Select</ui-button></td>
+                </tr>
+                <tr>
+                  <td v-text="4"></td>
+                  <td v-if="line3Box5.length === 0"><i>No Sum</i></td>
+                  <td v-else v-text="sumNames[3]"></td>
+                  <td><ui-button color="secondary" raised @click="currSumNum = '4'">Select</ui-button></td>
+                </tr>
+                <tr>
+                  <td v-text="5"></td>
+                  <td v-if="line3Box6.length === 0"><i>No Sum</i></td>
+                  <td v-else v-text="sumNames[4]"></td>
+                  <td><ui-button color="secondary" raised @click="currSumNum = '5'">Select</ui-button></td>
+                </tr>
+                <tr>
+                  <td v-text="6"></td>
+                  <td v-if="line3Box7.length === 0"><i>No Sum</i></td>
+                  <td v-else v-text="sumNames[5]"></td>
+                  <td><ui-button color="secondary" raised @click="currSumNum = '6'">Select</ui-button></td>
+                </tr>
+                <tr>
+                  <td v-text="7"></td>
+                  <td v-if="line3Box8.length === 0  "><i>No Sum</i></td>
+                  <td v-else v-text="sumNames[6]"></td>
+                  <td><ui-button color="secondary" raised @click="currSumNum = '7'">Select</ui-button></td>
+                </tr>
+              </tbody>
+            </table>
 
-            <select v-model="loadedForm" class="select">
-              <option v-for="taxon in taxa" :value="f" class="ui-select-option" v-text="taxon"></option>
-            </select>
+            <div class="box">
+
+              <section class="section" v-show="currSumNum === '1'">
+                <h1 class="title"><Center>Sum 1<Center></h1>
+                <ui-textbox label="Sum Name" v-model="sumNames[0]"></ui-textbox>
+                <ui-alert :dismissible="false">Enter a name for the sum.</ui-alert>
+
+                <ui-select multiple has-search multiple-delimiter=", " label="Taxa to Sum" v-model="line3Box2" placeholder="Please select taxa" :options="taxaPos"></ui-select>
+                <ui-alert :dismissible="false">Choose the taxa you want to sum.</ui-alert>
+              </section>
+
+              <section class="section" v-show="currSumNum === '2'">
+                <h1 class="title"><Center>Sum 2<Center></h1>
+                <ui-textbox label="Sum Name" v-model="sumNames[1]"></ui-textbox>
+                <ui-alert :dismissible="false">Enter a name for the sum.</ui-alert>
+
+                <ui-select multiple has-search multiple-delimiter=", " label="Taxa to Sum" v-model="line3Box3" placeholder="Please select taxa" :options="taxaPos"></ui-select>
+                <ui-alert :dismissible="false">Choose the taxa you want to sum.</ui-alert>
+              </section>
+
+              <section class="section" v-show="currSumNum === '3'">
+                <h1 class="title"><Center>Sum 3<Center></h1>
+                <ui-textbox label="Sum Name" v-model="sumNames[2]"></ui-textbox>
+                <ui-alert :dismissible="false">Enter a name for the sum.</ui-alert>
+
+                <ui-select multiple has-search multiple-delimiter=", " label="Taxa to Sum" v-model="line3Box4" placeholder="Please select taxa" :options="taxaPos"></ui-select>
+                <ui-alert :dismissible="false">Choose the taxa you want to sum.</ui-alert>
+              </section>
+
+              <section class="section" v-show="currSumNum === '4'">
+                <h1 class="title"><Center>Sum 4<Center></h1>
+                <ui-textbox label="Sum Name" v-model="sumNames[3]"></ui-textbox>
+                <ui-alert :dismissible="false">Enter a name for the sum.</ui-alert>
+
+                <ui-select multiple has-search multiple-delimiter=", " label="Taxa to Sum" v-model="line3Box5" placeholder="Please select taxa" :options="taxaPos"></ui-select>
+                <ui-alert :dismissible="false">Choose the taxa you want to sum.</ui-alert>
+              </section>
+
+              <section class="section" v-show="currSumNum === '5'">
+                <h1 class="title"><Center>Sum 5<Center></h1>
+                <ui-textbox label="Sum Name" v-model="sumNames[4]"></ui-textbox>
+                <ui-alert :dismissible="false">Enter a name for the sum.</ui-alert>
+
+                <ui-select multiple has-search multiple-delimiter=", " label="Taxa to Sum" v-model="line3Box6" placeholder="Please select taxa" :options="taxaPos"></ui-select>
+                <ui-alert :dismissible="false">Choose the taxa you want to sum.</ui-alert>
+              </section>
+
+              <section class="section" v-show="currSumNum === '6'">
+                <h1 class="title"><Center>Sum 6<Center></h1>
+                <ui-textbox label="Sum Name" v-model="sumNames[5]"></ui-textbox>
+                <ui-alert :dismissible="false">Enter a name for the sum.</ui-alert>
+
+                <ui-select multiple has-search multiple-delimiter=", " label="Taxa to Sum" v-model="line3Box7" placeholder="Please select taxa" :options="taxaPos"></ui-select>
+                <ui-alert :dismissible="false">Choose the taxa you want to sum.</ui-alert>
+              </section>
+
+              <section class="section" v-show="currSumNum === '7'">
+                <h1 class="title"><Center>Sum 7<Center></h1>
+                <ui-textbox label="Sum Name" v-model="sumNames[6]"></ui-textbox>
+                <ui-alert :dismissible="false">Enter a name for the sum.</ui-alert>
+
+                <ui-select multiple has-search multiple-delimiter=", " label="Taxa to Sum" v-model="line3Box8" placeholder="Please select taxa" :options="taxaPos"></ui-select>
+                <ui-alert :dismissible="false">Choose the taxa you want to sum.</ui-alert>
+              </section>
+            </div>
           </div>
 
           <!-- Section 4 -->
