@@ -37,5 +37,12 @@ def parse_taxa_file():
     else:
         return json.dumps({})
 
+@app.route('/parse_data_file', methods=['POST'])
+def parse_data_file():
+    if request.files:
+        file = request.files['file']
+        file.save(file.filename)
+    return json.dumps({})
+
 if __name__ == "__main__":
   app.run()

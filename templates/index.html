@@ -83,7 +83,7 @@
             <ul>
               <label class="ui-fileupload-label-text">Data File</label>
               <li>
-                <ui-fileupload raised label="Choose a data file" color="primary" name="dataFile"></ui-fileupload>
+                <ui-fileupload raised @change="uploadDataFile" label="Choose a data file" color="primary" name="dataFile"></ui-fileupload>
               </li>
               <br />
 

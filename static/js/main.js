@@ -94,13 +94,13 @@ var vform = new Vue({
     line20ABox6: '',
     line20Box3: '',
     line20Box2: '',
-    line20ABox2: 'No Group',
+    line20ABox2: '',
     line20Box5: '',
-    line20Box4: 'No',
+    line20Box4: '',
     line20Box6: '',
-    line20ABox3: 'Black',
-    line20ABox4: '45',
-    line20ABox5: '5',
+    line20ABox3: '',
+    line20ABox4: '',
+    line20ABox5: '',
     currPlot: undefined,
     // Misc Data
     taxaFile: false,
@@ -213,6 +213,15 @@ var vform = new Vue({
         .catch(function(error) {
           vform.taxaPos = []
           vform.taxaNeg = []
+        })
+    },
+    uploadDataFile(files) {
+      var formData = new FormData();
+      formData.append('file', files[0], 'data.csv');
+      axios.post('/parse_data_file', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
         })
     },
     filterEmpty(x) {
