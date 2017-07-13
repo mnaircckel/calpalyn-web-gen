@@ -89,7 +89,7 @@ var vform = new Vue({
     sumNames: ['', '', '', '', '', '', ''],
     currSumNum: '1',
     // Plots
-    plotFields: [],
+    plotFields: ['line20Box1', 'line20ABox6', 'line20Box3', 'line20Box2', 'line20ABox2', 'line20Box5', 'line20Box4', 'line20Box6', 'line20ABox3', 'line20ABox4', 'line20ABox5'],
     line20Box1: '',
     line20ABox6: '',
     line20Box3: '',

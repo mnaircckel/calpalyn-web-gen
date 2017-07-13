@@ -302,8 +302,8 @@
                 </thead>
                 <tbody>
                   <tr v-for="plot in plots">
-                    <td v-text="plot"></td>
-                    <td v-text="plot"></td>
+                    <td v-text="plot.line20Box1"></td>
+                    <td v-text="plot.line20Box3"></td>
                     <td>
                       <ui-button color="secondary" raised @click="changeRow(plot, plotFields, 'currPlot')">Select</ui-button>
                       <ui-button color="secondary" raised @click="removeRow(plot, 'plots', 'currPlot')">Delete</ui-button>
@@ -364,8 +364,8 @@
 
                 </div>
               </section>
-              <ui-button v-show="currDate === undefined" color="primary" @click="addRow(plotFields, 'plots', 'currPlot')">Add Taxon to Graph</ui-button>
-              <ui-button v-show="currDate !== undefined" color="primary" @click="updateRow(currPlot, plotFields, 'plots', 'currPlot')">Apply Changes</ui-button>
+              <ui-button v-show="currPlot === undefined" color="primary" @click="addRow(plotFields, 'plots', 'currPlot')">Add Taxon to Graph</ui-button>
+              <ui-button v-show="currPlot !== undefined" color="primary" @click="updateRow(currPlot, plotFields, 'plots', 'currPlot')">Apply Changes</ui-button>
             </div>
           </div>
 
