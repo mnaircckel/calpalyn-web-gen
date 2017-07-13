@@ -31,7 +31,7 @@ var vform = new Vue({
       6: 'Stratigraphy Column',
       7: 'Pollen Zonation Lines'
     },
-    // Calpalyn Inputs
+    // Saved Calpalyn Inputs
     line25: '',
     line24: '',
     line22Box3: '0',
@@ -55,6 +55,7 @@ var vform = new Vue({
     line23Box1: 'No',
     lines: [],
     // Sum Control
+    sumNames: ['', '', '', '', '', '', ''],
     line3Box2: [],
     line3Box3: [],
     line3Box4: [],
@@ -64,7 +65,12 @@ var vform = new Vue({
     line3Box8: [],
     // Plot Control
     plots: [],
-    // End Calpalyn Inputs
+    // File Control
+    taxaFile: false,
+    dataFile: false,
+    taxaPos: [],
+    taxaNeg: [],
+    // End Saved Calpalyn Inputs
     // Dates
     dateFields: ['line26Box1', 'line26Box2', 'line26Box3', 'line26Box4', 'line26Box5'],
     line26Box1: '',
@@ -86,7 +92,6 @@ var vform = new Vue({
     line30Box2: '',
     currLine: undefined,
     // Sums
-    sumNames: ['', '', '', '', '', '', ''],
     currSumNum: '1',
     // Plots
     plotFields: ['line20Box1', 'line20ABox6', 'line20Box3', 'line20Box2', 'line20ABox2', 'line20Box5', 'line20Box4', 'line20Box6', 'line20ABox3', 'line20ABox4', 'line20ABox5'],
@@ -103,20 +108,48 @@ var vform = new Vue({
     line20ABox5: '',
     currPlot: undefined,
     // Misc Data
-    taxaFile: false,
-    dataFile: false,
     formsData: [],
-    loadedForm: {},
-    taxaPos: [],
-    taxaNeg: []
+    loadedForm: {}
   },
   methods: {
     submitForm: function() {
       if (confirm("Do you wish to generate the instruction file?") == true) {
         axios.post('/', {
-          line25: this.line25
+          line25: this.line25,
+          line24: this.line24,
+          line22Box3: this.line22Box3,
+          line22Box2: this.line22Box2,
+          line22Box1: this.line22Box1,
+          line21Box4: this.line21Box4,
+          line21Box1: this.line21Box1,
+          line1Box1: this.line1Box1,
+          line1Box2: this.line1Box2,
+          line13: this.line13,
+          line3Box1: this.line3Box1,
+          line21Box3: this.line21Box3,
+          line26A: this.line26A,
+          line22Box4: this.line22Box4,
+          dates: this.dates,
+          line21Box2: this.line21Box2,
+          zones: this.zones,
+          line23Box1: this.line23Box1,
+          lines: this.lines,
+          sumNames: this.sumNames,
+          line3Box2: this.line3Box2,
+          line3Box3: this.line3Box3,
+          line3Box4: this.line3Box4,
+          line3Box5: this.line3Box5,
+          line3Box6: this.line3Box6,
+          line3Box7: this.line3Box7,
+          line3Box8: this.line3Box8,
+          plots: this.plots,
+          taxaFile: this.taxaFile,
+          dataFile: this.dataFile,
+          taxaPos: this.taxaPos,
+          taxaNeg: this.taxaNeg
         })
         vform.page = vform.minPage
+        this.loadFormsPage()
       }
     },
     previousPage: function() {
