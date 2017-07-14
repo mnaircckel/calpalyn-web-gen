@@ -183,14 +183,18 @@ var vform = new Vue({
       }
     },
     // Functions for CRUD actions on tables of data
-    addRow: function(fields, arr, curr) {
+    addRow: function(fields, arr, curr, index = undefined) {
       // Create object to add
       var obj = {}
       fields.forEach(function(f) {
         obj[f] = vform[f]
       });
       // Add the object to the given array
-      vform[arr].push(obj)
+      if (index === undefined) {
+        vform[arr].push(obj)
+      } else {
+        vform[arr].splice(index, 0, obj)
+      }
       vform[curr] = undefined
       this.clearRowInputs(fields)
     },
@@ -214,9 +218,10 @@ var vform = new Vue({
       });
     },
     updateRow: function(updateTo, fields, arr, curr) {
-      // Remove old object and add the new one
+      // Remove old object and add the new one into the same index
+      var index = vform[arr].indexOf(updateTo)
       this.removeRow(updateTo, arr, curr)
-      this.addRow(fields, arr, curr)
+      this.addRow(fields, arr, curr, index)
       vform[curr] = undefined
       this.clearRowInputs(fields)
     },
