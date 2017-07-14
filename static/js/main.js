@@ -24,7 +24,7 @@ var vform = new Vue({
     maxPage: 7,
     pageTitles: {
       1: 'Graph Labels and Formatting',
-      2: 'Setup and File Selections',
+      2: 'File Selections',
       3: 'Totals and Subtotals',
       4: 'Taxa to Include in Graph',
       5: 'Chronology Column ',
@@ -39,9 +39,7 @@ var vform = new Vue({
     line22Box1: '0',
     line21Box4: 'Standard',
     line21Box1: 'Yes',
-    line1Box1: 'New',
     line1Box2: '-1',
-    line13: 'Yes',
     line3Box1: '',
     // Date Control
     line21Box3: 'Option 1',
@@ -122,9 +120,7 @@ var vform = new Vue({
           line22Box1: this.line22Box1,
           line21Box4: this.line21Box4,
           line21Box1: this.line21Box1,
-          line1Box1: this.line1Box1,
           line1Box2: this.line1Box2,
-          line13: this.line13,
           line3Box1: this.line3Box1,
           line21Box3: this.line21Box3,
           line26A: this.line26A,
@@ -259,6 +255,13 @@ var vform = new Vue({
     },
     filterEmpty(x) {
       return x != ''
+    },
+    isSelected(field, num) {
+      if (vform[field] == num) {
+        return 'tselect'
+      } else {
+        return ''
+      }
     }
   },
   computed: {
