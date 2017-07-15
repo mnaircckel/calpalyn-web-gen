@@ -241,6 +241,13 @@ var vform = new Vue({
       });
 
     },
+    swapRows: function(arr, i, j) {
+      if (i >= 0 && j >= 0 && i < vform[arr].length && j < vform[arr].length) {
+        tmp = vform[arr][i]
+        vform[arr].splice(i, 1, vform[arr][j])
+        vform[arr].splice(j, 1, tmp)
+      }
+    },
     // End table actions
     uploadTaxaFile(files) {
       var formData = new FormData();

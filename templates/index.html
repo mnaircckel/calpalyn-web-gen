@@ -292,7 +292,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="plot in plots">
+                  <tr v-for="(plot, i) in plots">
                     <td v-text="plot.line20Box1"></td>
                     <td v-text="plot.line20Box3"></td>
                     <td>
@@ -300,8 +300,8 @@
                       <ui-button color="secondary" raised @click="removeRow(plot, 'plots', 'currPlot')">Delete</ui-button>
                     </td>
                     <td>
-                      <ui-button color="secondary" raised><i class="fa fa-arrow-up"></i></ui-button>
-                      <ui-button color="secondary" raised><i class="fa fa-arrow-down"></i></ui-button>
+                      <ui-button color="secondary" raised @click="swapRows('plots', i, i-1)"><i class="fa fa-arrow-up"></i></ui-button>
+                      <ui-button color="secondary" raised @click="swapRows('plots', i, i+1)"><i class="fa fa-arrow-down"></i></ui-button>
                     </td>
                   </tr>
                 </tbody>
@@ -396,7 +396,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="date in dates">
+                    <tr v-for="(date, i) in dates">
                       <td v-text="date.line26Box3"></td>
                       <td v-text="date.line26Box1"></td>
                       <td>
@@ -404,8 +404,8 @@
                         <ui-button color="secondary" raised @click="removeRow(date, 'dates', 'currDate')">Delete</ui-button>
                       </td>
                       <td>
-                        <ui-button color="secondary" raised><i class="fa fa-arrow-up"></i></ui-button>
-                        <ui-button color="secondary" raised><i class="fa fa-arrow-down"></i></ui-button>
+                        <ui-button color="secondary" raised @click="swapRows('dates', i, i-1)"><i class="fa fa-arrow-up"></i></ui-button>
+                        <ui-button color="secondary" raised @click="swapRows('dates', i, i+1)"><i class="fa fa-arrow-down"></i></ui-button>
                       </td>
                     </tr>
                   </tbody>
@@ -458,7 +458,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="zone in zones">
+                    <tr v-for="(zone, i) in zones">
                       <td v-text="zone.line27Box1"></td>
                       <td v-text="zone.line27Box4"></td>
                       <td>
@@ -466,8 +466,8 @@
                         <ui-button color="secondary" raised @click="removeRow(zone, 'zones', 'currZone')">Delete</ui-button>
                       </td>
                       <td>
-                        <ui-button color="secondary" raised><i class="fa fa-arrow-up"></i></ui-button>
-                        <ui-button color="secondary" raised><i class="fa fa-arrow-down"></i></ui-button>
+                        <ui-button color="secondary" raised @click="swapRows('zones', i, i-1)"><i class="fa fa-arrow-up"></i></ui-button>
+                        <ui-button color="secondary" raised @click="swapRows('zones', i, i+1)"><i class="fa fa-arrow-down"></i></ui-button>
                       </td>
                     </tr>
                   </tbody>
@@ -510,7 +510,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="line in lines">
+                    <tr v-for="(line, i) in lines">
                       <td v-text="line.line30Box1"></td>
                       <td v-text="line.line30Box2"></td>
                       <td>
@@ -518,8 +518,8 @@
                         <ui-button color="secondary" raised @click="removeRow(line, 'lines', 'currLine')">Delete</ui-button>
                       </td>
                       <td>
-                        <ui-button color="secondary" raised><i class="fa fa-arrow-up"></i></ui-button>
-                        <ui-button color="secondary" raised><i class="fa fa-arrow-down"></i></ui-button>
+                        <ui-button color="secondary" raised @click="swapRows('lines', i, i-1)"><i class="fa fa-arrow-up"></i></ui-button>
+                        <ui-button color="secondary" raised @click="swapRows('lines', i, i+1)"><i class="fa fa-arrow-down"></i></ui-button>
                       </td>
                     </tr>
                   </tbody>
