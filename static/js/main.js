@@ -69,6 +69,15 @@ var vform = new Vue({
     taxaPos: [],
     taxaNeg: [],
     // End Saved Calpalyn Inputs
+    // Default Table fields
+    defaults: {
+      line20Box2: 'Option 1',
+      line20ABox2: 'No Group',
+      line20Box4: 'No',
+      line20ABox3: 'Greyscale',
+      line20ABox4: '45',
+      line20ABox5: '5',
+    },
     // Dates
     dateFields: ['line26Box1', 'line26Box2', 'line26Box3', 'line26Box4', 'line26Box5'],
     line26Box1: '',
@@ -96,14 +105,14 @@ var vform = new Vue({
     line20Box1: '',
     line20ABox6: '',
     line20Box3: '',
-    line20Box2: '',
-    line20ABox2: '',
+    line20Box2: 'Option 1',
+    line20ABox2: 'No Group',
     line20Box5: '',
-    line20Box4: '',
+    line20Box4: 'No',
     line20Box6: '',
-    line20ABox3: '',
-    line20ABox4: '',
-    line20ABox5: '',
+    line20ABox3: 'Greyscale',
+    line20ABox4: '45',
+    line20ABox5: '5',
     currPlot: undefined,
     // Misc Data
     formsData: [],
@@ -139,8 +148,8 @@ var vform = new Vue({
           line3Box7: this.line3Box7,
           line3Box8: this.line3Box8,
           plots: this.plots,
-          taxaFile: this.taxaFile,
-          dataFile: this.dataFile,
+          taxaFile: false,
+          dataFile: false,
           taxaPos: this.taxaPos,
           taxaNeg: this.taxaNeg
         })
@@ -228,7 +237,7 @@ var vform = new Vue({
     clearRowInputs: function(fields) {
       // Clear each input field
       fields.forEach(function(f) {
-        vform[f] = ''
+        vform[f] = vform.defaults[f] || ''
       });
 
     },
