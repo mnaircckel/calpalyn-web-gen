@@ -288,6 +288,7 @@
                     <th>Taxon</th>
                     <th>Normalization Sum</th>
                     <th v-if="plots.length != 0">Actions</th>
+                    <th v-if="plots.length != 0">Order</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -297,6 +298,10 @@
                     <td>
                       <ui-button color="secondary" raised @click="changeRow(plot, plotFields, 'currPlot')">Edit</ui-button>
                       <ui-button color="secondary" raised @click="removeRow(plot, 'plots', 'currPlot')">Delete</ui-button>
+                    </td>
+                    <td>
+                      <ui-button color="secondary" raised><i class="fa fa-arrow-up"></i></ui-button>
+                      <ui-button color="secondary" raised><i class="fa fa-arrow-down"></i></ui-button>
                     </td>
                   </tr>
                 </tbody>
@@ -387,6 +392,7 @@
                       <th>Date</th>
                       <th>Depth</th>
                       <th v-if="dates.length != 0">Actions</th>
+                      <th v-if="dates.length != 0">Order</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -396,6 +402,10 @@
                       <td>
                         <ui-button color="secondary" raised @click="changeRow(date, dateFields, 'currDate')">Edit</ui-button>
                         <ui-button color="secondary" raised @click="removeRow(date, 'dates', 'currDate')">Delete</ui-button>
+                      </td>
+                      <td>
+                        <ui-button color="secondary" raised><i class="fa fa-arrow-up"></i></ui-button>
+                        <ui-button color="secondary" raised><i class="fa fa-arrow-down"></i></ui-button>
                       </td>
                     </tr>
                   </tbody>
@@ -444,6 +454,7 @@
                       <th>Position</th>
                       <th>Label</th>
                       <th v-if="zones.length != 0">Actions</th>
+                      <th v-if="zones.length != 0">Order</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -453,6 +464,10 @@
                       <td>
                         <ui-button color="secondary" raised @click="changeRow(zone, zoneFields, 'currZone')">Edit</ui-button>
                         <ui-button color="secondary" raised @click="removeRow(zone, 'zones', 'currZone')">Delete</ui-button>
+                      </td>
+                      <td>
+                        <ui-button color="secondary" raised><i class="fa fa-arrow-up"></i></ui-button>
+                        <ui-button color="secondary" raised><i class="fa fa-arrow-down"></i></ui-button>
                       </td>
                     </tr>
                   </tbody>
@@ -491,6 +506,7 @@
                       <th>Position</th>
                       <th>Type</th>
                       <th v-if="lines.length != 0">Actions</th>
+                      <th v-if="lines.length != 0">Order</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -500,6 +516,10 @@
                       <td>
                         <ui-button color="secondary" raised @click="changeRow(line, lineFields, 'currLine')">Edit</ui-button>
                         <ui-button color="secondary" raised @click="removeRow(line, 'lines', 'currLine')">Delete</ui-button>
+                      </td>
+                      <td>
+                        <ui-button color="secondary" raised><i class="fa fa-arrow-up"></i></ui-button>
+                        <ui-button color="secondary" raised><i class="fa fa-arrow-down"></i></ui-button>
                       </td>
                     </tr>
                   </tbody>

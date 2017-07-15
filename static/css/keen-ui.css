@@ -442,12 +442,13 @@ body[modality="keyboard"] .ui-close-button--color-white:focus .ui-close-button__
       justify-content: center;
   letter-spacing: 0.02em;
   line-height: 1;
-  min-width: 5rem;
+  min-width: 2rem;
   outline: none;
   overflow: hidden;
   padding: 0;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding-left: .75rem;
+  padding-right: .75rem;
+  margin-bottom: .28rem;
   position: relative;
   text-transform: uppercase;
   -ms-touch-action: manipulation;
