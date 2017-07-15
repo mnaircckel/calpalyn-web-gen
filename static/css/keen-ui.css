@@ -2679,7 +2679,10 @@ body[modality="keyboard"] .ui-radio__input:focus + .ui-radio__focus-ring {
   font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 1rem;
   font-weight: normal;
-  padding: 0;
+  padding: 6px;
+  border-width: 3px;
+  border-style: ridge;
+  background-color: rgba(246, 252, 254, .9);
   transition: border 0.1s ease;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -3439,6 +3442,9 @@ body[modality="keyboard"] .ui-tabs--background-color-primary .ui-tab-header-item
   border-bottom-style: solid;
   border-bottom-width: 1px;
   border-radius: 0;
+  border-width: 3px;
+  border-style: ridge;
+  background-color: rgba(246, 252, 254, .9);
   color: rgba(0, 0, 0, 0.87);
   cursor: auto;
   display: block;
@@ -3447,7 +3453,7 @@ body[modality="keyboard"] .ui-tabs--background-color-primary .ui-tab-header-item
   font-weight: normal;
   margin: 0;
   outline: none;
-  padding: 0;
+  padding: 6px;
   transition: border 0.1s ease;
   width: 100%;
 }
