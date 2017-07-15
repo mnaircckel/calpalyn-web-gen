@@ -277,8 +277,8 @@ var vform = new Vue({
     filterEmpty(x) {
       return x != ''
     },
-    isSelected(field, num) {
-      if (vform[field] == num) {
+    cssClass(obj, currObj) {
+      if (obj == currObj) {
         return 'tselect'
       } else {
         return ''

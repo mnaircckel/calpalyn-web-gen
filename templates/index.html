@@ -114,7 +114,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr :class="cssClass('1', currSumNum)">
                   <td v-text="1"></td>
                   <td v-if="line3Box2.length === 0"><i>No Sum</i></td>
                   <td v-else v-text="sumNames[0]"></td>
@@ -122,7 +122,7 @@
                     <ui-button color="secondary" raised @click="currSumNum = '1'">Edit</ui-button>
                   </td>
                 </tr>
-                <tr>
+                <tr :class="cssClass('2', currSumNum)">
                   <td v-text="2"></td>
                   <td v-if="line3Box3.length === 0"><i>No Sum</i></td>
                   <td v-else v-text="sumNames[1]"></td>
@@ -130,7 +130,7 @@
                     <ui-button color="secondary" raised @click="currSumNum = '2'">Edit</ui-button>
                   </td>
                 </tr>
-                <tr>
+                <tr :class="cssClass('3', currSumNum)">
                   <td v-text="3"></td>
                   <td v-if="line3Box4.length === 0"><i>No Sum</i></td>
                   <td v-else v-text="sumNames[2]"></td>
@@ -138,7 +138,7 @@
                     <ui-button color="secondary" raised @click="currSumNum = '3'">Edit</ui-button>
                   </td>
                 </tr>
-                <tr>
+                <tr :class="cssClass('4', currSumNum)">
                   <td v-text="4"></td>
                   <td v-if="line3Box5.length === 0"><i>No Sum</i></td>
                   <td v-else v-text="sumNames[3]"></td>
@@ -146,7 +146,7 @@
                     <ui-button color="secondary" raised @click="currSumNum = '4'">Edit</ui-button>
                   </td>
                 </tr>
-                <tr>
+                <tr :class="cssClass('5', currSumNum)">
                   <td v-text="5"></td>
                   <td v-if="line3Box6.length === 0"><i>No Sum</i></td>
                   <td v-else v-text="sumNames[4]"></td>
@@ -154,7 +154,7 @@
                     <ui-button color="secondary" raised @click="currSumNum = '5'">Edit</ui-button>
                   </td>
                 </tr>
-                <tr>
+                <tr :class="cssClass('6', currSumNum)">
                   <td v-text="6"></td>
                   <td v-if="line3Box7.length === 0"><i>No Sum</i></td>
                   <td v-else v-text="sumNames[5]"></td>
@@ -162,7 +162,7 @@
                     <ui-button color="secondary" raised @click="currSumNum = '6'">Edit</ui-button>
                   </td>
                 </tr>
-                <tr>
+                <tr :class="cssClass('7', currSumNum)">
                   <td v-text="7"></td>
                   <td v-if="line3Box8.length === 0  "><i>No Sum</i></td>
                   <td v-else v-text="sumNames[6]"></td>
@@ -292,7 +292,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="(plot, i) in plots">
+                  <tr v-for="(plot, i) in plots" :class="cssClass(plot, currPlot)">
                     <td v-text="plot.line20Box1"></td>
                     <td v-text="plot.line20Box3"></td>
                     <td>
@@ -396,7 +396,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="(date, i) in dates">
+                    <tr v-for="(date, i) in dates" :class="cssClass(date, currDate)">
                       <td v-text="date.line26Box3"></td>
                       <td v-text="date.line26Box1"></td>
                       <td>
@@ -458,7 +458,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="(zone, i) in zones">
+                    <tr v-for="(zone, i) in zones" :class="cssClass(zone, currZone)">
                       <td v-text="zone.line27Box1"></td>
                       <td v-text="zone.line27Box4"></td>
                       <td>
@@ -510,7 +510,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="(line, i) in lines">
+                    <tr v-for="(line, i) in lines"  :class="cssClass(line, currLine)">
                       <td v-text="line.line30Box1"></td>
                       <td v-text="line.line30Box2"></td>
                       <td>

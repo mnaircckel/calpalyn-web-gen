@@ -35,3 +35,11 @@ html {
   text-align: justify;
   text-justify: inter-word;
 }
+
+tr.tselect {
+  background-color: rgba(33, 150, 243, .5);
+}
+
+tr.tselect:hover {
+  background-color: rgba(33, 150, 243, .65);
+}
