@@ -186,6 +186,11 @@ var vform = new Vue({
             vform[field] = vform.loadedForm[field]
           }
           vform.page = vform.minPage
+          var uploads = document.getElementsByClassName("ui-fileupload__content")
+          var dataFile = uploads[0]
+          var taxaFile = uploads[1]
+          dataFile.innerText = "CHOOSE A DATA FILE"
+          taxaFile.innerText = "CHOOSE A TAXA FILE"
         }
       } catch (e) {
         alert("Unable to load form!")
@@ -250,29 +255,33 @@ var vform = new Vue({
     },
     // End table actions
     uploadTaxaFile(files) {
-      var formData = new FormData();
-      formData.append('file', files[0], 'active.taxa');
-      axios.post('/parse_taxa_file', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          }
-        }).then(function(response) {
-          vform.taxaPos = response.data.positive
-          vform.taxaNeg = response.data.negative
-        })
-        .catch(function(error) {
-          vform.taxaPos = []
-          vform.taxaNeg = []
-        })
+      if (files[0]) {
+        var formData = new FormData();
+        formData.append('file', files[0], 'active.taxa');
+        axios.post('/parse_taxa_file', formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          }).then(function(response) {
+            vform.taxaPos = response.data.positive
+            vform.taxaNeg = response.data.negative
+          })
+          .catch(function(error) {
+            vform.taxaPos = []
+            vform.taxaNeg = []
+          })
+      }
     },
     uploadDataFile(files) {
-      var formData = new FormData();
-      formData.append('file', files[0], 'data.csv');
-      axios.post('/parse_data_file', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          }
-        })
+      if (files[0]) {
+        var formData = new FormData();
+        formData.append('file', files[0], 'data.csv');
+        axios.post('/parse_data_file', formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          })
+      }
     },
     filterEmpty(x) {
       return x != ''
