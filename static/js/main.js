@@ -186,11 +186,6 @@ var vform = new Vue({
             vform[field] = vform.loadedForm[field]
           }
           vform.page = vform.minPage
-          var uploads = document.getElementsByClassName("ui-fileupload__content")
-          var dataFile = uploads[0]
-          var taxaFile = uploads[1]
-          dataFile.innerText = "CHOOSE A DATA FILE"
-          taxaFile.innerText = "CHOOSE A TAXA FILE"
         }
       } catch (e) {
         alert("Unable to load form!")
@@ -265,6 +260,7 @@ var vform = new Vue({
           }).then(function(response) {
             vform.taxaPos = response.data.positive
             vform.taxaNeg = response.data.negative
+            vform.taxaFile = true
           })
           .catch(function(error) {
             vform.taxaPos = []
@@ -280,6 +276,11 @@ var vform = new Vue({
             headers: {
               'Content-Type': 'multipart/form-data'
             }
+          }).then(function(response) {
+            vform.dataFile = true
+          })
+          .catch(function(error) {
+
           })
       }
     },
