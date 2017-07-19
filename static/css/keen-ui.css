@@ -60,13 +60,13 @@
 .ui-alert--type-info .ui-alert__body {
   border-radius: 15px;
   padding: 10px;
-  background-color: rgba(33, 150, 243, 0.075);
+  background-color: rgba(33, 150, 243, 0.17);
 }
 .ui-alert--type-info .ui-alert__icon {
-  color: #C7E5FC;
+  color: #3a9ff2;
 }
 .ui-alert--type-info a {
-  color: #C7E5FC;
+  color: #3a9ff2;
 }
 .ui-alert--type-success .ui-alert__body {
   background-color: rgba(76, 175, 80, 0.12);
@@ -2683,7 +2683,7 @@ body[modality="keyboard"] .ui-radio__input:focus + .ui-radio__focus-ring {
   padding: 6px;
   border-width: 3px;
   border-style: ridge;
-  background-color: rgba(246, 252, 254, .9);
+  background-color: rgba(250, 255, 175, .80);
   transition: border 0.1s ease;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -3445,7 +3445,7 @@ body[modality="keyboard"] .ui-tabs--background-color-primary .ui-tab-header-item
   border-radius: 0;
   border-width: 3px;
   border-style: ridge;
-  background-color: rgba(246, 252, 254, .9);
+  background-color: rgba(250, 255, 175, .80);
   color: rgba(0, 0, 0, 0.87);
   cursor: auto;
   display: block;
