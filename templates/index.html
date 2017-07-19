@@ -37,14 +37,14 @@
           <!-- Section Select -->
           <div class="box">
             <h1 v-show="page <= maxPage && page >= minPage">
-            <strong>Navigate Sections</strong>
+            <strong>Navigate Pages</strong>
             <select v-model="page" class="form-control">
                 <option :value="pageNum" v-text="pageTitles[pageNum]" v-for="pageNum in maxPage"></option>
             </select>
           </h1>
             <br />
             <ui-button color="primary" raised v-on:click="submitForm()">
-              <i class="fa fa-download fa-fw"></i> Generate File
+              <i class="fa fa-download fa-fw"></i> Generate Instruction File
             </ui-button>
             <br />
           </div>
@@ -87,7 +87,7 @@
                 <ui-fileupload raised @change="uploadDataFile" label="Choose a data file" color="primary" name="dataFile"></ui-fileupload>
               </li>
               <br />
-              <ui-alert :dismissible="false">Your taxa file contains identifying numbers that correspond to the text labels that will appear on your graph. Negative numbers are usually reserved for pre-calculated sums and normalization factors. If you are starting from scratch, you may want to simply copy and modify the provided example taxa file. The taxa file can be edited in any text editor, but make sure to save the file with a .taxa file extension.</ui-alert>
+              <ui-alert :dismissible="false">Your data file contains all the actual data to be graphed. Create your file in Excel and save as a .csv file. The first cell should contain two numbers separated by a space. The first number indicates the number of rows and the second number indicates the number of columns. Note that both of these numbers must be entered as one less than the actual number of rows and columns in the file because the numbers indicate the number of rows and columns of actual data and disregard the initial cell as metadata. The rest of the first column should be filled with data levels (usually depths). The numbers in the first row should match the numbers identifying each taxon in the taxa file. All other boxes are filled with your actual data.</ui-alert>
 
 
               <label class="ui-fileupload-label-text">Taxa File</label>
@@ -95,7 +95,7 @@
                 <ui-fileupload raised @change="uploadTaxaFile" label="Choose a taxa file" color="primary" name="taxaFile"></ui-fileupload>
               </li>
               <br />
-              <ui-alert :dismissible="false">Your data file contains all the actual data to be graphed. Create your file in Excel and save as a .csv file. The first cell should contain two numbers separated by a space. The first number indicates the number of rows and the second number indicates the number of columns. Note that both of these numbers must be entered as one less than the actual number of rows and columns in the file because the numbers indicate the number of rows and columns of actual data and disregard the initial cell as metadata. The rest of the first column should be filled with data levels (usually depths). The numbers in the first row should match the numbers identifying each taxon in the taxa file. All other boxes are filled with your actual data.</ui-alert>
+              <ui-alert :dismissible="false">Your taxa file contains identifying numbers that correspond to the text labels that will appear on your graph. Negative numbers are usually reserved for pre-calculated sums and normalization factors. If you are starting from scratch, you may want to simply copy and modify the provided example taxa file. The taxa file can be edited in any text editor, but make sure to save the file with a .taxa file extension.</ui-alert>
 
             </ul>
 

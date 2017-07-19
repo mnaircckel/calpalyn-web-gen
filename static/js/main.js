@@ -23,13 +23,13 @@ var vform = new Vue({
     minPage: 1,
     maxPage: 7,
     pageTitles: {
-      1: 'Graph Labels and Formatting',
-      2: 'File Selections',
-      3: 'Totals and Subtotals',
-      4: 'Taxa to Include in Graph',
-      5: 'Chronology Column ',
-      6: 'Stratigraphy Column',
-      7: 'Pollen Zonation Lines'
+      1: 'Page 1 - Graph Labels and Formatting',
+      2: 'Page 2 - File Selections',
+      3: 'Page 3 - Totals and Subtotals',
+      4: 'Page 4 - Taxa to Include in Graph',
+      5: 'Page 5 - Chronology Column ',
+      6: 'Page 6 - Stratigraphy Column',
+      7: 'Page 7 - Pollen Zonation Lines'
     },
     // Saved Calpalyn Inputs
     line25: '',
