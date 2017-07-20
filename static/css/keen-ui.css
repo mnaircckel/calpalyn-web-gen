@@ -9,8 +9,7 @@
   display: flex;
   font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 0.9375rem;
-  line-height: 1.4;
-  margin-bottom: .8rem;
+  line-height: 1.2;
   overflow: hidden;
   position: relative;
   transition: margin-bottom 0.3s;
@@ -2690,6 +2689,7 @@ body[modality="keyboard"] .ui-radio__input:focus + .ui-radio__focus-ring {
       -ms-user-select: none;
           user-select: none;
   width: 100%;
+  margin-bottom: 1.2rem;
 }
 .ui-select__display-value {
   -ms-flex-positive: 1;
@@ -3457,6 +3457,7 @@ body[modality="keyboard"] .ui-tabs--background-color-primary .ui-tab-header-item
   padding: 6px;
   transition: border 0.1s ease;
   width: 100%;
+  margin-bottom: 1.2rem;
 }
 .ui-textbox__input {
   height: 2rem;
