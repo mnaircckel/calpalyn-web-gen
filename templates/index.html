@@ -55,43 +55,51 @@
           <!-- Sections of Calpalyn -->
           <!-- Section 1 -->
           <div v-show="page === 1">
+            <label class="label">Graph Title</label>
             <ui-alert :dismissible="false">Enter the main title to appear above your graph.</ui-alert>
-            <ui-textbox label="Graph Title" v-model="line25" placeholder="Enter a title"></ui-textbox>
+            <ui-textbox v-model="line25" placeholder="Enter a title"></ui-textbox>
 
+            <label class="label">Vertical Label</label>
             <ui-alert :dismissible="false">Enter a label for the vertical axis (e.g. depth cm).</ui-alert>
-            <ui-textbox label="Vertical Label" v-model="line24" placeholder="Enter a label"></ui-textbox>
+            <ui-textbox v-model="line24" placeholder="Enter a label"></ui-textbox>
 
+            <label class="label">Vertical Interval</label>
             <ui-alert :dismissible="false">Control the number on vertical axis (usually depths). Zero will automatically select a rounded interval every inch or enter a number to choose your own interval.</ui-alert>
-            <ui-textbox label="Vertical Interval" v-model="line22Box3"></ui-textbox>
+            <ui-textbox v-model="line22Box3"></ui-textbox>
 
+            <label class="label">Vertical Factor</label>
             <ui-alert :dismissible="false">This allows you to multiply the primary vertical axis (usually depths) by a factor. Use -1.0 so the graph plots right-side up if you are using depths or ages as positive numbers. Enter 1 to leave numbers alone.</ui-alert>
-            <ui-textbox label="Vertical Factor" v-model="line1Box2"></ui-textbox>
+            <ui-textbox v-model="line1Box2"></ui-textbox>
 
-            <ui-alert :dismissible="false">Zero will automatically scale the graph to fit the page. A positive number sets the graph width/height in inches.</ui-alert>
-            <ui-textbox label="Graph Width" v-model="line22Box2"></ui-textbox>
-            <ui-textbox label="Graph Height" v-model="line22Box1"></ui-textbox>
+            <label class="label">Graph Width</label>
+            <ui-alert :dismissible="false">Zero will automatically scale the graph to fit the page. A positive number sets the graph width in inches.</ui-alert>
+            <ui-textbox v-model="line22Box2"></ui-textbox>
 
+            <label class="label">Graph Height</label>
+            <ui-alert :dismissible="false">Zero will automatically scale the graph to fit the page. A positive number sets the graph height in inches.</ui-alert>
+            <ui-textbox v-model="line22Box1"></ui-textbox>
+
+            <label class="label">Font Size</label>
             <ui-alert :dismissible="false">Standard fonts are more likely to fit the page. Enlarged fonts are 12 point.</ui-alert>
-            <ui-select label="Font Size" v-model="line21Box4" :options="['Standard', 'Enlarged']"></ui-select>
+            <ui-select v-model="line21Box4" :options="['Standard', 'Enlarged']"></ui-select>
 
+            <label class="label">Data Lines</label>
             <ui-alert :dismissible="false">Generates horizontal dotted lines at data levels. They can be used to show the sampling interval.</ui-alert>
-            <ui-select label="Data Lines" v-model="line21Box1" :options="['Yes', 'No']"></ui-select>
+            <ui-select v-model="line21Box1" :options="['Yes', 'No']"></ui-select>
           </div>
 
           <!-- Section 2 -->
           <div v-show="page === 2">
             <ul>
-            
+              <label class="label">Data File</label>
               <ui-alert :dismissible="false">Your data file contains all the actual data to be graphed. Create your file in Excel and save as a .csv file. The first cell should contain two numbers separated by a space. The first number indicates the number of rows and the second number indicates the number of columns. Note that both of these numbers must be entered as one less than the actual number of rows and columns in the file because the numbers indicate the number of rows and columns of actual data and disregard the initial cell as metadata. The rest of the first column should be filled with data levels (usually depths). The numbers in the first row should match the numbers identifying each taxon in the taxa file. All other boxes are filled with your actual data.</ui-alert>
-              <label class="ui-fileupload-label-text">Data File</label>
               <li>
                 <ui-fileupload raised @change="uploadDataFile" label="Choose a data file" color="primary" name="dataFile"></ui-fileupload>
               </li>
               <br />
 
-
+              <label class="label">Taxa File</label>
               <ui-alert :dismissible="false">Your taxa file contains identifying numbers that correspond to the text labels that will appear on your graph. Negative numbers are usually reserved for pre-calculated sums and normalization factors. If you are starting from scratch, you may want to simply copy and modify the provided example taxa file. The taxa file can be edited in any text editor, but make sure to save the file with a .taxa file extension.</ui-alert>
-              <label class="ui-fileupload-label-text">Taxa File</label>
               <li>
                 <ui-fileupload raised @change="uploadTaxaFile" label="Choose a taxa file" color="primary" name="taxaFile"></ui-fileupload>
               </li>
@@ -181,12 +189,14 @@
             <div class="box">
               <section class="section" v-show="currSumNum === '1'">
                 <h1 class="title"><Center>Sum 1<Center></h1>
-                
-                <ui-alert :dismissible="false">Enter a name for the sum.</ui-alert>
-                <ui-textbox label="Sum Name" v-model="sumNames[0]"></ui-textbox>
 
+                <label class="label">Sum Name</label>
+                <ui-alert :dismissible="false">Enter a name for the sum.</ui-alert>
+                <ui-textbox v-model="sumNames[0]"></ui-textbox>
+
+                <label class="label">Taxa to Sum</label>
                 <ui-alert :dismissible="false">Choose the taxa you want to sum.</ui-alert>
-                <ui-select multiple has-search multiple-delimiter=", " label="Taxa to Sum" v-model="line3Box2" placeholder="Please select taxa" :options="taxaPos"></ui-select>
+                <ui-select multiple has-search multiple-delimiter=", " v-model="line3Box2" placeholder="Please select taxa" :options="taxaPos"></ui-select>
                 <div class="container">
                   <ui-button color="secondary" raised @click="line3Box2 = taxaPos">Select All</ui-button>
                   <ui-button color="secondary" raised @click="line3Box2 = []">Clear</ui-button>
@@ -196,12 +206,14 @@
 
               <section class="section" v-show="currSumNum === '2'">
                 <h1 class="title"><Center>Sum 2<Center></h1>
-                
-                <ui-alert :dismissible="false">Enter a name for the sum.</ui-alert>
-                <ui-textbox label="Sum Name" v-model="sumNames[1]"></ui-textbox>
 
+                <label class="label">Sum Name</label>
+                <ui-alert :dismissible="false">Enter a name for the sum.</ui-alert>
+                <ui-textbox v-model="sumNames[1]"></ui-textbox>
+
+                <label class="label">Taxa to Sum</label>
                 <ui-alert :dismissible="false">Choose the taxa you want to sum.</ui-alert>
-                <ui-select multiple has-search multiple-delimiter=", " label="Taxa to Sum" v-model="line3Box3" placeholder="Please select taxa" :options="taxaPos"></ui-select>
+                <ui-select multiple has-search multiple-delimiter=", " v-model="line3Box3" placeholder="Please select taxa" :options="taxaPos"></ui-select>
                 <div class="container">
                   <ui-button color="secondary" raised @click="line3Box3 = taxaPos">Select All</ui-button>
                   <ui-button color="secondary" raised @click="line3Box3 = []">Clear</ui-button>
@@ -211,12 +223,14 @@
 
               <section class="section" v-show="currSumNum === '3'">
                 <h1 class="title"><Center>Sum 3<Center></h1>
-                
-                <ui-alert :dismissible="false">Enter a name for the sum.</ui-alert>
-                <ui-textbox label="Sum Name" v-model="sumNames[2]"></ui-textbox>
 
+                <label class="label">Sum Name</label>
+                <ui-alert :dismissible="false">Enter a name for the sum.</ui-alert>
+                <ui-textbox v-model="sumNames[2]"></ui-textbox>
+
+                <label class="label">Taxa to Sum</label>
                 <ui-alert :dismissible="false">Choose the taxa you want to sum.</ui-alert>
-                <ui-select multiple has-search multiple-delimiter=", " label="Taxa to Sum" v-model="line3Box4" placeholder="Please select taxa" :options="taxaPos"></ui-select>
+                <ui-select multiple has-search multiple-delimiter=", " v-model="line3Box4" placeholder="Please select taxa" :options="taxaPos"></ui-select>
                 <div class="container">
                   <ui-button color="secondary" raised @click="line3Box4 = taxaPos">Select All</ui-button>
                   <ui-button color="secondary" raised @click="line3Box4 = []">Clear</ui-button>
@@ -226,12 +240,14 @@
 
               <section class="section" v-show="currSumNum === '4'">
                 <h1 class="title"><Center>Sum 4<Center></h1>
-                
-                <ui-alert :dismissible="false">Enter a name for the sum.</ui-alert>
-                <ui-textbox label="Sum Name" v-model="sumNames[3]"></ui-textbox>
 
+                <label class="label">Sum Name</label>
+                <ui-alert :dismissible="false">Enter a name for the sum.</ui-alert>
+                <ui-textbox v-model="sumNames[3]"></ui-textbox>
+
+                <label class="label">Taxa to Sum</label>
                 <ui-alert :dismissible="false">Choose the taxa you want to sum.</ui-alert>
-                <ui-select multiple has-search multiple-delimiter=", " label="Taxa to Sum" v-model="line3Box5" placeholder="Please select taxa" :options="taxaPos"></ui-select>
+                <ui-select multiple has-search multiple-delimiter=", " v-model="line3Box5" placeholder="Please select taxa" :options="taxaPos"></ui-select>
                 <div class="container">
                   <ui-button color="secondary" raised @click="line3Box5 = taxaPos">Select All</ui-button>
                   <ui-button color="secondary" raised @click="line3Box5 = []">Clear</ui-button>
@@ -241,12 +257,14 @@
 
               <section class="section" v-show="currSumNum === '5'">
                 <h1 class="title"><Center>Sum 5<Center></h1>
-                
-                <ui-alert :dismissible="false">Enter a name for the sum.</ui-alert>
-                <ui-textbox label="Sum Name" v-model="sumNames[4]"></ui-textbox>
 
+                <label class="label">Sum Name</label>
+                <ui-alert :dismissible="false">Enter a name for the sum.</ui-alert>
+                <ui-textbox v-model="sumNames[4]"></ui-textbox>
+
+                <label class="label">Taxa to Sum</label>
                 <ui-alert :dismissible="false">Choose the taxa you want to sum.</ui-alert>
-                <ui-select multiple has-search multiple-delimiter=", " label="Taxa to Sum" v-model="line3Box6" placeholder="Please select taxa" :options="taxaPos"></ui-select>
+                <ui-select multiple has-search multiple-delimiter=", " v-model="line3Box6" placeholder="Please select taxa" :options="taxaPos"></ui-select>
                 <div class="container">
                   <ui-button color="secondary" raised @click="line3Box6 = taxaPos">Select All</ui-button>
                   <ui-button color="secondary" raised @click="line3Box6 = []">Clear</ui-button>
@@ -256,12 +274,14 @@
 
               <section class="section" v-show="currSumNum === '6'">
                 <h1 class="title"><Center>Sum 6<Center></h1>
-                
-                <ui-alert :dismissible="false">Enter a name for the sum.</ui-alert>
-                <ui-textbox label="Sum Name" v-model="sumNames[5]"></ui-textbox>
 
+                <label class="label">Sum Name</label>
+                <ui-alert :dismissible="false">Enter a name for the sum.</ui-alert>
+                <ui-textbox v-model="sumNames[5]"></ui-textbox>
+
+                <label class="label">Taxa to Sum</label>
                 <ui-alert :dismissible="false">Choose the taxa you want to sum.</ui-alert>
-                <ui-select multiple has-search multiple-delimiter=", " label="Taxa to Sum" v-model="line3Box7" placeholder="Please select taxa" :options="taxaPos"></ui-select>
+                <ui-select multiple has-search multiple-delimiter=", " v-model="line3Box7" placeholder="Please select taxa" :options="taxaPos"></ui-select>
                 <div class="container">
                   <ui-button color="secondary" raised @click="line3Box7 = taxaPos">Select All</ui-button>
                   <ui-button color="secondary" raised @click="line3Box7 = []">Clear</ui-button>
@@ -271,12 +291,14 @@
 
               <section class="section" v-show="currSumNum === '7'">
                 <h1 class="title"><Center>Sum 7<Center></h1>
-                
-                <ui-alert :dismissible="false">Enter a name for the sum.</ui-alert>
-                <ui-textbox label="Sum Name" v-model="sumNames[6]"></ui-textbox>
 
+                <label class="label">Sum Name</label>
+                <ui-alert :dismissible="false">Enter a name for the sum.</ui-alert>
+                <ui-textbox v-model="sumNames[6]"></ui-textbox>
+
+                <label class="label">Taxa to Sum</label>
                 <ui-alert :dismissible="false">Choose the taxa you want to sum.</ui-alert>
-                <ui-select multiple has-search multiple-delimiter=", " label="Taxa to Sum" v-model="line3Box8" placeholder="Please select taxa" :options="taxaPos"></ui-select>
+                <ui-select multiple has-search multiple-delimiter=", " v-model="line3Box8" placeholder="Please select taxa" :options="taxaPos"></ui-select>
                 <div class="container">
                   <ui-button color="secondary" raised @click="line3Box8 = taxaPos">Select All</ui-button>
                   <ui-button color="secondary" raised @click="line3Box8 = []">Clear</ui-button>
@@ -319,15 +341,19 @@
                 </tbody>
               </table>
               <section class="section">
+                <label class="label">Taxon</label>
                 <ui-alert :dismissible="false">Choose the taxon (i.e. a pollen type such as Pinus) you would like to plot.</ui-alert>
-                <ui-select has-search label="Taxon" v-model="line20Box1" placeholder="Please select an option" :options="taxaPos"></ui-select>
+                <ui-select has-search v-model="line20Box1" placeholder="Please select an option" :options="taxaPos"></ui-select>
 
+                <label class="label">Plot Type</label>
                 <ui-alert :dismissible="false">Choose how you would like to graph this taxon.</ui-alert>
-                <ui-select label="Plot Type" v-model="line20ABox6" placeholder="Please select an option" :options="['Sawtooth', 'Bar']"></ui-select>
+                <ui-select v-model="line20ABox6" placeholder="Please select an option" :options="['Sawtooth', 'Bar']"></ui-select>
 
+                <label class="label">Normalization Sum</label>
                 <ui-alert :dismissible="false">Choose sum to be used for normalizing this taxon. If you want to graph as raw data, leave blank.</ui-alert>
-                <ui-select has-search label="Normalization Sum" v-model="line20Box3" placeholder="Please select an option" :options="normalizationSums"></ui-select>
+                <ui-select has-search v-model="line20Box3" placeholder="Please select an option" :options="normalizationSums"></ui-select>
 
+                <label class="label">Normalization Method</label>
                 <ui-alert :dismissible="false">Choose how you would you like to normalize this taxon.
                   <br />
                   <ul>
@@ -342,31 +368,38 @@
                     <li><strong>Option 9: </strong>Multiply by sum</li>
                   </ul>
                 </ui-alert>
-                <ui-select label="Normalization Method" v-model="line20Box2" placeholder="Please select an option" :options="['Option 1', 'Option 2', 'Option 3', 'Option 4', 'Option 5', 'Option 6', 'Option 7', 'Option 8', 'Option 9']"></ui-select>
+                <ui-select v-model="line20Box2" placeholder="Please select an option" :options="['Option 1', 'Option 2', 'Option 3', 'Option 4', 'Option 5', 'Option 6', 'Option 7', 'Option 8', 'Option 9']"></ui-select>
 
+                <label class="label">Taxon Group</label>
                 <ui-alert :dismissible="false">Make a selection if you want your graph to indicate taxon groups with labeled brackets at the top.</ui-alert>
-                <ui-select label="Taxon Group" v-model="line20ABox2" placeholder="Please select an option" :options="['No Group', 'Trees', 'Shrubs', 'Herbs', 'Ferns', 'Aquatics', 'Herbs and Shrubs']"></ui-select>
+                <ui-select v-model="line20ABox2" placeholder="Please select an option" :options="['No Group', 'Trees', 'Shrubs', 'Herbs', 'Ferns', 'Aquatics', 'Herbs and Shrubs']"></ui-select>
 
+                <label class="label">Horizontal Scale</label>
                 <ui-alert :dismissible="false">Enter the actual units for the horizontal interval. The smaller the number you enter the more space this taxon curve will take up. Getting this right can take sometrial and error. You may want to keep adjusting until all the taxa graphed take up similar space or you may want to make all the horizontal intervals the same to make plots true to scale.</ui-alert>
-                <ui-textbox label="Horizontal Scale" v-model="line20Box5"></ui-textbox>
+                <ui-textbox v-model="line20Box5"></ui-textbox>
 
+                <label class="label">Five Times Curve</label>
                 <ui-alert :dismissible="false">The five times curve/bars can be used to make a taxon visible if the numbers are very small compared to another taxon on your graph.</ui-alert>
-                <ui-select label="Five Times Curve" v-model="line20Box4" placeholder="Please select an option" :options="['No', 'Yes']"></ui-select>
+                <ui-select v-model="line20Box4" placeholder="Please select an option" :options="['No', 'Yes']"></ui-select>
 
+                <label class="label">Horizontal Axis Label</label>
                 <ui-alert :dismissible="false">Choose a label to place below the taxon being graphed. There is not enough room to place a label below every taxon graphed. It is best to use one or two labels that apply to several plotted taxa (e.g. % non-aquatic pollen).</ui-alert>
-                <ui-textbox label="Horizontal Axis Label" v-model="line20Box6"></ui-textbox>
+                <ui-textbox v-model="line20Box6"></ui-textbox>
 
                 <div v-show="line20ABox6 === 'Sawtooth'">
                   <h1 class="title">Sawtooth Options</h1>
 
+                  <label class="label">Curve Fill</label>
                   <ui-alert :dismissible="false">Decide how you want to shade in the area under your curves.</ui-alert>
-                  <ui-select label="Curve Fill" v-model="line20ABox3" placeholder="Please select an option" :options="['None', 'Black', 'Lines', 'Greyscale']"></ui-select>
+                  <ui-select v-model="line20ABox3" placeholder="Please select an option" :options="['None', 'Black', 'Lines', 'Greyscale']"></ui-select>
 
-                  <ui-alert  v-show="line20ABox3 === 'Lines' || line20ABox3 === 'Greyscale'" :dismissible="false">Choose the density of fill pattern for area under curve. Enter a number 0 (most dense/black) through 10 (least dense/white).</ui-alert>
-                  <ui-select  v-show="line20ABox3 === 'Lines' || line20ABox3 === 'Greyscale'" label="Fill Density" v-model="line20ABox5" placeholder="Please select an option" :options="['0','1','2','3','4','5','6','7','8','9','10']"></ui-select>
+                  <label v-show="line20ABox3 === 'Lines' || line20ABox3 === 'Greyscale'" class="label">Fill Density</label>
+                  <ui-alert v-show="line20ABox3 === 'Lines' || line20ABox3 === 'Greyscale'" :dismissible="false">Choose the density of fill pattern for area under curve. Enter a number 0 (most dense/black) through 10 (least dense/white).</ui-alert>
+                  <ui-select v-show="line20ABox3 === 'Lines' || line20ABox3 === 'Greyscale'" v-model="line20ABox5" placeholder="Please select an option" :options="['0','1','2','3','4','5','6','7','8','9','10']"></ui-select>
 
+                  <label v-show="line20ABox3 === 'Lines'" class="label">Line Angel</label>
                   <ui-alert v-show="line20ABox3 === 'Lines'" :dismissible="false">Choose angle of lines used to fill area under curve (e.g. 0 for horizontal, 45 for diagonal etc.).</ui-alert>
-                  <ui-textbox v-show="line20ABox3 === 'Lines'" label="Line Angel" v-model="line20ABox4"></ui-textbox>
+                  <ui-textbox v-show="line20ABox3 === 'Lines'" v-model="line20ABox4"></ui-textbox>
 
                 </div>
               </section>
@@ -377,6 +410,7 @@
 
           <!-- Section 5 -->
           <div v-show="page === 5">
+            <label class="label">Chronology Column</label>
             <ui-alert :dismissible="false">Create a chronology column to show your age model.
               <br />
               <ul>
@@ -385,14 +419,16 @@
                 <li><strong>Option 3:</strong> Draw scaled chronology column with tick marks at fixed time intervals along the left side of the column</li>
               </ul>
             </ui-alert>
-            <ui-select vertical="true" :options="['Option 1', 'Option 2', 'Option 3']" v-model="line21Box3">Chronology Column</ui-select>
+            <ui-select vertical="true" :options="['Option 1', 'Option 2', 'Option 3']" v-model="line21Box3"></ui-select>
 
             <div v-show="line21Box3 !== 'Option 1'">
+              <label class="label">Chronology Label</label>
               <ui-alert :dismissible="false">Enter a label to go below the chronology column (e.g. Cal years BP).</ui-alert>
-              <ui-textbox label="Chronology Label" v-model="line26A" placeholder="Enter a label"></ui-textbox>
+              <ui-textbox v-model="line26A" placeholder="Enter a label"></ui-textbox>
 
+              <label class="label">Chronology Numbering</label>
               <ui-alert :dismissible="false">Enter 0 for a rounded interval approximately equal to one- fiftieth of your oldest date. Number labels are placed once every five tick marks. Enter a positive number to choose your own interval (spacing of ticks) in years.</ui-alert>
-              <ui-textbox label="Chronology Numbering" v-model="line22Box4"></ui-textbox>
+              <ui-textbox v-model="line22Box4"></ui-textbox>
 
               <!-- Dates -->
               <div class="box">
@@ -422,20 +458,25 @@
                   </tbody>
                 </table>
                 <section class="section">
+                  <label class="label">Date</label>
                   <ui-alert :dismissible="false">Enter date in years BP. Years since 1950 should be negative.</ui-alert>
-                  <ui-textbox label="Date" v-model="line26Box3"></ui-textbox>
+                  <ui-textbox v-model="line26Box3"></ui-textbox>
 
+                  <label class="label">Midpoint Depth</label>
                   <ui-alert :dismissible="false">Enter the midpoint depth of the dated sample.</ui-alert>
-                  <ui-textbox label="Midpoint Depth" v-model="line26Box1"></ui-textbox>
+                  <ui-textbox v-model="line26Box1"></ui-textbox>
 
+                  <label class="label">Vertical Thickness</label>
                   <ui-alert :dismissible="false">Enter the vertical thickness of the area sampled for date. This can be left blank.</ui-alert>
-                  <ui-textbox label="Vertical Thickness" v-model="line26Box2"></ui-textbox>
+                  <ui-textbox v-model="line26Box2"></ui-textbox>
 
+                  <label class="label">Years Uncertainty</label>
                   <ui-alert :dismissible="false">Enter an error for date (integer). This can be left blank if you do not want to display errors on the column.</ui-alert>
-                  <ui-textbox label="Years Uncertainty" v-model="line26Box4"></ui-textbox>
+                  <ui-textbox v-model="line26Box4"></ui-textbox>
 
+                  <label class="label">Substance Label</label>
                   <ui-alert :dismissible="false">Enter a label for the substance dated. This is usually left blank. </ui-alert>
-                  <ui-textbox label="Substance Label" v-model="line26Box5"></ui-textbox>
+                  <ui-textbox v-model="line26Box5"></ui-textbox>
                 </section>
                 <ui-button v-show="currDate === undefined" color="primary" @click="addRow(dateFields, 'dates', 'currDate')" :disabled="line26Box1 === '' || line26Box3 === ''">Add Date</ui-button>
                 <ui-button v-show="currDate !== undefined" color="primary" @click="updateRow(currDate, dateFields, 'dates', 'currDate')" :disabled="line26Box1 === '' || line26Box3 === ''">Apply Changes</ui-button>
@@ -445,6 +486,7 @@
 
           <!-- Section 6 -->
           <div v-show="page === 6">
+            <label class="label">Stratigraphy Column</label>
             <ui-alert :dismissible="false">Create a column to show the stratigraphic zones in your core.
               <br />
               <ul>
@@ -453,7 +495,7 @@
                 <li><strong>Option 3:</strong> Draw stratigraphy column, omit stratigraphy labels, and draw boxes with labels identifying each fill pattern below the diagram</li>
               </ul>
             </ui-alert>
-            <ui-select vertical="true" :options="['Option 1', 'Option 2', 'Option 3']" v-model="line21Box2">Stratigraphy Column</ui-select>
+            <ui-select vertical="true" :options="['Option 1', 'Option 2', 'Option 3']" v-model="line21Box2"></ui-select>
 
             <!-- Zones -->
             <div v-show="line21Box2 !== 'Option 1'">
@@ -484,17 +526,21 @@
                   </tbody>
                 </table>
                 <section class="section">
+                  <label class="label">Upper Bound Position</label>
                   <ui-alert :dismissible="false">Enter a number for the upper position of this stratigraphic zone. Use same units as the first column of your data file (usually depths).</ui-alert>
-                  <ui-textbox label="Upper Bound Position" v-model="line27Box1"></ui-textbox>
+                  <ui-textbox v-model="line27Box1"></ui-textbox>
 
+                  <label class="label">Boundary Type</label>
                   <ui-alert :dismissible="false">Choose the boundary line style.</ui-alert>
-                  <ui-select label="Boundary Type" v-model="line27Box2" placeholder="Please select an option" :options="['Invisible boundary (no line)', 'Single dashed line', 'Single solid line', 'Single jagged line (nonconformity)', 'Double jagged line (discontinuous core)']"></ui-select>
+                  <ui-select v-model="line27Box2" placeholder="Please select an option" :options="['Invisible boundary (no line)', 'Single dashed line', 'Single solid line', 'Single jagged line (nonconformity)', 'Double jagged line (discontinuous core)']"></ui-select>
 
+                  <label class="label">Shading</label>
                   <ui-alert :dismissible="false">Numbers 0 through 10 indicate shades of grey; 0 is white, 10 is black. Numbers greater than 10 represent patterns.</ui-alert>
-                  <ui-textbox label="Shading" v-model="line27Box3"></ui-textbox>
+                  <ui-textbox v-model="line27Box3"></ui-textbox>
 
+                  <label class="label">Stratigraphy Label</label>
                   <ui-alert :dismissible="false">Enter a text label for the stratigraphic zone.</ui-alert>
-                  <ui-textbox label="Stratigraphy Label" v-model="line27Box4" placeholder="Enter a label"></ui-textbox>
+                  <ui-textbox v-model="line27Box4" placeholder="Enter a label"></ui-textbox>
                 </section>
                 <ui-button v-show="currZone === undefined" color="primary" @click="addRow(zoneFields, 'zones', 'currZone')" :disabled="line27Box1 === '' || line27Box2 === ''">Add Zone</ui-button>
                 <ui-button v-show="currZone !== undefined" color="primary" @click="updateRow(currZone, zoneFields, 'zones', 'currZone')" :disabled="line27Box1 === '' || line27Box2 === ''">Apply Changes</ui-button>
@@ -504,8 +550,9 @@
 
           <!-- Section 7 -->
           <div v-show="page === 7">
+            <label class="label">Draw Zonation Lines</label>
             <ui-alert :dismissible="false">Use zonation lines to highlight periods of interest within graph. For instance, you could use lines to show cool and warm phases.</ui-alert>
-            <ui-select label="Draw Zonation Lines" v-model="line23Box1" :options="['Yes', 'No']"></ui-select>
+            <ui-select v-model="line23Box1" :options="['Yes', 'No']"></ui-select>
 
             <!-- Lines -->
             <div v-show="line23Box1 == 'Yes'">
@@ -536,11 +583,13 @@
                   </tbody>
                 </table>
                 <section class="section">
+                  <label class="label">Line Position</label>
                   <ui-alert :dismissible="false"> Enter a number for the position of this zone line. Use same units as the first column of your data file (usually depths). Start at the top and work down.</ui-alert>
-                  <ui-textbox label="Line Position" v-model="line30Box1"></ui-textbox>
+                  <ui-textbox v-model="line30Box1"></ui-textbox>
 
+                  <label class="label">Boundary Type</label>
                   <ui-alert :dismissible="false">Choose a boundary type. Zones are solid lines. Subzones are dashed lines. </ui-alert>
-                  <ui-select label="Boundary Type" v-model="line30Box2" placeholder="Please select an option" :options="['Zone', 'Subzone']"></ui-select>
+                  <ui-select v-model="line30Box2" placeholder="Please select an option" :options="['Zone', 'Subzone']"></ui-select>
                 </section>
                 <ui-button v-show="currLine === undefined" color="primary" @click="addRow(lineFields, 'lines', 'currLine')" :disabled="line30Box1 === '' || line30Box2 === ''">Add Line</ui-button>
                 <ui-button v-show="currLine !== undefined" color="primary" @click="updateRow(currLine, lineFields, 'lines', 'currLine')" :disabled="line30Box1 === '' || line30Box2 === ''">Apply Changes</ui-button>

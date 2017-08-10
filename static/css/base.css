@@ -43,3 +43,13 @@ tr.tselect {
 tr.tselect:hover {
   background-color: rgba(33, 150, 243, .65);
 }
+
+.label {
+  color: rgba(0, 0, 0, 0.9);
+  font-weight: bold;
+  font-size: 0.9375rem;
+  line-height: normal;
+  margin-bottom: 0;
+  transform-origin: left;
+  transition: color 0.1s ease, transform 0.2s ease;
+}
