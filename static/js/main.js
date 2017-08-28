@@ -152,7 +152,8 @@ var vform = new Vue({
           taxaFile: false,
           dataFile: false,
           taxaPos: this.taxaPos,
-          taxaNeg: this.taxaNeg
+          taxaNeg: this.taxaNeg,
+          taxaPairs: this.taxaPairs
         })
         vform.page = vform.minPage
         this.loadFormsPage()
@@ -267,6 +268,7 @@ var vform = new Vue({
           .catch(function(error) {
             vform.taxaPos = []
             vform.taxaNeg = []
+            vform.taxaPairs = {}
           })
       }
     },
