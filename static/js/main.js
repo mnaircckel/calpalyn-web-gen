@@ -301,7 +301,18 @@ var vform = new Vue({
   },
   computed: {
     normalizationSums() {
-      return this.sumNames.filter(this.filterEmpty).concat(this.taxaNeg)
+      subtotals = []
+      for (i = 0; i < this.sumNames.length; i++) {
+          if (this.sumNames[i] != '') {
+              subtotals.push({'label': this.sumNames[i], 'value': -9998+i})
+          }
+      }
+      for (i = 0; i < this.taxaNeg.length; i++) {
+          if (this.taxaNeg[i] != '') {
+              subtotals.push({'label': this.taxaNeg[i], 'value': this.taxaPairs[this.taxaNeg[i]]})
+          }
+      }
+      return subtotals
     }
   },
   delimiters: ["[[", "]]"]

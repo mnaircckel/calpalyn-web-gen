@@ -328,7 +328,7 @@
                 <tbody>
                   <tr v-for="(plot, i) in plots" :class="cssClass(plot, currPlot)">
                     <td v-text="plot.line20Box1"></td>
-                    <td v-text="plot.line20Box3"></td>
+                    <td v-text="plot.line20Box3.label"></td>
                     <td>
                       <ui-button color="secondary" raised @click="changeRow(plot, plotFields, 'currPlot')">Edit</ui-button>
                       <ui-button color="secondary" raised @click="removeRow(plot, 'plots', 'currPlot')">Delete</ui-button>

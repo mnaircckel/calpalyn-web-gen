@@ -63,7 +63,7 @@ def write_lines(data):
                 while numTaxon > 15:
                     f.write('0' + ' ')
                     for _ in range(15):
-                        num = data['pairs'][subtotal[i]]
+                        num = data['taxaPairs'][subtotal[i]]
                         f.write(num + ' '*(5-len(num)))
                         i += 1
                     f.write('\n')
@@ -71,7 +71,7 @@ def write_lines(data):
                 # The final line of the subtotal
                 f.write('1' + ' ')
                 for _ in range(numTaxon):
-                    num = data['pairs'][subtotal[i]]
+                    num = data['taxaPairs'][subtotal[i]]
                     f.write(num + ' '*(5-len(num)))
                     i += 1
             else:
@@ -115,7 +115,7 @@ def write_lines(data):
         ''' Lines 20, 20A '''
         for i in range(len(data['plots'])):
             # Line 20 entries
-            dataB = data['pairs'][data['plots'][i]['line20Box1']]
+            dataB = data['taxaPairs'][data['plots'][i]['line20Box1']]
             dataC = data['plots'][i]['line20Box2']
             dataD = data['plots'][i]['line20Box3']
             dataF = data['plots'][i]['line20Box4']
@@ -236,3 +236,113 @@ def write_lines(data):
                 f.write('1' + ' ' + dataB + ' '*(7-len(dataB)) + ' ' + dataC)
             f.write(" "*81+"//Line 30")
             f.write('\n')
+
+# Convert UI data values to Calpalyn writable values
+def convert_data(data):
+    # Font Size
+    if data['line21Box4'] == 'Standard':
+        data['line21Box4'] = '0'
+    else:
+        data['line21Box4'] = '1'
+
+    # Data Lines
+    if data['line21Box1'] == 'No':
+        data['line21Box1'] = '0'
+    else:
+        data['line21Box1'] = '1'
+
+    # Taxa to Plot
+    for i in range(len(data['plots'])):
+         # Taxon
+        data['plots'][i]['line20Box1'] = data['taxaPairs'][data['plots'][i]['line20Box1']]
+
+        # Plot Type
+        if data['plots'][i]['line20ABox6'] == 'Sawtooth':
+            data['plots'][i]['line20ABox6'] = '0'
+        else:
+            data['plots'][i]['line20ABox6'] = '1'
+
+         # Normalization Sum
+        data['plots'][i]['line20Box3'] = data['plots'][i]['line20Box3']['value']
+
+        # Normalization Method
+        if data['plots'][i]['line20Box2'] == 'Option 1':
+            data['plots'][i]['line20Box2'] = '2'
+        elif data['plots'][i]['line20Box2'] == 'Option 2':
+            data['plots'][i]['line20Box2'] = '1'
+        elif data['plots'][i]['line20Box2'] == 'Option 3':
+            data['plots'][i]['line20Box2'] = '0'
+        elif data['plots'][i]['line20Box2'] == 'Option 4':
+            data['plots'][i]['line20Box2'] = '3'
+        elif data['plots'][i]['line20Box2'] == 'Option 5':
+            data['plots'][i]['line20Box2'] = '4'
+        elif data['plots'][i]['line20Box2'] == 'Option 6':
+            data['plots'][i]['line20Box2'] = '5'
+        elif data['plots'][i]['line20Box2'] == 'Option 7':
+            data['plots'][i]['line20Box2'] = '6'
+        elif data['plots'][i]['line20Box2'] == 'Option 8':
+            data['plots'][i]['line20Box2'] = '7'
+        elif data['plots'][i]['line20Box2'] == 'Option 9':
+            data['plots'][i]['line20Box2'] = '8'
+
+        # Taxon Group
+        if data['plots'][i]['line20ABox2'] == 'No Group':
+            data['plots'][i]['line20ABox2'] = '0'
+        elif data['plots'][i]['line20ABox2'] == 'Trees':
+            data['plots'][i]['line20ABox2'] = '1'
+        elif data['plots'][i]['line20ABox2'] == 'Shrubs':
+            data['plots'][i]['line20ABox2'] = '2'
+        elif data['plots'][i]['line20ABox2'] == 'Herbs':
+            data['plots'][i]['line20ABox2'] = '3'
+        elif data['plots'][i]['line20ABox2'] == 'Ferns':
+            data['plots'][i]['line20ABox2'] = '4'
+        elif data['plots'][i]['line20ABox2'] == 'Aquatics':
+            data['plots'][i]['line20ABox2'] = '5'
+        else:
+            data['plots'][i]['line20Box4'] = '6'
+
+        # Five Times Curve
+        if data['plots'][i]['line20Box4'] == 'No':
+            data['plots'][i]['line20Box4'] = '0'
+        else:
+            data['plots'][i]['line20Box4'] = '1'
+
+    # Chronology Column
+    if data['line21Box3'] == 'Option 1':
+        data['line21Box3'] = '0'
+    elif data['line21Box3'] == 'Option 2':
+        data['line21Box3'] = '1'
+    else:
+        data['line21Box3'] = '2'
+
+    # Stratigraphy Column
+    if data['line21Box2'] == 'Option 1':
+        data['line21Box2'] = '0'
+    elif data['line21Box2'] == 'Option 2':
+        data['line21Box2'] = '1'
+    else:
+        data['line21Box2'] = '2'
+    # For each zone
+    for i in range(len(data['zones'])):
+        if data['zones'][i]['line27Box2'] == 'Invisible boundary (no line)':
+            data['zones'][i]['line27Box2'] = '0'
+        elif data['zones'][i]['line27Box2'] == 'Single dashed line':
+            data['zones'][i]['line27Box2'] = '1'
+        elif data['zones'][i]['line27Box2'] == 'Single solid line':
+            data['zones'][i]['line27Box2'] = '2'
+        elif data['zones'][i]['line27Box2'] == 'Single jagged line (nonconformity)':
+            data['zones'][i]['line27Box2'] = '3'
+        else:
+            data['zones'][i]['line27Box2'] = '4'
+
+    # Zonation Lines
+    if data['line23Box1'] == 'No':
+        data['line23Box1'] = '0'
+    else:
+        data['line23Box1'] = '-1'
+    # For each line
+    for i in range(len(data['lines'])):
+        if data['lines'][i]['line30Box2'] == 'Zone':
+            data['lines'][i]['line30Box2'] = '1'
+        else:
+            data['lines'][i]['line30Box2'] = '2'
