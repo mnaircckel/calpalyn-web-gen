@@ -54,9 +54,29 @@ def write_lines(data):
         f.write('\n')
 
         ''' Subtotal Lines 5-11 '''
-        for line in ["2", "3", "4", "5", "6", "7", "8"]:
-            f.write('1' + ' ' + MANUALLYWRITELINE)
-            f.write(" "*81+"//Lines 5-11")
+        for subtotal in [[], data['line3Box2'], data['line3Box3'], data['line3Box4'], data['line3Box5'], data['line3Box6'], data['line3Box7'], data['line3Box8'], []]:
+            numTaxon = len(subtotal)
+            # We have a subtotal to write
+            if numTaxon > 0:
+                i = 0
+                # This subtotal will continue on the next line
+                while numTaxon > 15:
+                    f.write('0' + ' ')
+                    for _ in range(15):
+                        num = data['pairs'][subtotal[i]]
+                        f.write(num + ' '*(5-len(num)))
+                        i += 1
+                    f.write('\n')
+                    numTaxon -= 15
+                # The final line of the subtotal
+                f.write('1' + ' ')
+                for _ in range(numTaxon):
+                    num = data['pairs'][subtotal[i]]
+                    f.write(num + ' '*(5-len(num)))
+                    i += 1
+            else:
+                f.write('1' + ' ')
+            f.write(" "*81+"//Subtotal")
             f.write('\n')
 
         ''' Line 13 '''
