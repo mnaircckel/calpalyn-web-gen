@@ -32,8 +32,8 @@ def parse_taxa_file():
     if request.files:
         file = request.files['file']
         file.save(file.filename)
-        pos, neg = parse.taxa_file_labels(file.filename)
-        return json.dumps({'positive': pos, 'negative': neg})
+        pos, neg, pairs = parse.taxa_file_labels(file.filename)
+        return json.dumps({'positive': pos, 'negative': neg, 'pairs': pairs})
     else:
         return json.dumps({})
 

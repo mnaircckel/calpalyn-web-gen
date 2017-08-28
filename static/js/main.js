@@ -68,6 +68,7 @@ var vform = new Vue({
     dataFile: false,
     taxaPos: [],
     taxaNeg: [],
+    taxaPairs: {},
     // End Saved Calpalyn Inputs
     // Default Table fields
     defaults: {
@@ -260,6 +261,7 @@ var vform = new Vue({
           }).then(function(response) {
             vform.taxaPos = response.data.positive
             vform.taxaNeg = response.data.negative
+            vform.taxaPairs = response.data.pairs
             vform.taxaFile = true
           })
           .catch(function(error) {

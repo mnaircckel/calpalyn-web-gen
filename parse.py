@@ -1,6 +1,7 @@
 def taxa_file_labels(file_name):
     pos = []
     neg = []
+    pairs = {}
     with open(file_name, 'r') as f:
         lines = f.read().splitlines()
         for row in lines:
@@ -18,5 +19,6 @@ def taxa_file_labels(file_name):
                     pos.append(label)
                 else:
                     neg.append(label)
+                pairs[label] = num
 
-    return pos, neg
+    return pos, neg, pairs
