@@ -310,18 +310,21 @@ var vform = new Vue({
               subtotals.push({'label': this.sumNames[i], 'value': -9998+i})
           }
       }
-      for (i = 0; i < this.taxaNeg.length; i++) {
-          if (this.taxaNeg[i] != '') {
-              subtotals.push({'label': this.taxaNeg[i], 'value': this.taxaPairs[this.taxaNeg[i]]})
+      for (i = 0; i < this.taxaNegFiltered.length; i++) {
+          if (this.taxaNegFiltered[i] != '') {
+              subtotals.push({'label': this.taxaNegFiltered[i], 'value': this.taxaPairs[this.taxaNegFiltered[i]]})
           }
       }
-      return subtotals.filter(function(taxon){
-        n = vform.taxaPairs[taxon.label]
-        return vform.dataNumbers.includes(n)
-      })
+      return subtotals
     },
     taxaPosFiltered() {
       return this.taxaPos.filter(function(taxon){
+        n = vform.taxaPairs[taxon]
+        return vform.dataNumbers.includes(n)
+      })
+    },
+    taxaNegFiltered() {
+      return this.taxaNeg.filter(function(taxon){
         n = vform.taxaPairs[taxon]
         return vform.dataNumbers.includes(n)
       })
