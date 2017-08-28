@@ -1,5 +1,6 @@
 import json
 import parse
+import generate
 from flask import Flask, request, render_template
 app = Flask(__name__)
 app.config.update(
@@ -12,6 +13,10 @@ def forms():
     if request.method == 'POST':
       with open('forms.json', 'a') as f:
         f.write(json.dumps(request.get_json()) + '\n')
+        data = request.get_json()
+        generate.convert_data(data)
+        generate.write_lines(data).get_json()
+
     return render_template('index.html')
 
 @app.route('/get_forms', methods=['GET'])
