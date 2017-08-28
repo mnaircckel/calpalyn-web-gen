@@ -69,6 +69,7 @@ var vform = new Vue({
     taxaPos: [],
     taxaNeg: [],
     taxaPairs: {},
+    dataNumbers: [],
     // End Saved Calpalyn Inputs
     // Default Table fields
     defaults: {
@@ -153,7 +154,8 @@ var vform = new Vue({
           dataFile: false,
           taxaPos: this.taxaPos,
           taxaNeg: this.taxaNeg,
-          taxaPairs: this.taxaPairs
+          taxaPairs: this.taxaPairs,
+          dataNumbers: this.dataNumbers
         })
         vform.page = vform.minPage
         this.loadFormsPage()
@@ -281,10 +283,11 @@ var vform = new Vue({
               'Content-Type': 'multipart/form-data'
             }
           }).then(function(response) {
+            vform.dataNumbers = response.data.numbers
             vform.dataFile = true
           })
           .catch(function(error) {
-
+            vform.dataNumbers = []
           })
       }
     },
@@ -312,7 +315,16 @@ var vform = new Vue({
               subtotals.push({'label': this.taxaNeg[i], 'value': this.taxaPairs[this.taxaNeg[i]]})
           }
       }
-      return subtotals
+      return subtotals.filter(function(taxon){
+        n = vform.taxaPairs[taxon.label]
+        return vform.dataNumbers.includes(n)
+      })
+    },
+    taxaPosFiltered() {
+      return this.taxaPos.filter(function(taxon){
+        n = vform.taxaPairs[taxon]
+        return vform.dataNumbers.includes(n)
+      })
     }
   },
   delimiters: ["[[", "]]"]

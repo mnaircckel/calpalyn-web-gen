@@ -47,7 +47,10 @@ def parse_data_file():
     if request.files:
         file = request.files['file']
         file.save(file.filename)
-    return json.dumps({})
+        nums = parse.data_file_nums(file.filename)
+        return json.dumps({'numbers': nums})
+    else:
+        return json.dumps({})
 
 if __name__ == "__main__":
   app.run()

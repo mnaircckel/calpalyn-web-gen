@@ -92,7 +92,7 @@
           <div v-show="page === 2">
             <ul>
               <label class="label">Data File</label>
-              <ui-alert :dismissible="false">Your data file contains all the actual data to be graphed. Create your file in Excel and save as a .csv file. The first cell should contain two numbers separated by a space. The first number indicates the number of rows and the second number indicates the number of columns. Note that both of these numbers must be entered as one less than the actual number of rows and columns in the file because the numbers indicate the number of rows and columns of actual data and disregard the initial cell as metadata. The rest of the first column should be filled with data levels (usually depths). The numbers in the first row should match the numbers identifying each taxon in the taxa file. All other boxes are filled with your actual data.</ui-alert>
+              <ui-alert :dismissible="false">Your data file contains all the actual data to be graphed. Create your file in Excel and save as a .csv file. The first cell should contain two numbers separated by a space. The first number indicates the number of rows and the second number indicates the number of columns. Note that both of these numbers must be entered as one less than the actual number of rows and columns in the file because the numbers indicate the number of rows and columns of actual data and disregards the initial cell as metadata. The rest of the first column should be filled with data levels (usually depths). The numbers in the first row should match the numbers identifying each taxon in the taxa file. All other boxes are filled with your actual data.</ui-alert>
               <li>
                 <ui-fileupload raised @change="uploadDataFile" label="Choose a data file" color="primary" name="dataFile"></ui-fileupload>
               </li>
@@ -196,9 +196,9 @@
 
                 <label class="label">Taxa to Sum</label>
                 <ui-alert :dismissible="false">Choose the taxa you want to sum.</ui-alert>
-                <ui-select multiple has-search multiple-delimiter=", " v-model="line3Box2" placeholder="Please select taxa" :options="taxaPos"></ui-select>
+                <ui-select multiple has-search multiple-delimiter=", " v-model="line3Box2" placeholder="Please select taxa" :options="taxaPosFiltered"></ui-select>
                 <div class="container">
-                  <ui-button color="secondary" raised @click="line3Box2 = taxaPos">Select All</ui-button>
+                  <ui-button color="secondary" raised @click="line3Box2 = taxaPosFiltered">Select All</ui-button>
                   <ui-button color="secondary" raised @click="line3Box2 = []">Clear</ui-button>
                 </div>
                 <br />
@@ -213,9 +213,9 @@
 
                 <label class="label">Taxa to Sum</label>
                 <ui-alert :dismissible="false">Choose the taxa you want to sum.</ui-alert>
-                <ui-select multiple has-search multiple-delimiter=", " v-model="line3Box3" placeholder="Please select taxa" :options="taxaPos"></ui-select>
+                <ui-select multiple has-search multiple-delimiter=", " v-model="line3Box3" placeholder="Please select taxa" :options="taxaPosFiltered"></ui-select>
                 <div class="container">
-                  <ui-button color="secondary" raised @click="line3Box3 = taxaPos">Select All</ui-button>
+                  <ui-button color="secondary" raised @click="line3Box3 = taxaPosFiltered">Select All</ui-button>
                   <ui-button color="secondary" raised @click="line3Box3 = []">Clear</ui-button>
                 </div>
                 <br />
@@ -230,9 +230,9 @@
 
                 <label class="label">Taxa to Sum</label>
                 <ui-alert :dismissible="false">Choose the taxa you want to sum.</ui-alert>
-                <ui-select multiple has-search multiple-delimiter=", " v-model="line3Box4" placeholder="Please select taxa" :options="taxaPos"></ui-select>
+                <ui-select multiple has-search multiple-delimiter=", " v-model="line3Box4" placeholder="Please select taxa" :options="taxaPosFiltered"></ui-select>
                 <div class="container">
-                  <ui-button color="secondary" raised @click="line3Box4 = taxaPos">Select All</ui-button>
+                  <ui-button color="secondary" raised @click="line3Box4 = taxaPosFiltered">Select All</ui-button>
                   <ui-button color="secondary" raised @click="line3Box4 = []">Clear</ui-button>
                 </div>
                 <br />
@@ -247,9 +247,9 @@
 
                 <label class="label">Taxa to Sum</label>
                 <ui-alert :dismissible="false">Choose the taxa you want to sum.</ui-alert>
-                <ui-select multiple has-search multiple-delimiter=", " v-model="line3Box5" placeholder="Please select taxa" :options="taxaPos"></ui-select>
+                <ui-select multiple has-search multiple-delimiter=", " v-model="line3Box5" placeholder="Please select taxa" :options="taxaPosFiltered"></ui-select>
                 <div class="container">
-                  <ui-button color="secondary" raised @click="line3Box5 = taxaPos">Select All</ui-button>
+                  <ui-button color="secondary" raised @click="line3Box5 = taxaPosFiltered">Select All</ui-button>
                   <ui-button color="secondary" raised @click="line3Box5 = []">Clear</ui-button>
                 </div>
                 <br />
@@ -264,9 +264,9 @@
 
                 <label class="label">Taxa to Sum</label>
                 <ui-alert :dismissible="false">Choose the taxa you want to sum.</ui-alert>
-                <ui-select multiple has-search multiple-delimiter=", " v-model="line3Box6" placeholder="Please select taxa" :options="taxaPos"></ui-select>
+                <ui-select multiple has-search multiple-delimiter=", " v-model="line3Box6" placeholder="Please select taxa" :options="taxaPosFiltered"></ui-select>
                 <div class="container">
-                  <ui-button color="secondary" raised @click="line3Box6 = taxaPos">Select All</ui-button>
+                  <ui-button color="secondary" raised @click="line3Box6 = taxaPosFiltered">Select All</ui-button>
                   <ui-button color="secondary" raised @click="line3Box6 = []">Clear</ui-button>
                 </div>
                 <br />
@@ -281,9 +281,9 @@
 
                 <label class="label">Taxa to Sum</label>
                 <ui-alert :dismissible="false">Choose the taxa you want to sum.</ui-alert>
-                <ui-select multiple has-search multiple-delimiter=", " v-model="line3Box7" placeholder="Please select taxa" :options="taxaPos"></ui-select>
+                <ui-select multiple has-search multiple-delimiter=", " v-model="line3Box7" placeholder="Please select taxa" :options="taxaPosFiltered"></ui-select>
                 <div class="container">
-                  <ui-button color="secondary" raised @click="line3Box7 = taxaPos">Select All</ui-button>
+                  <ui-button color="secondary" raised @click="line3Box7 = taxaPosFiltered">Select All</ui-button>
                   <ui-button color="secondary" raised @click="line3Box7 = []">Clear</ui-button>
                 </div>
                 <br />
@@ -298,9 +298,9 @@
 
                 <label class="label">Taxa to Sum</label>
                 <ui-alert :dismissible="false">Choose the taxa you want to sum.</ui-alert>
-                <ui-select multiple has-search multiple-delimiter=", " v-model="line3Box8" placeholder="Please select taxa" :options="taxaPos"></ui-select>
+                <ui-select multiple has-search multiple-delimiter=", " v-model="line3Box8" placeholder="Please select taxa" :options="taxaPosFiltered"></ui-select>
                 <div class="container">
-                  <ui-button color="secondary" raised @click="line3Box8 = taxaPos">Select All</ui-button>
+                  <ui-button color="secondary" raised @click="line3Box8 = taxaPosFiltered">Select All</ui-button>
                   <ui-button color="secondary" raised @click="line3Box8 = []">Clear</ui-button>
                 </div>
                 <br />
@@ -343,7 +343,7 @@
               <section class="section">
                 <label class="label">Taxon</label>
                 <ui-alert :dismissible="false">Choose the taxon (i.e. a pollen type such as Pinus) you would like to plot.</ui-alert>
-                <ui-select has-search v-model="line20Box1" placeholder="Please select an option" :options="taxaPos"></ui-select>
+                <ui-select has-search v-model="line20Box1" placeholder="Please select an option" :options="taxaPosFiltered"></ui-select>
 
                 <label class="label">Plot Type</label>
                 <ui-alert :dismissible="false">Choose how you would like to graph this taxon.</ui-alert>
