@@ -115,12 +115,18 @@ def write_lines(data):
         ''' Lines 20, 20A '''
         for i in range(len(data['plots'])):
             # Line 20 entries
-            dataB = data['taxaPairs'][data['plots'][i]['line20Box1']]
+            dataB = data['plots'][i]['line20Box1']
             dataC = data['plots'][i]['line20Box2']
             dataD = data['plots'][i]['line20Box3']
             dataF = data['plots'][i]['line20Box4']
             dataI = data['plots'][i]['line20Box5']
             dataJ = data['plots'][i]['line20Box6']
+            print(type(dataB))
+            print(type(dataC))
+            print(type(dataD))
+            print(type(dataF))
+            print(type(dataI))
+            print(type(dataJ))
 
             # Line 20A entries
             data1A = '0'
@@ -254,7 +260,7 @@ def convert_data(data):
     # Taxa to Plot
     for i in range(len(data['plots'])):
          # Taxon
-        data['plots'][i]['line20Box1'] = data['taxaPairs'][data['plots'][i]['line20Box1']]
+        data['plots'][i]['line20Box1'] = data['plots'][i]['line20Box1']
 
         # Plot Type
         if data['plots'][i]['line20ABox6'] == 'Sawtooth':

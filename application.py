@@ -15,7 +15,7 @@ def forms():
         f.write(json.dumps(request.get_json()) + '\n')
         data = request.get_json()
         generate.convert_data(data)
-        generate.write_lines(data).get_json()
+        generate.write_lines(data)
 
     return render_template('index.html')
 

@@ -307,12 +307,12 @@ var vform = new Vue({
       subtotals = []
       for (i = 0; i < this.sumNames.length; i++) {
           if (this.sumNames[i] != '') {
-              subtotals.push({'label': this.sumNames[i], 'value': -9998+i})
+              subtotals.push({'label': this.sumNames[i], 'value': (-9998+i).toString()})
           }
       }
       for (i = 0; i < this.taxaNegFiltered.length; i++) {
           if (this.taxaNegFiltered[i] != '') {
-              subtotals.push({'label': this.taxaNegFiltered[i], 'value': this.taxaPairs[this.taxaNegFiltered[i]]})
+              subtotals.push({'label': this.taxaNegFiltered[i], 'value': this.taxaPairs[this.taxaNegFiltered[i]].toString()})
           }
       }
       return subtotals
