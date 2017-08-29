@@ -121,12 +121,6 @@ def write_lines(data):
             dataF = data['plots'][i]['line20Box4']
             dataI = data['plots'][i]['line20Box5']
             dataJ = data['plots'][i]['line20Box6']
-            print(type(dataB))
-            print(type(dataC))
-            print(type(dataD))
-            print(type(dataF))
-            print(type(dataI))
-            print(type(dataJ))
 
             # Line 20A entries
             data1A = '0'
@@ -260,7 +254,7 @@ def convert_data(data):
     # Taxa to Plot
     for i in range(len(data['plots'])):
          # Taxon
-        data['plots'][i]['line20Box1'] = data['plots'][i]['line20Box1']
+        data['plots'][i]['line20Box1'] = data['taxaPairs'][data['plots'][i]['line20Box1']]
 
         # Plot Type
         if data['plots'][i]['line20ABox6'] == 'Sawtooth':
@@ -312,6 +306,16 @@ def convert_data(data):
             data['plots'][i]['line20Box4'] = '0'
         else:
             data['plots'][i]['line20Box4'] = '1'
+
+        # Curve Fill
+        if data['plots'][i]['line20ABox3'] == 'None':
+            data['plots'][i]['line20ABox3'] = '0'
+        elif data['plots'][i]['line20ABox3'] == 'Black':
+            data['plots'][i]['line20ABox3'] = '1'
+        elif data['plots'][i]['line20ABox3'] == 'Lines':
+            data['plots'][i]['line20ABox3'] = '2'
+        else:
+            data['plots'][i]['line20ABox3'] = '3'
 
     # Chronology Column
     if data['line21Box3'] == 'Option 1':
