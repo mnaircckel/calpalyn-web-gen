@@ -196,6 +196,7 @@ def write_lines(data):
             f.write('\n')
         if len(data['dates']) < 1:
             f.write('1' + ' '*81 + '//Line 26')
+            f.write('\n')
 
         ''' Line 26A '''
         f.write(data['line26A'])
@@ -219,6 +220,7 @@ def write_lines(data):
             f.write('\n')
         if len(data['zones']) < 1:
             f.write('1' + ' '*81 + '//Line 27')
+            f.write('\n')
 
         ''' Line 28 '''
         f.write('0')
@@ -242,6 +244,7 @@ def write_lines(data):
             f.write('\n')
         if len(data['lines']) < 1:
             f.write('1' + ' '*81 + '//Line 30')
+            f.write('\n')
 
 # Convert UI data values to Calpalyn writable values
 def convert_data(data):
