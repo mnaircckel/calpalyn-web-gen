@@ -13,9 +13,6 @@ def forms():
     if request.method == 'POST':
       with open('forms.json', 'a') as f:
         f.write(json.dumps(request.get_json()) + '\n')
-        data = request.get_json()
-        generate.convert_data(data)
-        generate.write_lines(data)
 
     return render_template('index.html')
 
@@ -28,9 +25,11 @@ def send_forms():
         forms.append(json.loads(line))
     return json.dumps(forms)
 
-@app.route('/generate_form', methods=['POST'])
-def generate_form():
-    pass
+@app.route('/generate_file', methods=['POST'])
+def generate_file():
+    data = request.get_json()
+    generate.convert_data(data)
+    generate.write_lines(data)
 
 @app.route('/parse_taxa_file', methods=['POST'])
 def parse_taxa_file():

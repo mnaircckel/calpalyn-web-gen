@@ -276,7 +276,7 @@ def convert_data(data):
 
         # Normalization Method
         if data['plots'][i]['line20Box2'] == 'Option 1':
-            data['plots'][i]['line20Box2'] = '2'
+            data['plots'][i]['line20Box2'] = '5'
         elif data['plots'][i]['line20Box2'] == 'Option 2':
             data['plots'][i]['line20Box2'] = '1'
         elif data['plots'][i]['line20Box2'] == 'Option 3':
@@ -286,7 +286,7 @@ def convert_data(data):
         elif data['plots'][i]['line20Box2'] == 'Option 5':
             data['plots'][i]['line20Box2'] = '4'
         elif data['plots'][i]['line20Box2'] == 'Option 6':
-            data['plots'][i]['line20Box2'] = '5'
+            data['plots'][i]['line20Box2'] = '2'
         elif data['plots'][i]['line20Box2'] == 'Option 7':
             data['plots'][i]['line20Box2'] = '6'
         elif data['plots'][i]['line20Box2'] == 'Option 8':

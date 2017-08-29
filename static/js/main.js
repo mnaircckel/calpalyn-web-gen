@@ -122,8 +122,48 @@ var vform = new Vue({
   },
   methods: {
     submitForm: function() {
-      if (confirm("Do you wish to generate the instruction file?") == true) {
+      if (confirm("Do you want to save the current form?") == true) {
         axios.post('/', {
+          line25: this.line25,
+          line24: this.line24,
+          line22Box3: this.line22Box3,
+          line22Box2: this.line22Box2,
+          line22Box1: this.line22Box1,
+          line21Box4: this.line21Box4,
+          line21Box1: this.line21Box1,
+          line1Box2: this.line1Box2,
+          line3Box1: this.line3Box1,
+          line21Box3: this.line21Box3,
+          line26A: this.line26A,
+          line22Box4: this.line22Box4,
+          dates: this.dates,
+          line21Box2: this.line21Box2,
+          zones: this.zones,
+          line23Box1: this.line23Box1,
+          lines: this.lines,
+          sumNames: this.sumNames,
+          line3Box2: this.line3Box2,
+          line3Box3: this.line3Box3,
+          line3Box4: this.line3Box4,
+          line3Box5: this.line3Box5,
+          line3Box6: this.line3Box6,
+          line3Box7: this.line3Box7,
+          line3Box8: this.line3Box8,
+          plots: this.plots,
+          taxaFile: false,
+          dataFile: false,
+          taxaPos: this.taxaPos,
+          taxaNeg: this.taxaNeg,
+          taxaPairs: this.taxaPairs,
+          dataNumbers: this.dataNumbers
+        })
+        vform.page = vform.minPage
+        this.loadFormsPage()
+      }
+    },
+    generateFile: function() {
+      if (confirm("Do you want to generate the instruction file?") == true) {
+        axios.post('/generate_file', {
           line25: this.line25,
           line24: this.line24,
           line22Box3: this.line22Box3,
