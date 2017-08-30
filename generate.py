@@ -1,3 +1,4 @@
+import math
 # Writes all data into Calpalyn instruction file
 # Data: Dictionary representing all form fields
 def write_lines(data):

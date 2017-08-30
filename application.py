@@ -30,6 +30,7 @@ def generate_file():
     data = request.get_json()
     generate.convert_data(data)
     generate.write_lines(data)
+    return json.dumps({})
 
 @app.route('/parse_taxa_file', methods=['POST'])
 def parse_taxa_file():
