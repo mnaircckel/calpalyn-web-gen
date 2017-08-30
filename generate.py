@@ -345,9 +345,7 @@ def convert_data(data):
     # For each zone
     data['zones'].reverse()
     for i in range(len(data['zones'])):
-        if data['zones'][i]['line27Box2'] == 'Invisible boundary (no line)':
-            data['zones'][i]['line27Box2'] = '0'
-        elif data['zones'][i]['line27Box2'] == 'Single solid line':
+        if data['zones'][i]['line27Box2'] == 'Single solid line':
             data['zones'][i]['line27Box2'] = '2'
         elif data['zones'][i]['line27Box2'] == 'Single jagged line (nonconformity)':
             data['zones'][i]['line27Box2'] = '3'
