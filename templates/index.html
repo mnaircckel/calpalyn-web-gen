@@ -67,7 +67,7 @@
             <ui-textbox v-model="line24" placeholder="Enter a label"></ui-textbox>
 
             <label class="label">Vertical Interval</label>
-            <ui-alert :dismissible="false">Control the number on vertical axis (usually depths). Zero will automatically select a rounded interval every inch or enter a number to choose your own interval.</ui-alert>
+            <ui-alert :dismissible="false">Control the number on the vertical axis (usually depths). Zero will automatically select a rounded interval every inch. Enter a number to choose your own interval.</ui-alert>
             <ui-textbox v-model="line22Box3"></ui-textbox>
 
             <label class="label">Vertical Factor</label>
@@ -87,7 +87,7 @@
             <ui-select v-model="line21Box4" :options="['Standard', 'Enlarged']"></ui-select>
 
             <label class="label">Data Lines</label>
-            <ui-alert :dismissible="false">Generates horizontal dotted lines at data levels. They can be used to show the sampling interval.</ui-alert>
+            <ui-alert :dismissible="false">Generate horizontal dotted lines at data levels. Lines can be used to show the sampling interval.</ui-alert>
             <ui-select v-model="line21Box1" :options="['Yes', 'No']"></ui-select>
           </div>
 
@@ -125,14 +125,14 @@
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Sum</th>
+                  <th>Subtotal</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
                 <tr :class="cssClass('1', currSumNum)">
                   <td v-text="1"></td>
-                  <td v-if="line3Box2.length === 0"><i>No Sum</i></td>
+                  <td v-if="line3Box2.length === 0"><i>No Subtotal</i></td>
                   <td v-else v-text="sumNames[0]"></td>
                   <td>
                     <ui-button color="secondary" raised @click="currSumNum = '1'">Edit</ui-button>
@@ -140,7 +140,7 @@
                 </tr>
                 <tr :class="cssClass('2', currSumNum)">
                   <td v-text="2"></td>
-                  <td v-if="line3Box3.length === 0"><i>No Sum</i></td>
+                  <td v-if="line3Box3.length === 0"><i>No Subtotal</i></td>
                   <td v-else v-text="sumNames[1]"></td>
                   <td>
                     <ui-button color="secondary" raised @click="currSumNum = '2'">Edit</ui-button>
@@ -148,7 +148,7 @@
                 </tr>
                 <tr :class="cssClass('3', currSumNum)">
                   <td v-text="3"></td>
-                  <td v-if="line3Box4.length === 0"><i>No Sum</i></td>
+                  <td v-if="line3Box4.length === 0"><i>No Subtotal</i></td>
                   <td v-else v-text="sumNames[2]"></td>
                   <td>
                     <ui-button color="secondary" raised @click="currSumNum = '3'">Edit</ui-button>
@@ -156,7 +156,7 @@
                 </tr>
                 <tr :class="cssClass('4', currSumNum)">
                   <td v-text="4"></td>
-                  <td v-if="line3Box5.length === 0"><i>No Sum</i></td>
+                  <td v-if="line3Box5.length === 0"><i>No Subtotal</i></td>
                   <td v-else v-text="sumNames[3]"></td>
                   <td>
                     <ui-button color="secondary" raised @click="currSumNum = '4'">Edit</ui-button>
@@ -164,7 +164,7 @@
                 </tr>
                 <tr :class="cssClass('5', currSumNum)">
                   <td v-text="5"></td>
-                  <td v-if="line3Box6.length === 0"><i>No Sum</i></td>
+                  <td v-if="line3Box6.length === 0"><i>No Subtotal</i></td>
                   <td v-else v-text="sumNames[4]"></td>
                   <td>
                     <ui-button color="secondary" raised @click="currSumNum = '5'">Edit</ui-button>
@@ -172,7 +172,7 @@
                 </tr>
                 <tr :class="cssClass('6', currSumNum)">
                   <td v-text="6"></td>
-                  <td v-if="line3Box7.length === 0"><i>No Sum</i></td>
+                  <td v-if="line3Box7.length === 0"><i>No Subtotal</i></td>
                   <td v-else v-text="sumNames[5]"></td>
                   <td>
                     <ui-button color="secondary" raised @click="currSumNum = '6'">Edit</ui-button>
@@ -180,7 +180,7 @@
                 </tr>
                 <tr :class="cssClass('7', currSumNum)">
                   <td v-text="7"></td>
-                  <td v-if="line3Box8.length === 0  "><i>No Sum</i></td>
+                  <td v-if="line3Box8.length === 0  "><i>No Subtotal</i></td>
                   <td v-else v-text="sumNames[6]"></td>
                   <td>
                     <ui-button color="secondary" raised @click="currSumNum = '7'">Edit</ui-button>
@@ -191,10 +191,10 @@
 
             <div class="box">
               <section class="section" v-show="currSumNum === '1'">
-                <h1 class="title"><Center>Sum 1<Center></h1>
+                <h1 class="title"><Center>Subtotal 1<Center></h1>
 
-                <label class="label">Sum Name</label>
-                <ui-alert :dismissible="false">Enter a name for the sum.</ui-alert>
+                <label class="label">Subtotal Name</label>
+                <ui-alert :dismissible="false">Enter a name for the subtotal.</ui-alert>
                 <ui-textbox v-model="sumNames[0]"></ui-textbox>
 
                 <label class="label">Taxa to Sum</label>
@@ -208,10 +208,10 @@
               </section>
 
               <section class="section" v-show="currSumNum === '2'">
-                <h1 class="title"><Center>Sum 2<Center></h1>
+                <h1 class="title"><Center>Subtotal 2<Center></h1>
 
-                <label class="label">Sum Name</label>
-                <ui-alert :dismissible="false">Enter a name for the sum.</ui-alert>
+                <label class="label">Subtotal Name</label>
+                <ui-alert :dismissible="false">Enter a name for the subtotal.</ui-alert>
                 <ui-textbox v-model="sumNames[1]"></ui-textbox>
 
                 <label class="label">Taxa to Sum</label>
@@ -225,10 +225,10 @@
               </section>
 
               <section class="section" v-show="currSumNum === '3'">
-                <h1 class="title"><Center>Sum 3<Center></h1>
+                <h1 class="title"><Center>Subtotal 3<Center></h1>
 
-                <label class="label">Sum Name</label>
-                <ui-alert :dismissible="false">Enter a name for the sum.</ui-alert>
+                <label class="label">Subtotal Name</label>
+                <ui-alert :dismissible="false">Enter a name for the subtotal.</ui-alert>
                 <ui-textbox v-model="sumNames[2]"></ui-textbox>
 
                 <label class="label">Taxa to Sum</label>
@@ -242,10 +242,10 @@
               </section>
 
               <section class="section" v-show="currSumNum === '4'">
-                <h1 class="title"><Center>Sum 4<Center></h1>
+                <h1 class="title"><Center>Subtotal 4<Center></h1>
 
-                <label class="label">Sum Name</label>
-                <ui-alert :dismissible="false">Enter a name for the sum.</ui-alert>
+                <label class="label">Subtotal Name</label>
+                <ui-alert :dismissible="false">Enter a name for the subtotal.</ui-alert>
                 <ui-textbox v-model="sumNames[3]"></ui-textbox>
 
                 <label class="label">Taxa to Sum</label>
@@ -259,10 +259,10 @@
               </section>
 
               <section class="section" v-show="currSumNum === '5'">
-                <h1 class="title"><Center>Sum 5<Center></h1>
+                <h1 class="title"><Center>Subtotal 5<Center></h1>
 
-                <label class="label">Sum Name</label>
-                <ui-alert :dismissible="false">Enter a name for the sum.</ui-alert>
+                <label class="label">Subtotal Name</label>
+                <ui-alert :dismissible="false">Enter a name for the subtotal.</ui-alert>
                 <ui-textbox v-model="sumNames[4]"></ui-textbox>
 
                 <label class="label">Taxa to Sum</label>
@@ -276,10 +276,10 @@
               </section>
 
               <section class="section" v-show="currSumNum === '6'">
-                <h1 class="title"><Center>Sum 6<Center></h1>
+                <h1 class="title"><Center>Subtotal 6<Center></h1>
 
-                <label class="label">Sum Name</label>
-                <ui-alert :dismissible="false">Enter a name for the sum.</ui-alert>
+                <label class="label">Subtotal Name</label>
+                <ui-alert :dismissible="false">Enter a name for the subtotal.</ui-alert>
                 <ui-textbox v-model="sumNames[5]"></ui-textbox>
 
                 <label class="label">Taxa to Sum</label>
@@ -293,10 +293,10 @@
               </section>
 
               <section class="section" v-show="currSumNum === '7'">
-                <h1 class="title"><Center>Sum 7<Center></h1>
+                <h1 class="title"><Center>Subtotal 7<Center></h1>
 
-                <label class="label">Sum Name</label>
-                <ui-alert :dismissible="false">Enter a name for the sum.</ui-alert>
+                <label class="label">Subtotal Name</label>
+                <ui-alert :dismissible="false">Enter a name for the subtotal.</ui-alert>
                 <ui-textbox v-model="sumNames[6]"></ui-textbox>
 
                 <label class="label">Taxa to Sum</label>
@@ -353,11 +353,12 @@
                 <ui-select v-model="line20ABox6" placeholder="Please select an option" :options="['Sawtooth', 'Bar']"></ui-select>
 
                 <label class="label">Normalization Subtotal</label>
-                <ui-alert :dismissible="false">Choose sum to be used for normalizing this taxon. If you want to graph as raw data, leave blank.</ui-alert>
+                <ui-alert :dismissible="false">Choose subtotal to be used for normalizing this taxon. If you want to graph as raw data, leave blank.</ui-alert>
                 <ui-select has-search v-model="line20Box3" placeholder="Please select an option" :options="normalizationSums"></ui-select>
 
                 <label class="label">Normalization Method</label>
                 <ui-alert :dismissible="false">Choose how you would you like to normalize this taxon.
+                  <br />
                   <br />
                   <ul>
                     <li><strong>Option 1: </strong>Calculate percentage of subtotal</li>
@@ -416,6 +417,7 @@
             <label class="label">Chronology Column</label>
             <ui-alert :dismissible="false">Create a chronology column to show your age model.
               <br />
+              <br />
               <ul>
                 <li><strong>Option 1:</strong> Do not draw chronology column</li>
                 <li><strong>Option 2:</strong> Draw chronology column and merge it with any stratigraphy graphics at left of diagram</li>
@@ -466,7 +468,7 @@
                   <ui-textbox v-model="line26Box3"></ui-textbox>
 
                   <label class="label">Midpoint Depth</label>
-                  <ui-alert :dismissible="false">Enter the midpoint depth of the dated sample.</ui-alert>
+                  <ui-alert :dismissible="false">Enter the midpoint depth of the dated sample. Depths must be ordered from top to bottom.</ui-alert>
                   <ui-textbox v-model="line26Box1"></ui-textbox>
 
                   <label class="label">Vertical Thickness</label>
@@ -491,6 +493,7 @@
           <div v-show="page === 6">
             <label class="label">Stratigraphy Column</label>
             <ui-alert :dismissible="false">Create a column to show the stratigraphic zones in your core.
+              <br />
               <br />
               <ul>
                 <li><strong>Option 1:</strong> Do not draw stratigraphy column</li>
@@ -530,15 +533,15 @@
                 </table>
                 <section class="section">
                   <label class="label">Upper Bound Position</label>
-                  <ui-alert :dismissible="false">Enter a number for the upper position of this stratigraphic zone. Use same units as the first column of your data file (usually depths).</ui-alert>
+                  <ui-alert :dismissible="false">Enter a number for the upper position of this stratigraphic zone. Use same units as the first column of your data file (usually depths). Positions must be ordered from top to bottom.</ui-alert>
                   <ui-textbox v-model="line27Box1"></ui-textbox>
 
                   <label class="label">Boundary Type</label>
                   <ui-alert :dismissible="false">Choose the boundary line style.</ui-alert>
-                  <ui-select v-model="line27Box2" placeholder="Please select an option" :options="['Invisible boundary (no line)', 'Single dashed line', 'Single solid line', 'Single jagged line (nonconformity)', 'Double jagged line (discontinuous core)']"></ui-select>
+                  <ui-select v-model="line27Box2" placeholder="Please select an option" :options="['Single solid line', 'Single jagged line (nonconformity)', 'Double jagged line (discontinuous core)', 'Invisible boundary (no line)']"></ui-select>
 
                   <label class="label">Shading</label>
-                  <ui-alert :dismissible="false">Numbers 0 through 10 indicate shades of grey; 0 is white, 10 is black. Numbers greater than 10 represent patterns.</ui-alert>
+                  <ui-alert :dismissible="false">Numbers 0 through 10 indicate shades of grey; 0 is black, 10 is white. Numbers greater than 10 represent patterns.</ui-alert>
                   <ui-textbox v-model="line27Box3"></ui-textbox>
 
                   <label class="label">Stratigraphy Label</label>
@@ -560,7 +563,7 @@
             <!-- Lines -->
             <div v-show="line23Box1 == 'Yes'">
               <div class="box">
-                <h1 class="title"><Center>Add & Edit Lines<Center></h1>
+                <h1 class="title"><Center>Add & Edit Zone Lines<Center></h1>
                 <table class="table is-bordered">
                   <thead>
                     <tr>
@@ -586,12 +589,12 @@
                   </tbody>
                 </table>
                 <section class="section">
-                  <label class="label">Line Position</label>
-                  <ui-alert :dismissible="false"> Enter a number for the position of this zone line. Use same units as the first column of your data file (usually depths). Start at the top and work down.</ui-alert>
+                  <label class="label">Zone Line Position</label>
+                  <ui-alert :dismissible="false">Enter a number for the position of this zone line. Use same units as the first column of your data file (usually depths). Positions must be ordered from top to bottom.</ui-alert>
                   <ui-textbox v-model="line30Box1"></ui-textbox>
 
-                  <label class="label">Boundary Type</label>
-                  <ui-alert :dismissible="false">Choose a boundary type. Zones are solid lines. Subzones are dashed lines. </ui-alert>
+                  <label class="label">Zone Line Style</label>
+                  <ui-alert :dismissible="false">Choose the type of zone. This will determine the styling. Zones use solid lines. Subzones use dashed lines. </ui-alert>
                   <ui-select v-model="line30Box2" placeholder="Please select an option" :options="['Zone', 'Subzone']"></ui-select>
                 </section>
                 <ui-button v-show="currLine === undefined" color="primary" @click="addRow(lineFields, 'lines', 'currLine')" :disabled="line30Box1 === '' || line30Box2 === ''">Add Line</ui-button>

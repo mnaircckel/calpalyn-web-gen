@@ -343,11 +343,10 @@ def convert_data(data):
     else:
         data['line21Box2'] = '2'
     # For each zone
+    data['zones'].reverse()
     for i in range(len(data['zones'])):
         if data['zones'][i]['line27Box2'] == 'Invisible boundary (no line)':
             data['zones'][i]['line27Box2'] = '0'
-        elif data['zones'][i]['line27Box2'] == 'Single dashed line':
-            data['zones'][i]['line27Box2'] = '1'
         elif data['zones'][i]['line27Box2'] == 'Single solid line':
             data['zones'][i]['line27Box2'] = '2'
         elif data['zones'][i]['line27Box2'] == 'Single jagged line (nonconformity)':

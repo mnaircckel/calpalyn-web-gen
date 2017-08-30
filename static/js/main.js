@@ -3,7 +3,7 @@ Vue.component('box-container', {
   <section class="hero is-bold">
     <div class="hero-body">
       <div class="container">
-        <div class="columns is-vcentered">
+        <div class="columns">
           <div class="column is-half is-offset-one-quarter">
             <div class="box message vform">
             <slot></slot>
