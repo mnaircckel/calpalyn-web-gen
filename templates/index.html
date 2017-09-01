@@ -473,13 +473,15 @@
                   <ui-alert :dismissible="false">Enter the vertical thickness of the area sampled for date. This can be left blank.</ui-alert>
                   <ui-textbox v-model="line26Box2"></ui-textbox>
 
-                  <label class="label">Years Uncertainty</label>
-                  <ui-alert :dismissible="false">Enter an error for date (integer). This can be left blank if you do not want to display errors on the column.</ui-alert>
-                  <ui-textbox v-model="line26Box4"></ui-textbox>
+                  <div v-show="line21Box3 === 'Option 1'">
+                    <label class="label">Years Uncertainty</label>
+                    <ui-alert :dismissible="false">Enter an error for date (integer). This can be left blank if you do not want to display errors on the column.</ui-alert>
+                    <ui-textbox v-model="line26Box4"></ui-textbox>
 
-                  <label class="label">Substance Label</label>
-                  <ui-alert :dismissible="false">Enter a label for the substance dated. This is usually left blank. </ui-alert>
-                  <ui-textbox v-model="line26Box5"></ui-textbox>
+                    <label class="label">Substance Label</label>
+                    <ui-alert :dismissible="false">Enter a label for the substance dated. This is usually left blank. </ui-alert>
+                    <ui-textbox v-model="line26Box5"></ui-textbox>
+                  </div>
                 </section>
                 <ui-button v-show="currDate === undefined" color="primary" @click="addRow(dateFields, 'dates', 'currDate')" :disabled="line26Box1 === '' || line26Box3 === ''">Add Date</ui-button>
                 <ui-button v-show="currDate !== undefined" color="primary" @click="updateRow(currDate, dateFields, 'dates', 'currDate')" :disabled="line26Box1 === '' || line26Box3 === ''">Apply Changes</ui-button>
