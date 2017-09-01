@@ -541,8 +541,8 @@
                   <ui-select v-model="line27Box2" placeholder="Please select an option" :options="['Single solid line', 'Single jagged line (nonconformity)', 'Double jagged line (discontinuous core)']"></ui-select>
 
                   <label class="label">Shading</label>
-                  <ui-alert :dismissible="false">Numbers 0 through 10 indicate shades of grey; 0 is black, 10 is white. Numbers greater than 10 represent patterns.</ui-alert>
-                  <ui-textbox v-model="line27Box3"></ui-textbox>
+                  <ui-alert :dismissible="false">Numbers 0 through 10 indicate shades of grey; 0 is black, 10 is white. </ui-alert>
+                  <ui-select v-model="line27Box3" placeholder="Please select an option" :options="['0','1','2','3','4','5','6','7','8','9','10']"></ui-select>
 
                   <label class="label">Stratigraphy Label</label>
                   <ui-alert :dismissible="false">Enter a text label for the stratigraphic zone.</ui-alert>
