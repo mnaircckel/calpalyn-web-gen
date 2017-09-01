@@ -54,6 +54,7 @@ var vform = new Vue({
     lines: [],
     // Sum Control
     sumNames: ['', '', '', '', '', '', ''],
+    sumFields: ['line3Box2', 'line3Box3', 'line3Box4', 'line3Box5', 'line3Box6', 'line3Box7', 'line3Box8'],
     line3Box2: [],
     line3Box3: [],
     line3Box4: [],
@@ -235,6 +236,16 @@ var vform = new Vue({
         alert("Unable to load form!")
       }
     },
+    // Function for updating Sums
+    addSum: function() {
+      for (i = 0; i < vform.sumFields.length; i++) {
+        if (vform[vform.sumFields[i]].length === 0) {
+          vform.currSumNum = (i + 1).toString()
+          return
+        }
+      }
+      vform.currSumNum = '-1'
+    },
     // Functions for CRUD actions on tables of data
     addRow: function(fields, arr, curr, index = undefined) {
       // Create object to add
@@ -368,6 +379,9 @@ var vform = new Vue({
         n = vform.taxaPairs[taxon]
         return vform.dataNumbers.includes(n)
       })
+    },
+    addSumDisabled() {
+      return this[this.sumFields[parseInt(this.currSumNum)-1]].length === 0
     }
   },
   delimiters: ["[[", "]]"]
