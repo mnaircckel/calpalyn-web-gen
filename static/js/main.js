@@ -74,6 +74,7 @@ var vform = new Vue({
     // End Saved Calpalyn Inputs
     // Default Table fields
     defaults: {
+      line20ABox6: 'Sawtooth',
       line20Box2: 'Option 1',
       line20ABox2: 'No Group',
       line20Box4: 'No',
@@ -106,7 +107,7 @@ var vform = new Vue({
     // Plots
     plotFields: ['line20Box1', 'line20ABox6', 'line20Box3', 'line20Box2', 'line20ABox2', 'line20Box5', 'line20Box4', 'line20Box6', 'line20ABox3', 'line20ABox4', 'line20ABox5'],
     line20Box1: '',
-    line20ABox6: '',
+    line20ABox6: 'Sawtooth',
     line20Box3: '',
     line20Box2: 'Option 1',
     line20ABox2: 'No Group',

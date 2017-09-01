@@ -390,7 +390,6 @@
                 <ui-textbox v-model="line20Box6"></ui-textbox>
 
                 <div v-show="line20ABox6 === 'Sawtooth'">
-                  <h1 class="title">Sawtooth Options</h1>
 
                   <label class="label">Curve Fill</label>
                   <ui-alert :dismissible="false">Decide how you want to shade in the area under your curves.</ui-alert>
@@ -557,7 +556,7 @@
           <div v-show="page === 7">
             <label class="label">Draw Zonation Lines</label>
             <ui-alert :dismissible="false">Use zonation lines to highlight periods of interest within graph. For instance, you could use lines to show cool and warm phases.</ui-alert>
-            <ui-select v-model="line23Box1" :options="['Yes', 'No']"></ui-select>
+            <ui-select v-model="line23Box1" :options="['No', 'Yes']"></ui-select>
 
             <!-- Lines -->
             <div v-show="line23Box1 == 'Yes'">
