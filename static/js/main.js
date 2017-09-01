@@ -382,7 +382,7 @@ var vform = new Vue({
       })
     },
     addSumDisabled() {
-      return this[this.sumFields[parseInt(this.currSumNum)-1]].length === 0
+      return this[this.sumFields[parseInt(this.currSumNum)-1]].length === 0 || this.sumNames[parseInt(this.currSumNum)-1] === ''
     }
   },
   delimiters: ["[[", "]]"]
