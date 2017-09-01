@@ -379,12 +379,14 @@
                 <ui-select v-model="line20ABox2" placeholder="Please select an option" :options="['No Group', 'Trees', 'Shrubs', 'Herbs', 'Ferns', 'Aquatics', 'Herbs and Shrubs']"></ui-select>
 
                 <label class="label">Horizontal Scale</label>
-                <ui-alert :dismissible="false">Enter the actual units for the horizontal interval. The smaller the number you enter the more space this taxon curve will take up. Getting this right can take sometrial and error. You may want to keep adjusting until all the taxa graphed take up similar space or you may want to make all the horizontal intervals the same to make plots true to scale.</ui-alert>
+                <ui-alert :dismissible="false">Leave blank to automatically choose the horizontal interval or enter the actual units for the horizontal interval manually. The smaller the number you enter the more space this taxon curve will take up. Getting this right can take sometrial and error. You may want to keep adjusting until all the taxa graphed take up similar space or you may want to make all the horizontal intervals the same to make plots true to scale.</ui-alert>
                 <ui-textbox v-model="line20Box5"></ui-textbox>
 
-                <label class="label">Five Times Curve</label>
-                <ui-alert :dismissible="false">The five times curve/bars can be used to make a taxon visible if the numbers are very small compared to another taxon on your graph.</ui-alert>
-                <ui-select v-model="line20Box4" placeholder="Please select an option" :options="['No', 'Yes']"></ui-select>
+                <div v-show="line20ABox6 === 'Sawtooth'">
+                  <label class="label">Five Times Curve</label>
+                  <ui-alert :dismissible="false">The five times curve/bars can be used to make a taxon visible if the numbers are very small compared to another taxon on your graph.</ui-alert>
+                  <ui-select v-model="line20Box4" placeholder="Please select an option" :options="['No', 'Yes']"></ui-select>
+                </div>
 
                 <label class="label">Horizontal Axis Label</label>
                 <ui-alert :dismissible="false">Choose a label to place below the taxon being graphed. There is not enough room to place a label below every taxon graphed. It is best to use one or two labels that apply to several plotted taxa (e.g. % non-aquatic pollen).</ui-alert>
@@ -398,7 +400,7 @@
                   <ui-select v-model="line20ABox3" placeholder="Please select an option" :options="['None', 'Black', 'Lines', 'Greyscale']"></ui-select>
 
                   <label v-show="line20ABox3 === 'Lines' || line20ABox3 === 'Greyscale'" class="label">Fill Density</label>
-                  <ui-alert v-show="line20ABox3 === 'Lines' || line20ABox3 === 'Greyscale'" :dismissible="false">Choose the density of fill pattern for area under curve. Enter a number 0 (most dense/black) through 10 (least dense/white).</ui-alert>
+                  <ui-alert v-show="line20ABox3 === 'Lines' || line20ABox3 === 'Greyscale'" :dismissible="false">Choose the fill density for the area under curve. If greyscale is chosen, numbers 0 through 10 indicate shades of grey: 0 is black, 10 is white. If lines are chosen, numbers 0 through 10 indicate the number of lines: 0 is sparse, 10 is dense. </ui-alert>
                   <ui-select v-show="line20ABox3 === 'Lines' || line20ABox3 === 'Greyscale'" v-model="line20ABox5" placeholder="Please select an option" :options="['0','1','2','3','4','5','6','7','8','9','10']"></ui-select>
 
                   <label v-show="line20ABox3 === 'Lines'" class="label">Line Angel</label>
@@ -541,7 +543,7 @@
                   <ui-select v-model="line27Box2" placeholder="Please select an option" :options="['Single solid line', 'Single jagged line (nonconformity)', 'Double jagged line (discontinuous core)']"></ui-select>
 
                   <label class="label">Shading</label>
-                  <ui-alert :dismissible="false">Numbers 0 through 10 indicate shades of grey; 0 is black, 10 is white. </ui-alert>
+                  <ui-alert :dismissible="false">Numbers 0 through 10 indicate shades of grey: 0 is black, 10 is white. </ui-alert>
                   <ui-select v-model="line27Box3" placeholder="Please select an option" :options="['0','1','2','3','4','5','6','7','8','9','10']"></ui-select>
 
                   <label class="label">Stratigraphy Label</label>
