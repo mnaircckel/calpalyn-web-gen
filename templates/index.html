@@ -413,19 +413,18 @@
 
           <!-- Section 5 -->
           <div v-show="page === 5">
-            <label class="label">Chronology Column</label>
+            <label class="label">Draw Chronology Column</label>
             <ui-alert :dismissible="false">Create a chronology column to show your age model.
               <br />
               <br />
               <ul>
-                <li><strong>Option 1:</strong> Do not draw chronology column</li>
-                <li><strong>Option 2:</strong> Draw chronology column and merge it with any stratigraphy graphics at left of diagram</li>
-                <li><strong>Option 3:</strong> Draw scaled chronology column with tick marks at fixed time intervals along the left side of the column</li>
+                <li><strong>Option 1:</strong> Draw chronology column and merge it with any stratigraphy graphics at left of diagram</li>
+                <li><strong>Option 2:</strong> Draw scaled chronology column with tick marks at fixed time intervals along the left side of the column</li>
               </ul>
             </ui-alert>
-            <ui-select vertical="true" :options="['Option 1', 'Option 2', 'Option 3']" v-model="line21Box3"></ui-select>
+            <ui-select vertical="true" :options="['No', 'Option 1', 'Option 2']" v-model="line21Box3"></ui-select>
 
-            <div v-show="line21Box3 !== 'Option 1'">
+            <div v-show="line21Box3 !== 'No'">
               <label class="label">Chronology Label</label>
               <ui-alert :dismissible="false">Enter a label to go below the chronology column (e.g. Cal years BP).</ui-alert>
               <ui-textbox v-model="line26A" placeholder="Enter a label"></ui-textbox>
@@ -490,20 +489,19 @@
 
           <!-- Section 6 -->
           <div v-show="page === 6">
-            <label class="label">Stratigraphy Column</label>
+            <label class="label">Draw Stratigraphy Column</label>
             <ui-alert :dismissible="false">Create a column to show the stratigraphic zones in your core.
               <br />
               <br />
               <ul>
-                <li><strong>Option 1:</strong> Do not draw stratigraphy column</li>
-                <li><strong>Option 2:</strong> Draw stratigraphy column and merge it with any chronology graphics at left of diagram</li>
-                <li><strong>Option 3:</strong> Draw stratigraphy column, omit stratigraphy labels, and draw boxes with labels identifying each fill pattern below the diagram</li>
+                <li><strong>Option 1:</strong> Draw stratigraphy column and merge it with any chronology graphics at left of diagram</li>
+                <li><strong>Option 2:</strong> Draw stratigraphy column, omit stratigraphy labels, and draw boxes with labels identifying each fill pattern below the diagram</li>
               </ul>
             </ui-alert>
-            <ui-select vertical="true" :options="['Option 1', 'Option 2', 'Option 3']" v-model="line21Box2"></ui-select>
+            <ui-select vertical="true" :options="['No', 'Option 1', 'Option 2']" v-model="line21Box2"></ui-select>
 
             <!-- Zones -->
-            <div v-show="line21Box2 !== 'Option 1'">
+            <div v-show="line21Box2 !== 'No'">
               <div class="box">
                 <h1 class="title"><Center>Add & Edit Zones<Center></h1>
                 <table class="table is-bordered">

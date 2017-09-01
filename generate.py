@@ -329,19 +329,19 @@ def convert_data(data):
 
     # Chronology Column
     if data['line21Box3'] == 'Option 1':
-        data['line21Box3'] = '0'
-    elif data['line21Box3'] == 'Option 2':
         data['line21Box3'] = '1'
-    else:
+    elif data['line21Box3'] == 'Option 2':
         data['line21Box3'] = '2'
+    else:
+        data['line21Box3'] = '0'
 
     # Stratigraphy Column
     if data['line21Box2'] == 'Option 1':
-        data['line21Box2'] = '0'
-    elif data['line21Box2'] == 'Option 2':
         data['line21Box2'] = '1'
-    else:
+    elif data['line21Box2'] == 'Option 2':
         data['line21Box2'] = '2'
+    else:
+        data['line21Box2'] = '0'
     # For each zone
     data['zones'].reverse()
     for i in range(len(data['zones'])):

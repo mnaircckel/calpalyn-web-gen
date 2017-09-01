@@ -42,12 +42,12 @@ var vform = new Vue({
     line1Box2: '-1',
     line3Box1: '',
     // Date Control
-    line21Box3: 'Option 1',
+    line21Box3: 'No',
     line26A: '',
     line22Box4: '0',
     dates: [],
     // Zone Control
-    line21Box2: 'Option 1',
+    line21Box2: 'No',
     zones: [],
     // Line Control
     line23Box1: 'No',
