@@ -59,27 +59,27 @@
           <!-- Section 1 -->
           <div v-show="page === 1">
             <label class="label">Graph Title</label>
-            <ui-alert :dismissible="false">Enter the main title to appear above your graph.</ui-alert>
+            <ui-alert :dismissible="false">Enter the title to appear above your graph. The graph title is also used when saving and loading graph selections.</ui-alert>
             <ui-textbox v-model="line25" placeholder="Enter a title"></ui-textbox>
 
             <label class="label">Vertical Label</label>
-            <ui-alert :dismissible="false">Enter a label for the vertical axis (e.g. depth cm).</ui-alert>
+            <ui-alert :dismissible="false">Enter a label for the vertical axis (e.g. Depth cm).</ui-alert>
             <ui-textbox v-model="line24" placeholder="Enter a label"></ui-textbox>
 
             <label class="label">Vertical Interval</label>
-            <ui-alert :dismissible="false">Control the number on the vertical axis (usually depths). Zero will automatically select a rounded interval every inch. Enter a number to choose your own interval.</ui-alert>
+            <ui-alert :dismissible="false">Enter the interval for the vertical axis (usually depths). Zero will automatically select a rounded interval every inch.</ui-alert>
             <ui-textbox v-model="line22Box3"></ui-textbox>
 
             <label class="label">Vertical Factor</label>
-            <ui-alert :dismissible="false">This allows you to multiply the primary vertical axis (usually depths) by a factor. Use -1.0 so the graph plots right-side up if you are using depths or ages as positive numbers. Enter 1 to leave numbers alone.</ui-alert>
+            <ui-alert :dismissible="false">Enter -1.0 to graph right-side up if you are using depths or ages as positive numbers. Enter 1 to leave numbers alone. This allows you to multiply the primary vertical axis (usually depths) by a factor.</ui-alert>
             <ui-textbox v-model="line1Box2"></ui-textbox>
 
             <label class="label">Graph Width</label>
-            <ui-alert :dismissible="false">Zero will automatically scale the graph to fit the page. A positive number sets the graph width in inches.</ui-alert>
+            <ui-alert :dismissible="false">Enter a positive number to set the graph width in inches. Zero will automatically scale the graph to fit the page.</ui-alert>
             <ui-textbox v-model="line22Box2"></ui-textbox>
 
             <label class="label">Graph Height</label>
-            <ui-alert :dismissible="false">Zero will automatically scale the graph to fit the page. A positive number sets the graph height in inches.</ui-alert>
+            <ui-alert :dismissible="false">Enter a positive number to set the graph height in inches. Zero will automatically scale the graph to fit the page.</ui-alert>
             <ui-textbox v-model="line22Box1"></ui-textbox>
 
             <label class="label">Font Size</label>
@@ -346,11 +346,11 @@
                 <ui-select has-search v-model="line20Box1" placeholder="Please select an option" :options="taxaPosFiltered"></ui-select>
 
                 <label class="label">Plot Type</label>
-                <ui-alert :dismissible="false">Choose how you would like to graph this taxon.</ui-alert>
+                <ui-alert :dismissible="false">Choose how you would like to plot this taxon.</ui-alert>
                 <ui-select v-model="line20ABox6" placeholder="Please select an option" :options="['Sawtooth', 'Bar']"></ui-select>
 
                 <label class="label">Normalization Subtotal</label>
-                <ui-alert :dismissible="false">Choose subtotal to be used for normalizing this taxon. If you want to graph as raw data, leave blank.</ui-alert>
+                <ui-alert :dismissible="false">Choose the subtotal to be used for normalizing this taxon. If you want to plot as raw data, leave blank.</ui-alert>
                 <ui-select has-search v-model="line20Box3" placeholder="Please select an option" :options="normalizationSums"></ui-select>
 
                 <label class="label">Normalization Method</label>
@@ -376,7 +376,7 @@
                 <ui-select v-model="line20ABox2" placeholder="Please select an option" :options="['No Group', 'Trees', 'Shrubs', 'Herbs', 'Ferns', 'Aquatics', 'Herbs and Shrubs']"></ui-select>
 
                 <label class="label">Horizontal Scale</label>
-                <ui-alert :dismissible="false">Leave blank to automatically choose the horizontal interval or enter the actual units for the horizontal interval manually. The smaller the number you enter the more space this taxon curve will take up. Getting this right can take sometrial and error. You may want to keep adjusting until all the taxa graphed take up similar space or you may want to make all the horizontal intervals the same to make plots true to scale.</ui-alert>
+                <ui-alert :dismissible="false">Leave blank to automatically choose the horizontal interval or enter the actual units for the horizontal interval manually. The smaller the number you enter the more space this taxon curve will take up. Getting this right can take some trial and error. You may want to keep adjusting until all the taxa graphed take up similar space or you may want to make all the horizontal intervals the same to make plots true to scale.</ui-alert>
                 <ui-textbox v-model="line20Box5"></ui-textbox>
 
                 <div v-show="line20ABox6 === 'Sawtooth'">
@@ -386,7 +386,7 @@
                 </div>
 
                 <label class="label">Horizontal Axis Label</label>
-                <ui-alert :dismissible="false">Choose a label to place below the taxon being graphed. There is not enough room to place a label below every taxon graphed. It is best to use one or two labels that apply to several plotted taxa (e.g. % non-aquatic pollen).</ui-alert>
+                <ui-alert :dismissible="false">Choose a label to place below the taxon being graphed. There is not always enough room to place a label below every taxon graphed. It is best to use one or two labels that apply to several plotted taxa (e.g. % non-aquatic pollen).</ui-alert>
                 <ui-textbox v-model="line20Box6"></ui-textbox>
 
                 <div v-show="line20ABox6 === 'Sawtooth'">
@@ -431,7 +431,7 @@
               <ui-textbox v-model="line26A" placeholder="Enter a label"></ui-textbox>
 
               <label class="label">Chronology Numbering</label>
-              <ui-alert :dismissible="false">Enter 0 for a rounded interval approximately equal to one- fiftieth of your oldest date. Number labels are placed once every five tick marks. Enter a positive number to choose your own interval (spacing of ticks) in years.</ui-alert>
+              <ui-alert :dismissible="false">Enter 0 for a rounded interval approximately equal to one-fiftieth of your oldest date. Number labels are placed once every five tick marks. Enter a positive number to choose your own interval (spacing of ticks) in years.</ui-alert>
               <ui-textbox v-model="line22Box4"></ui-textbox>
 
               <!-- Dates -->
@@ -532,7 +532,7 @@
                 </table>
                 <section class="section">
                   <label class="label">Upper Bound Position</label>
-                  <ui-alert :dismissible="false">Enter a number for the upper position of this stratigraphic zone. Use same units as the first column of your data file (usually depths). Positions must be ordered from top to bottom.</ui-alert>
+                  <ui-alert :dismissible="false">Enter a number for the upper position of this stratigraphic zone. Use the same units as the first column of your data file (usually depths). Positions must be ordered from top to bottom.</ui-alert>
                   <ui-textbox v-model="line27Box1"></ui-textbox>
 
                   <label class="label">Boundary Type</label>
@@ -589,7 +589,7 @@
                 </table>
                 <section class="section">
                   <label class="label">Zone Line Position</label>
-                  <ui-alert :dismissible="false">Enter a number for the position of this zone line. Use same units as the first column of your data file (usually depths). Positions must be ordered from top to bottom.</ui-alert>
+                  <ui-alert :dismissible="false">Enter a number for the position of this zone line. Use the same units as the first column of your data file (usually depths). Positions must be ordered from top to bottom.</ui-alert>
                   <ui-textbox v-model="line30Box1"></ui-textbox>
 
                   <label class="label">Zone Line Style</label>
