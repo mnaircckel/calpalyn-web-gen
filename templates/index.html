@@ -23,9 +23,19 @@
         <box-container>
           <center><strong>About Calpalyn</strong></center>
           <br />
-          <p>Descriptive paragraphs include details that appeal to the five senses: sight, taste, touch, smell, and hearing. In a descriptive paragraph, the writer must convey information that appeals to all the senses in order to give the best possible
-            description to the reader. Descriptive paragraphs are commonly used in fiction and non-fiction writing to help immerse readers into the world of the author. Though there are no hard and fast rules for how exactly these paragraphs should be
-            structured, there are several suggestions that can help you write an effective and appealing descriptive paragraph.</p>
+          <p>
+
+            Calpalyn is a paleoclimate data graphing program written for Dr. Roger Byrne’s pollen lab at UC Berkeley. It is especially suited to plotting pollen data. Calpalyn provides options for adding chronology and stratigraphy columns. Calpalyn runs through the Solaris terminal and requires three files to generate a graph: a data file, a taxa file, and an instruction file. This website was created to make instruction file generation easier.
+            <br />
+            <br />
+            To create a new instruction file, navigate to the <i>CREATE GRAPH</i> tab. Make your selections on pages 1 through 7 and then click <i>GENERATE INSTRUCTION FILE</i>. Page 1 shows general graph options. Page 2 prompts you to upload taxa and data files. Pages 3 and 4 allow you to choose data to plot, normalization methods, and plot styles. Pages 5 through 7 display options to add chronology and stratigraphy columns and zonation lines.
+            <br />
+            <br />
+            An instruction file titled “file.instrs” will be downloaded to the folder that serves the website. You can also save you selections so that you can easily make modifications later. To save, click <i>SAVE CURRENT GRAPH</i>. To return to your saved selections, click the tab <i>LOAD GRAPH</i> and make a selection from the dropdown menu.
+            <br />
+            <br />
+            Once you have your three files, you are ready to run Calpalyn. First, resave your data file as a tab-delimited text file before running it through Calpalyn. Then, open the virtual machine running Solaris. Open the terminal and use “cd” to navigate to your project folder. The folder should contain the three files you just created. Now you need to convert your data file to a format readable by Calpalyn. Type “convert_table” followed by the name of your data file and then the name you want to save the converted file under. The converted file must have the ending “.data”. For instance, you could type: “convert_table example.txt example.data”. Now you are finally ready to create a graph. Type “analyze” into the terminal and follow the prompts. Save the actual graph with a “.psc” ending. Postscript graphs can be converted to PDFs using the program Adobe Distiller.
+        </p>
         </box-container>
       </ui-tab>
 
@@ -97,14 +107,20 @@
               <label class="label">Data File</label>
               <ui-alert :dismissible="false">Your data file contains all the actual data to be graphed. Create your file in Excel and save as a .csv file. The first cell should contain two numbers separated by a space. The first number indicates the number of rows, and the second number indicates the number of columns. Note that both of these numbers must be entered as one less than the actual number of rows and columns in the file because the numbers indicate the number of rows and columns of actual data and disregard the initial cell as metadata. The rest of the first column should be filled with data levels (usually depths). The numbers in the first row should match the numbers identifying each taxon in the taxa file. All other boxes are filled with your actual data. Make sure that there are not any duplicate numbers in the first column or row and that numbering is in order from least to greatest. No numbers may be more than 4 digits long. Fill any blanks with zeros.</ui-alert>
               <li>
-                <ui-fileupload raised @change="uploadDataFile" label="Choose a data file" color="primary" name="dataFile"></ui-fileupload>
+                <a href="{{ url_for('static', filename='examples/example.csv') }}"><ui-button raised color="primary">Download example data file</ui-button></a>
+              </li>
+              <li>
+                <ui-fileupload raised @change="uploadDataFile" label="Upload data file" color="primary" name="dataFile"></ui-fileupload>
               </li>
               <br />
 
               <label class="label">Taxa File</label>
               <ui-alert :dismissible="false">Your taxa file contains identifying numbers that correspond to the text labels that will appear on your graph. Negative numbers are usually reserved for pre-calculated sums and normalization factors. Numbers must be in order from least to greatest. All names and numbers must be unique. Do not add any special characters other than the ones that appear in the example file. If you are starting from scratch, you may want to simply copy and modify the provided example taxa file. The taxa file can be edited in any text editor, but make sure to save the file with a .taxa file extension.</ui-alert>
               <li>
-                <ui-fileupload raised @change="uploadTaxaFile" label="Choose a taxa file" color="primary" name="taxaFile"></ui-fileupload>
+                <a href="{{ url_for('static', filename='examples/example.taxa') }}"><ui-button raised color="primary">Download example data file</ui-button></a>
+              </li>
+              <li>
+                <ui-fileupload raised @change="uploadTaxaFile" label="Upload taxa file" color="primary" name="taxaFile"></ui-fileupload>
               </li>
               <br />
 

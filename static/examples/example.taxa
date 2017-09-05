@@ -1,0 +1,120 @@
+  -65 Control         |(Count)         |                |
+  -64 Control         |(pills/sample)  |                |
+  -63 Control         |(grains/pill)   |                |
+  -62 Years in Sample |                |                |
+  -61 Average Years/cm|(Vertical)      |                |
+  -60 Sample Thickness|(Vertical cm)   |                |
+  -59 Area of Sample  |(Square cm)     |                |
+  -58 Volume (cc) of  |Control Sample  |                |
+  -57 Volume (cc) of  |Counted Sample  |                |
+  -56 Weight (g) of   |Control & Vessel|sans Carbonates |
+  -55 Weight (g) of   |Control & Vessel|sans Organics   |
+  -54 Dry Weight of   |Control & Vessel|(grams)         |
+  -53 Wet Weight of   |Control & Vessel|(grams)         |
+  -52 Empty Weight of |Control Vessel  |(grams)         |
+  -51 Wet Weight of   |Counted Sample  |& Vessel (grams)|
+  -50 Empty Weight of |Counted Sample's|Vessel (grams)  |
+    1 *Abies#         |                |                |
+    2 *Picea#         |                |                |
+    3 *Pinus#         |                |                |
+    4 *Pinus(white)#  |                |                |
+    5 *Ephedra#       |                |                |
+    6 *Pseudostuga#   |                |                |
+    7 *Calocedrus# -  |*Sequoia#       |                |
+    8 *Juniperus#  -  |*Cupressus#     |                |
+    9 *Tsuga#         |*mertensiana#   |                |
+   10 *Tsuga#         |*heterophylla#  |                |
+   11 *Acer#          |                |                |
+   12 *Acer negundo#  |                |                |
+   13 *Quercus#       |                |                |
+   14 *Quercus#       |(intermediate)  |                |
+   15 *Aesculus#      |                |                |
+   16 *Lithocarpus# - |*Castanopsis#   |                |
+   17 *Fraxinus#      |                |                |
+   18 *Juglans#       |                |                |
+   19 *Garrya#        |                |                |
+   20 *Platanus#      |                |                |
+   21 *Tremontia#     |                |                |
+   22 ROSACEAE        |                |                |
+   23 *Adenostoma#    |                |                |
+   24 *Cercocarpus#   |                |                |
+   25 RHAMNACEAE      |                |
+   26 *Ceanothus#     |                |                |
+   27 *Cephalanthus#  |                |                |
+   28 *Sambucus#      |                |                |
+   29 *Sheperdia#     |                |                |
+   30 *Eleagnus#      |                |                |
+   31 *Sanguisorba#   |                |                |
+   32 *Ribes#         |                |                |
+   33 *Cornus#        |                |                |
+   34 *Salix#         |                |                |
+   35 *Myrica#        |                |                |
+   36 *Corylus#       |                |                |
+   37 *Alnus#         |                |                |
+   38 *Artemisia#     |                |                |
+   39 *Ambrosia#      |                |                |
+   40 Liguliflorae    |                |                |
+   41 ASTERACEAE      |High Spine      |                |
+   42 ASTERACEAE      |Low Spine       |                |
+   43 SCROPHULARIACEAE|                |                |
+   44 LINACEAE        |                |                |
+   45 CRUCIFERAE      |                |                |
+   46 *Arceuthobium#  |                |                |
+   47 CARYOPHYLLACEAE |                |                |
+   48 MALVACEAE       |                |                |
+   49 LILIACEAE       |                |                |
+   50 LEGUMINOSAE     |                |                |
+   51 ONAGRACEAE      |                |                |
+   52 LAMIACEAE       |                |                |
+   53 *Salvia#        |                |                |
+   54 *Eriogonum#     |                |                |
+   55 *Polygonum#     |*amphibium#     |                |
+   56 *Polygonum#     |*californica#   |                |
+   57 *Vitis#         |                |                |
+   58 *Rumex#         |                |                |
+   59 *Plantago#      |                |                |
+   60 POLEMONIACEAE   |                |                |
+   61 *Navarettia#    |                |                |
+   62 RANUNCULACEAE   |                |                |
+   63 APIACEAE        |                |                |
+   64 RUBIACEAE       |                |                |
+   65 *Thalictrum#    |                |                |
+   66 *Rhus#          |                |                |
+   67 *Lonicera#      |                |                |
+   68 AMARANTHACEAE   |                |                |
+   69 *Sarcobatus#    |                |                |
+   70 POACEAE         |                |                |
+   71 CYPERACEAE      |                |                |
+   72 *Typha/#        |*Sparganium#    |                |
+   73 *Potamogeton#   |                |                |
+   74 *Triglochin#    |                |                |
+   75 *Isoetes#       |                |                |
+   76 *Equisetum#     |                |                |
+   77 *Myriophylum#   |                |                |
+   78 *Ruppia#        |                |                |
+   79 *Nuphar#        |hydropotes      |                |
+   80 *Nuphar#        |                |                |
+   81 *Brasenia#      |                |                |
+   82 *Menyanthes#    |                |                |
+   83 *Dryopteris#    |                |                |
+   84 *Polypodium#    |                |                |
+   85 *Pteridium#     |                |                |
+   86 *Botrychium#    |                |                |
+   87 *Athyrum#       |                |                |
+   88 *Polystichum#   |                |                |
+   89 *Selaginella#   |                |                |
+   90 Trilete         |                |                |
+   91 Monolete        |                |                |
+   92 Colonial        |fungi           |                |
+   93 *Pediastrum#    |                |                |
+   94 *Tripterospora# |                |                |
+   95 *Sporormiella#  |                |                |
+   96 *Podospora#     |                |                |
+   97 *Delitschia#    |                |                |
+   98 *Cercophora#    |                |                |
+   99 Total           |Coprophilous    |Fungi           |
+  100 Indeterminate   |                |                |
+  101 Unknown         |                |                |
+  102 *Zea#           |controls        |                |
+  103 *Lycopodium#    |controls        |                |
+  104                 |                |                |
