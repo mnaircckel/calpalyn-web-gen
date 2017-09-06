@@ -117,7 +117,7 @@
               <label class="label">Taxa File</label>
               <ui-alert :dismissible="false">Your taxa file contains identifying numbers that correspond to the text labels that will appear on your graph. Negative numbers are usually reserved for pre-calculated sums and normalization factors. Numbers must be in order from least to greatest. All names and numbers must be unique. Do not add any special characters other than the ones that appear in the example file. If you are starting from scratch, you may want to simply copy and modify the provided example taxa file. The taxa file can be edited in any text editor, but make sure to save the file with a .taxa file extension.</ui-alert>
               <li>
-                <a href="{{ url_for('static', filename='examples/example.taxa') }}"><ui-button raised color="primary">Download example data file</ui-button></a>
+                <a href="{{ url_for('static', filename='examples/example.taxa') }}"><ui-button raised color="primary">Download example taxa file</ui-button></a>
               </li>
               <li>
                 <ui-fileupload raised @change="uploadTaxaFile" label="Upload taxa file" color="primary" name="taxaFile"></ui-fileupload>
