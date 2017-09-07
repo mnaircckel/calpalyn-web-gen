@@ -421,8 +421,8 @@
 
                 </div>
               </section>
-              <ui-button v-show="currPlot === undefined" color="primary" @click="addRow(plotFields, 'plots', 'currPlot')">Add Taxon to Graph</ui-button>
-              <ui-button v-show="currPlot !== undefined" color="primary" @click="updateRow(currPlot, plotFields, 'plots', 'currPlot')">Apply Changes</ui-button>
+              <ui-button v-show="currPlot === undefined" color="primary" :disabled="line20Box1 === '' || line20Box3 === ''" @click="addRow(plotFields, 'plots', 'currPlot')">Add Taxon to Graph</ui-button>
+              <ui-button v-show="currPlot !== undefined" color="primary" :disabled="line20Box1 === '' || line20Box3 === ''" @click="updateRow(currPlot, plotFields, 'plots', 'currPlot')">Apply Changes</ui-button>
             </div>
           </div>
 
