@@ -164,7 +164,34 @@ var vform = new Vue({
       }
     },
     generateFile: function() {
-      if (confirm("Do you want to generate the instruction file?") == true) {
+      // Check for errors
+      var errors = ""
+      if (vform.line25 === '') {
+        errors += "You must enter a title for the graph.\n"
+      }
+      if (vform.line24 === '') {
+        errors += "You must enter a vertical label for the graph.\n"
+      }
+      if (vform.plots.length === 0) {
+        errors += "You must plot at least one taxon.\n"
+      }
+      if (vform.dates.length === 0 && vform.line21Box3 !== 'No') {
+        errors += "You must add at least one date to your chronology column.\n"
+      }
+      if (vform.zones.length === 0 && vform.line21Box2 !== 'No') {
+        errors += "You must add at least one zone to your stratigraphy column.\n"
+      }
+      if (vform.lines.length === 0 && vform.line23Box1 !== 'No') {
+        errors += "You must have at least one zone to draw zonation lines.\n"
+      }
+
+      // If there are errors, inform the user
+      if (errors.length > 0) {
+        errors = "Sorry, it looks like you forgot to fill out some required information!\n\n" + errors
+        alert(errors)
+      }
+      // If no errors, generate the instruction file
+      else if (confirm("Do you want to generate the instruction file?") == true) {
         axios.post('/generate_file', {
           line25: this.line25,
           line24: this.line24,
